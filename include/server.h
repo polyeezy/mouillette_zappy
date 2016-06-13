@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:09:23 2016 Loïc Weinhard
-** Last update Mon Jun 13 11:35:27 2016 Loïc Weinhard
+** Last update Mon Jun 13 16:22:38 2016 Loïc Weinhard
 */
 
 #ifndef SERVER_H_
@@ -17,15 +17,22 @@
 # include <sys/time.h>
 # include <sys/types.h>
 # include <unistd.h>
+# include <netinet/in.h>
+# include <string.h>
+# include "team.h"
 
 typedef struct 		s_server
 {
   int			fd;
+  int			fd_max;
   int			timeout;
   t_team		*teams;
   struct sockaddr_in	client_addr;
   socklen_t		client_size;
   fd_set		readfds;
 }			t_server;
+
+t_server	init_server(char **argv);
+void		close_server(t_server server);
 
 #endif

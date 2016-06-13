@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Mon Jun 13 15:33:19 2016 Loïc Weinhard
+## Last update Mon Jun 13 16:45:51 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -15,6 +15,10 @@ SRV_FOLDER	=	./src/server
 SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/args.c		\
 			$(SRV_FOLDER)/check_args.c	\
+			$(SRV_FOLDER)/init.c		\
+			$(SRV_FOLDER)/close.c		\
+			$(SRV_FOLDER)/teams.c		\
+			$(SRV_FOLDER)/clients.c		\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 
@@ -33,6 +37,10 @@ CLT_OBJ		=	$(CLT_SRC:.c=.o)
 UTILS_FOLDER	=	./src/utils
 
 UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c	\
+			$(UTILS_FOLDER)/get_arg.c	\
+			$(UTILS_FOLDER)/xfct_1.c	\
+			$(UTILS_FOLDER)/xfct_2.c	\
+			$(UTILS_FOLDER)/xfct_3.c	\
 
 UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 

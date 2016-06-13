@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 13:21:44 2016 Loïc Weinhard
-** Last update Mon Jun 13 14:20:27 2016 Loïc Weinhard
+** Last update Mon Jun 13 15:35:42 2016 Loïc Weinhard
 */
 
 #ifndef ARGS_H_
@@ -23,6 +23,8 @@ typedef struct	s_arg
   char		mandatory;
   char		used;
 }		t_arg;
+
+int	check_args(char **argv);
 
 extern t_arg	g_server_args[SERVER_ARGS];
 

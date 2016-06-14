@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Tue Jun 14 13:51:32 2016 Loïc Weinhard
+## Last update Tue Jun 14 17:24:26 2016 Alexis Miele
 ##
 
 SRV_NAME	=	zappy_server
@@ -30,6 +30,8 @@ CLT_NAME	=	zappy_ai
 CLT_FOLDER	=	./src/client
 
 CLT_SRC		=	$(CLT_FOLDER)/main.c		\
+			$(CLT_FOLDER)/args.c		\
+			$(CLT_FOLDER)/check_args.c	\
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
 

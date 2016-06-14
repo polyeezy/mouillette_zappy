@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Mon Jun 13 16:47:06 2016 Loïc Weinhard
+** Last update Tue Jun 14 16:07:32 2016 Loïc Weinhard
 */
 
 #ifndef CLIENT_H_
@@ -20,7 +20,6 @@ typedef struct		s_client
   char			*team;
   int			x;
   int			y;
-  int			food;
   t_orientation		orientation;
   t_materials		materials;
   struct s_client	*next;

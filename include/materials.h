@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:19:26 2016 Loïc Weinhard
-** Last update Mon Jun 13 11:21:22 2016 Loïc Weinhard
+** Last update Tue Jun 14 16:07:27 2016 Loïc Weinhard
 */
 
 #ifndef MATERIALS_H_
@@ -13,6 +13,7 @@
 
 typedef struct	s_materials
 {
+  int		food;
   int		linemate;
   int		deraumere;
   int		sibur;

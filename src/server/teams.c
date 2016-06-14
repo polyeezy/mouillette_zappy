@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:39:57 2016 Loïc Weinhard
-** Last update Mon Jun 13 16:47:38 2016 Loïc Weinhard
+** Last update Tue Jun 14 13:45:02 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -16,18 +16,16 @@
 
 void	free_teams(t_team *teams)
 {
-  while (teams != NULL)
+  while (teams->next != NULL)
     {
       xfree(teams->name);
       free_clients(teams->members);
-      if (teams->next != NULL)
-	{
-	  teams = teams->next;
-	  xfree(teams->prev);
-	}
-      else
-	xfree(teams);
+      teams = teams->next;
+      xfree(teams->prev);
     }
+  xfree(teams->name);
+  free_clients(teams->members);
+  xfree(teams);
 }
 
 void	add_teams(t_team **teams, char **argv)

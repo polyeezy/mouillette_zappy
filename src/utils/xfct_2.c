@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.net>
 ** 
 ** Started on  Mon May  2 18:11:07 2016 Loïc Weinhard
-** Last update Mon May  2 19:12:47 2016 Loïc Weinhard
+** Last update Tue Jun 14 13:46:06 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -13,7 +13,7 @@
 static void	close_and_exit(int sockfd, char *msg)
 {
   xclose(sockfd);
-  fprintf(stderr, msg);
+  fprintf(stderr, "%s", msg);
   exit(EXIT_FAILURE);
 }
 

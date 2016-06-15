@@ -5,7 +5,8 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Tue Jun 14 05:47:59 2016 Valérian Polizzi
+## Last update Wed Jun 15 02:41:05 2016 Valérian Polizzi
+## Last update Tue Jun 14 17:24:26 2016 Alexis Miele
 ##
 
 SRV_NAME	=	zappy_server
@@ -32,6 +33,8 @@ CLT_FOLDER	=	./src/client
 CLT_SRC		=	$(CLT_FOLDER)/main.c				\
 			$(CLT_FOLDER)/client_check_params.c		\
 			$(CLT_FOLDER)/client_init.c			\
+			$(CLT_FOLDER)/args.c		\
+			$(CLT_FOLDER)/check_args.c	\
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
 
@@ -52,7 +55,7 @@ UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 CFLAGS		+=	-Wall -Wextra -Werror -g
 CFLAGS		+=	-Iinclude
 
-
+MR_CLEAN        =       find ./ \( -name "*~" -o -name "\#*\#" \) -delete
 
 all		:	$(SRV_NAME) $(CLT_NAME)
 
@@ -63,6 +66,7 @@ $(CLT_NAME)	:	$(CLT_OBJ) $(UTILS_OBJ)
 			gcc $(CLT_OBJ) $(UTILS_OBJ) -o $(CLT_NAME)
 
 clean		:
+			$(MR_CLEAN)
 			rm -rf $(SRV_OBJ)
 			rm -rf $(CLT_OBJ)
 			rm -rf $(UTILS_OBJ)

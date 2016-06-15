@@ -5,11 +5,12 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:32:34 2016 Loïc Weinhard
-** Last update Mon Jun 13 15:34:43 2016 Loïc Weinhard
+** Last update Tue Jun 14 16:41:17 2016 Loïc Weinhard
 */
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "args.h"
 #include "utils.h"
 
@@ -28,7 +29,8 @@ static int	check_param(char **argv, int i)
 	  i += 1;
 	  while (y < g_server_args[x].number_of_args)
 	    {
-	      if (g_server_args[x].numeric_value && isitnum(argv[i]))
+	      if (g_server_args[x].numeric_value && (isitnum(argv[i]) ||
+						     atoi(argv[i]) <= 0))
 		return (-1);
 	      i += 1;
 	      y += 1;

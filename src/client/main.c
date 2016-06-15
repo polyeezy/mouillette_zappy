@@ -1,11 +1,11 @@
 /*
-** main.c for  in /home/weinha_l/Semestre_4/mouillette_zappy/src/client/
+** main.c for main in /home/miele_a/Semestre_4/zappy/mouillette_zappy/src/client
 **
-** Made by Loïc Weinhard
-** Login   <weinha_l@epitech.eu>
+** Made by Alexis Miele
+** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Tue Jun 14 06:32:07 2016 Valérian Polizzi
+** Last update Wed Jun 15 02:39:10 2016 Valérian Polizzi
 */
 
 #include <client.h>
@@ -21,6 +21,16 @@ int	main(int ac, char **av)
     client_init(&cli, av[2], av[4], "localhost");
   else
     return (printf("ko\n"));
-  
   return (0);
 }
+/* #include "args.h" */
+/* #include "utils.h" */
+/* #include "client.h" */
+
+/* int		main(int argc, char **argv) */
+/* { */
+/*   (void)argc; */
+/*   if (check_args(argv) == -1) */
+/*     return (-1); */
+/*   return (0); */
+/* } */

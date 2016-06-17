@@ -5,27 +5,13 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Fri Jun 17 17:38:31 2016 Loïc Weinhard
+** Last update Fri Jun 17 18:52:11 2016 Loïc Weinhard
 */
 
 #include <time.h>
 #include "team.h"
 #include "server.h"
 #include "xfct.h"
-
-static t_team	*get_team(t_team **teams, char *team)
-{
-  t_team	*tmp;
-
-  tmp = (*teams);
-  while (tmp)
-    {
-      if (strncmp(tmp->name, team, strlen(tmp->name)) == 0)
-	return (tmp);
-      tmp = tmp->next;
-    }
-  return (NULL);
-}
 
 static t_client	*create_client(t_server *server, int fd)
 {
@@ -56,42 +42,53 @@ static t_client	*create_client(t_server *server, int fd)
   return (elem);
 }
 
-static void	add_client(t_server server, t_client **clients, int fd)
+static void	add_client(t_server server, t_team **teams, char *team, int fd)
 {
-  t_client	*tmp;
+  t_client	*clients;
+  t_team	*tmp_teams;
 
-  tmp = *clients;
-  while (tmp && tmp->next)
-    tmp = tmp->next;
-  if (tmp == NULL)
+  tmp_teams = *teams;
+  while (strncmp(tmp_teams->name, team, strlen(tmp_teams->name)) != 0)
+    tmp_teams = tmp_teams->next;
+  clients = tmp_teams->members;
+  while (clients && clients->next)
+    clients = clients->next;
+  if (clients == NULL)
     {
-      tmp = create_client(&server, fd);
-      tmp->prev = NULL;
+      clients = create_client(&server, fd);
+      clients->prev = NULL;
     }
   else
     {
-      tmp->next = create_client(&server, fd);
-      tmp->prev = tmp;
+      clients->next = create_client(&server, fd);
+      clients->next->prev = clients;
     }
+  while (clients->prev)
+    clients = clients->prev;
+  tmp_teams->members = clients;
 }
 
 static int	compare_teams(t_server server, char *team)
 {
   int		players;
+  t_team	*teams;
+  t_client	*members;
 
   players = 0;
-  while (server.teams)
+  teams = server.teams;
+  while (teams)
     {
-      if (strncmp(server.teams->name, team, strlen(server.teams->name)) == 0)
+      if (strncmp(teams->name, team, strlen(teams->name)) == 0)
 	{
-	  while (server.teams->members)
+	  members = teams->members;
+	  while (members)
 	    {
-	      server.teams->members = server.teams->members->next;
+	      members = members->next;
 	      players += 1;
 	    }
-	  return (server.teams->max - players);
+	  return (teams->max - players);
 	}
-      server.teams = server.teams->next;
+      teams = teams->next;
     }
   return (0);
 }
@@ -101,7 +98,6 @@ void		accept_client(t_server *server)
   int		new_fd;
   int		ret;
   char		buffer[4097];
-  t_team	*team;
 
   new_fd = xaccept(server->fd,
                            (struct sockaddr *)&(server->client_addr),
@@ -112,8 +108,7 @@ void		accept_client(t_server *server)
   dprintf(new_fd, "%d\n", compare_teams(*server, buffer));
   if (compare_teams(*server, buffer) != 0)
     {
-      team = get_team(&(server->teams), buffer);
-      add_client(*server, &(team->members), new_fd);
+      add_client(*server, &(server->teams), buffer, new_fd);
       new_fd >= server->fd_max ? server->fd_max = new_fd + 1 : 0;
       dprintf(new_fd, "%d %d\n", server->width, server->height);
     }

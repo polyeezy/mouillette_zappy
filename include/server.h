@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:09:23 2016 Loïc Weinhard
-** Last update Tue Jun 14 16:22:43 2016 Loïc Weinhard
+** Last update Fri Jun 17 14:27:32 2016 Loïc Weinhard
 */
 
 #ifndef SERVER_H_
@@ -28,6 +28,8 @@ typedef struct 		s_server
   int			fd_max;
   int			timeout;
   t_case		**map;
+  int			width;
+  int			height;
   t_team		*teams;
   struct sockaddr_in	client_addr;
   socklen_t		client_size;
@@ -35,6 +37,7 @@ typedef struct 		s_server
 }			t_server;
 
 t_server	init_server(char **argv);
+void		accept_client(t_server *server);
 void		close_server(t_server server);
 
 #endif

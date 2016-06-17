@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Fri Jun 17 15:16:32 2016 Loïc Weinhard
+** Last update Fri Jun 17 16:35:57 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -97,9 +97,10 @@ void	accept_client(t_server *server)
   ret = xread(new_fd, buffer, 4096);
   buffer[ret] = 0;
   dprintf(new_fd, "%d\n", compare_teams(*server, buffer));
-  if (compare_teams(*server, buffer) == 0)
+  if (compare_teams(*server, buffer) != 0)
     {
       add_client(*server, &(server->teams), buffer, new_fd);
       new_fd > server->fd_max ? server->fd_max = new_fd + 1 : 0;
+      dprintf(new_fd, "%d %d\n", server->width, server->height);
     }
 }

@@ -5,16 +5,19 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-<<<<<<< HEAD
-** Last update Tue Jun 14 05:48:26 2016 Valérian Polizzi
-=======
-** Last update Tue Jun 14 16:07:32 2016 Loïc Weinhard
->>>>>>> 1f8c83415df552f0bd0cec09bc316f21332e1cb5
+** Last update Fri Jun 17 11:53:19 2016 Alexis Miele
 */
 
 #ifndef CLIENT_H_
 # define CLIENT_H_
 
+# include <sys/types.h>
+# include <sys/socket.h>
+# include <sys/select.h>
+# include <sys/time.h>
+# include <sys/types.h>
+# include <unistd.h>
+# include <netinet/in.h>
 # include "orientation.h"
 # include "materials.h"
 # include <stdio.h>
@@ -28,12 +31,13 @@ typedef struct		s_client
   int			y;
   t_orientation		orientation;
   t_materials		materials;
+  struct sockaddr_in	server_addr;
+  socklen_t		server_size;
   struct s_client	*next;
   struct s_client	*prev;
 }			t_client;
 
-void	free_clients(t_client *clients);
-int	client_check_params(int, char **);
-void	client_init(t_client**, char *team, char *port, char *host);
+t_client	init_client(char **);
+void		free_clients(t_client *clients);
 
 #endif

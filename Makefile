@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Wed Jun 15 02:41:05 2016 Valérian Polizzi
+## Last update Fri Jun 17 11:54:01 2016 Alexis Miele
 ## Last update Tue Jun 14 17:24:26 2016 Alexis Miele
 ##
 
@@ -30,11 +30,10 @@ CLT_NAME	=	zappy_ai
 
 CLT_FOLDER	=	./src/client
 
-CLT_SRC		=	$(CLT_FOLDER)/main.c				\
-			$(CLT_FOLDER)/client_check_params.c		\
-			$(CLT_FOLDER)/client_init.c			\
+CLT_SRC		=	$(CLT_FOLDER)/main.c		\
 			$(CLT_FOLDER)/args.c		\
 			$(CLT_FOLDER)/check_args.c	\
+			$(CLT_FOLDER)/init.c		\
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
 

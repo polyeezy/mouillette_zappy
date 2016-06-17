@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Fri Jun 17 12:19:28 2016 Loïc Weinhard
+** Last update Fri Jun 17 14:54:34 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -48,8 +48,8 @@ void		fd_isset_clients(t_server *server)
       while (member)
 	{
 	  if (FD_ISSET(member->fd, &(server->readfds)))
-	    dprintf(1, "Le client %d de la team %s a fait un truc.\n",
-		    member->fd, member->team);
+	    dprintf(1, "Le client %d a fait un truc.\n",
+		    member->fd);
 	  member = member->next;
 	}
       team = team->next;
@@ -60,7 +60,6 @@ int		main(int argc, char **argv)
 {
   t_server	server;
   int		ret;
-  int		new_fd;
 
   (void)argc;
   if (check_args(argv) == -1)
@@ -73,12 +72,7 @@ int		main(int argc, char **argv)
       fd_zero_set_all(&server);
       ret = select(server.fd_max, &(server.readfds), NULL, NULL, NULL);
       if (FD_ISSET(server.fd, &(server.readfds)))
-	{
-	  new_fd = xaccept(server.fd,
-      			   (struct sockaddr *)&(server.client_addr),
-			   &(server.client_size));
-	  new_fd > server.fd_max ? server.fd_max = new_fd + 1 : 0;
-	}
+	accept_client(&server);
       fd_isset_clients(&server);
     }
   close_server(server);

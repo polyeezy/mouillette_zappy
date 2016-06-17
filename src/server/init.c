@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:30:16 2016 Loïc Weinhard
-** Last update Fri Jun 17 12:16:47 2016 Loïc Weinhard
+** Last update Fri Jun 17 14:30:15 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -59,6 +59,8 @@ t_server		init_server(char **argv)
   server.client_addr.sin_family = DOMAIN;
   server.client_addr.sin_port = xhtons(server.fd, port);
   server.map = init_map(argv);
+  server.width = atoi(argv[get_arg(argv, "-x") + 1]);
+  server.height = atoi(argv[get_arg(argv, "-y") + 1]);
   add_teams(&(server.teams), argv);
   server.client_addr.sin_addr.s_addr = ADDRESSES;
   server.client_size = sizeof(server.client_addr);

@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Fri Jun 17 11:54:01 2016 Alexis Miele
+## Last update Fri Jun 17 14:54:57 2016 Loïc Weinhard
 ## Last update Tue Jun 14 17:24:26 2016 Alexis Miele
 ##
 
@@ -21,6 +21,7 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/teams.c		\
 			$(SRV_FOLDER)/clients.c		\
 			$(SRV_FOLDER)/signal.c		\
+			$(SRV_FOLDER)/accept_client.c	\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 

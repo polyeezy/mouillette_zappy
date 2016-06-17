@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Wed Jun 15 14:18:53 2016 Alexis Miele
-** Last update Fri Jun 17 05:59:11 2016 Valérian Polizzi
+** Last update Fri Jun 17 15:05:16 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -19,7 +19,6 @@ t_client_socket		init_client_socket(char **argv)
   int			port;
 
   port = atoi(argv[get_arg(argv, "-p") + 1]);
-  // client.team = strdup(argv[get_arg(argv, "-n") + 1]);
   client.fd = xsocket(DOMAIN, TYPE, xgetprotobyname(PROTOCOL));
   client.server_addr.sin_family = DOMAIN;
   client.server_addr.sin_port = xhtons(client.fd, port);

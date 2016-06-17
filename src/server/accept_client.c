@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Fri Jun 17 16:35:57 2016 Loïc Weinhard
+** Last update Fri Jun 17 17:38:31 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -13,16 +13,31 @@
 #include "server.h"
 #include "xfct.h"
 
-static t_client	*create_client(t_server server, int fd)
+static t_team	*get_team(t_team **teams, char *team)
+{
+  t_team	*tmp;
+
+  tmp = (*teams);
+  while (tmp)
+    {
+      if (strncmp(tmp->name, team, strlen(tmp->name)) == 0)
+	return (tmp);
+      tmp = tmp->next;
+    }
+  return (NULL);
+}
+
+static t_client	*create_client(t_server *server, int fd)
 {
   t_client	*elem;
+  t_client	*tmp;
 
   srand(time(NULL));
   elem = xmalloc(sizeof(t_client));
   elem->fd = fd;
-  elem->x = rand() % (server.width + 1);
-  elem->y = rand() % (server.height + 1);
-  elem->orientation = rand() % 5;
+  elem->x = rand() % server->width;
+  elem->y = rand() % server->height;
+  elem->orientation = rand() % 4;
   elem->materials.food = 10;
   elem->materials.linemate = 0;
   elem->materials.deraumere = 0;
@@ -31,35 +46,32 @@ static t_client	*create_client(t_server server, int fd)
   elem->materials.phiras = 0;
   elem->materials.thystame = 0;
   elem->next = NULL;
+  tmp = server->map[elem->y][elem->x].players;
+  while (tmp && tmp->next)
+    tmp = tmp->next;
+  if (tmp == NULL)
+    tmp = elem;
+  else
+    tmp->next = elem;
   return (elem);
 }
 
-static void	add_client(t_server server, t_team **teams, char *team, int fd)
+static void	add_client(t_server server, t_client **clients, int fd)
 {
-  t_team	*tmp;
-  t_client	*tmp_client;
+  t_client	*tmp;
 
-  tmp = *(teams);
-  while (tmp)
+  tmp = *clients;
+  while (tmp && tmp->next)
+    tmp = tmp->next;
+  if (tmp == NULL)
     {
-      if (strcmp(tmp->name, team) == 0)
-	{
-	  tmp_client = tmp->members;
-	  while (tmp_client && tmp_client->next)
-	    tmp_client = tmp_client->next;
-	  if (tmp_client == NULL)
-	    {
-	      tmp_client = create_client(server, fd);
-	      tmp_client->prev = NULL;
-	    }
-	  else
-	    {
-	      tmp_client->next = create_client(server, fd);
-	      tmp_client->prev = tmp_client;
-	    }
-	  return;
-	}
-      tmp = tmp->next;
+      tmp = create_client(&server, fd);
+      tmp->prev = NULL;
+    }
+  else
+    {
+      tmp->next = create_client(&server, fd);
+      tmp->prev = tmp;
     }
 }
 
@@ -84,11 +96,12 @@ static int	compare_teams(t_server server, char *team)
   return (0);
 }
 
-void	accept_client(t_server *server)
+void		accept_client(t_server *server)
 {
-  int	new_fd;
-  int	ret;
-  char	buffer[4097];
+  int		new_fd;
+  int		ret;
+  char		buffer[4097];
+  t_team	*team;
 
   new_fd = xaccept(server->fd,
                            (struct sockaddr *)&(server->client_addr),
@@ -99,8 +112,9 @@ void	accept_client(t_server *server)
   dprintf(new_fd, "%d\n", compare_teams(*server, buffer));
   if (compare_teams(*server, buffer) != 0)
     {
-      add_client(*server, &(server->teams), buffer, new_fd);
-      new_fd > server->fd_max ? server->fd_max = new_fd + 1 : 0;
+      team = get_team(&(server->teams), buffer);
+      add_client(*server, &(team->members), new_fd);
+      new_fd >= server->fd_max ? server->fd_max = new_fd + 1 : 0;
       dprintf(new_fd, "%d %d\n", server->width, server->height);
     }
 }

@@ -21,12 +21,21 @@ ssize_t		xread(int fd, void *buf, size_t count)
   return (i);
 }
 
-int	xselect(int nfds, fd_set *read, fd_set *write, 
+int	xselect(int nfds, fd_set *read, fd_set *write,
 		fd_set *except, struct timeval *time)
 {
   int	i;
 
   if ((i = select(nfds, read, write, except, time)) == -1)
     exit(fprintf(stderr, "ERROR : select() failed\n"));
+  return (i);
+}
+
+int	xconnect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+{
+  int	i;
+
+  if ((i = connect(sockfd, addr, addrlen)) < 0)
+    close_and_exit(sockfd, "ERROR : connect() failed\n");
   return (i);
 }

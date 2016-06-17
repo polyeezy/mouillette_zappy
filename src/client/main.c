@@ -5,32 +5,23 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Wed Jun 15 02:39:10 2016 Valérian Polizzi
+** Last update Fri Jun 17 11:59:42 2016 Alexis Miele
 */
 
-#include <client.h>
+#include "args.h"
+#include "utils.h"
+#include "client.h"
+#include "xfct.h"
 
-int	main(int ac, char **av)
+int		main(int argc, char **argv)
 {
-  t_client	*cli;
-  int		init;
+  t_client	client;
 
-  if ((init = client_check_params(ac, av)) == 0)
-    client_init(&cli, av[2], av[4], av[6]);
-  else if (init == 2)
-    client_init(&cli, av[2], av[4], "localhost");
-  else
-    return (printf("ko\n"));
+  (void)argc;
+  if (check_args(argv) == -1)
+    return (-1);
+  client = init_client(argv);
+  (void)client;
+  xclose(client.fd);
   return (0);
 }
-/* #include "args.h" */
-/* #include "utils.h" */
-/* #include "client.h" */
-
-/* int		main(int argc, char **argv) */
-/* { */
-/*   (void)argc; */
-/*   if (check_args(argv) == -1) */
-/*     return (-1); */
-/*   return (0); */
-/* } */

@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Wed Jun 15 14:18:53 2016 Alexis Miele
-** Last update Fri Jun 17 15:05:16 2016 Loïc Weinhard
+** Last update Fri Jun 17 17:03:52 2016 Alexis Miele
 */
 
 #include "args.h"
@@ -27,7 +27,6 @@ t_client_socket		init_client_socket(char **argv)
       inet_addr(argv[get_arg(argv, "-h") + 1]);
   else
     client.server_addr.sin_addr.s_addr = inet_addr("0");
-  client.server_size = sizeof(client.server_addr);
   xconnect(client.fd, (struct sockaddr *)&(client.server_addr),
 	   sizeof(client.server_addr));
   return (client);

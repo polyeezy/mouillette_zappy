@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Fri Jun 17 14:54:57 2016 Loïc Weinhard
+## Last update Fri Jun 17 17:34:03 2016 Alexis Miele
 ## Last update Tue Jun 14 17:24:26 2016 Alexis Miele
 ##
 
@@ -35,6 +35,9 @@ CLT_SRC		=	$(CLT_FOLDER)/main.c		\
 			$(CLT_FOLDER)/args.c		\
 			$(CLT_FOLDER)/check_args.c	\
 			$(CLT_FOLDER)/init.c		\
+			$(CLT_FOLDER)/ai_cmd_1.c	\
+			$(CLT_FOLDER)/ai_cmd_2.c	\
+			$(CLT_FOLDER)/ai_cmd_3.c	\
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
 

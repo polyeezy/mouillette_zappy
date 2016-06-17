@@ -6,7 +6,7 @@
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
 <<<<<<< HEAD
-** Last update Fri Jun 17 06:02:06 2016 Valérian Polizzi
+** Last update Fri Jun 17 17:42:03 2016 Alexis Miele
 =======
 ** Last update Fri Jun 17 15:07:05 2016 Loïc Weinhard
 >>>>>>> 2e5ce198467ccfb1ba22a165f7f2674d4ed5bceb

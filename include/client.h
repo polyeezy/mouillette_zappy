@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Fri Jun 17 11:53:19 2016 Alexis Miele
+** Last update Fri Jun 17 14:40:50 2016 Loïc Weinhard
 */
 
 #ifndef CLIENT_H_
@@ -26,7 +26,6 @@
 typedef struct		s_client
 {
   int			fd;
-  char			*team;
   int			x;
   int			y;
   t_orientation		orientation;
@@ -37,7 +36,7 @@ typedef struct		s_client
   struct s_client	*prev;
 }			t_client;
 
-t_client	init_client(char **);
+t_client	init_client(char **argv);
 void		free_clients(t_client *clients);
 
 #endif

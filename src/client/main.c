@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Fri Jun 17 12:11:36 2016 Alexis Miele
+** Last update Fri Jun 17 06:00:04 2016 Valérian Polizzi
 */
 
 #include "args.h"
@@ -13,16 +13,39 @@
 #include "client.h"
 #include "xfct.h"
 
+char		*get_server_response(t_client_socket *cli, char **dest)
+{
+  char		buff[255];
+
+  xread(cli->fd, &buff, 255);
+  strcpy(*dest, buff);
+  return (*dest);
+}
+
+int		send_cmd_server(t_client_socket *cli, char *msg)
+{
+  return (dprintf(cli->fd, "%s\n", msg));
+}
+
+void		join_game(t_client_socket *cli, char *team)
+{
+  char		*response;
+
+  printf("%s", get_server_response(cli, &response));
+  send_cmd_server(cli, team);
+  printf("%s", get_server_response(cli, &response));
+  printf("%s", get_server_response(cli, &response));
+}
+
 int		main(int argc, char **argv)
 {
-  t_client	client;
+  t_client_socket	client;
 
   (void)argc;
   if (check_args(argv) == -1)
     return (-1);
-  client = init_client(argv);
-  (void)client;
-  xfree(client.team);
+  client = init_client_socket(argv);
+  join_game(&client, argv[get_arg(argv, "-t") + 1]);
   xclose(client.fd);
   return (0);
 }

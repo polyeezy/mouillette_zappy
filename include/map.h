@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Tue Jun 14 16:04:41 2016 Loïc Weinhard
-** Last update Tue Jun 14 16:05:45 2016 Loïc Weinhard
+** Last update Fri Jun 17 12:09:31 2016 Loïc Weinhard
 */
 
 #ifndef MAP_H_

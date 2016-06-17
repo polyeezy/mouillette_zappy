@@ -5,13 +5,26 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:30:16 2016 Loïc Weinhard
-** Last update Tue Jun 14 16:43:06 2016 Loïc Weinhard
+** Last update Fri Jun 17 12:16:47 2016 Loïc Weinhard
 */
 
+#include <time.h>
 #include "args.h"
 #include "xfct.h"
 #include "server.h"
 #include "network.h"
+
+static void		init_case(t_case *acase)
+{
+  srand(time(NULL));
+  acase->players = NULL;
+  acase->materials.linemate = rand() % 21;
+  acase->materials.deraumere = rand() % 21;
+  acase->materials.sibur = rand() % 21;
+  acase->materials.mendiane = rand() % 21;
+  acase->materials.phiras = rand() % 21;
+  acase->materials.thystame = rand() % 21;
+}
 
 static t_case		**init_map(char **argv)
 {
@@ -21,21 +34,12 @@ static t_case		**init_map(char **argv)
 
   map = xmalloc((atoi(argv[get_arg(argv, "-y") + 1]) + 1) * sizeof(t_case *));
   i = 0;
-  while (i < atoi(argv[get_arg(argv, "-y")]))
+  while (i < atoi(argv[get_arg(argv, "-y") + 1]))
     {
-      map[i] = xmalloc((atoi(argv[get_arg(argv, "-h")])));
+      map[i] = xmalloc((atoi(argv[get_arg(argv, "-x") + 1])) * sizeof(t_case));
       x = 0;
-      while (x < atoi(argv[get_arg(argv, "-h")]))
-	{
-	  map[i][x].materials.food = 0;
-	  map[i][x].materials.linemate = 0;
-	  map[i][x].materials.deraumere = 0;
-	  map[i][x].materials.sibur = 0;
-	  map[i][x].materials.mendiane = 0;
-	  map[i][x].materials.phiras = 0;
-	  map[i][x].materials.thystame = 0;
-	  x += 1;
-	}
+      while (x < atoi(argv[get_arg(argv, "-x") + 1]))
+	init_case(&(map[i][x++]));
       i += 1;
     }
   map[i] = NULL;

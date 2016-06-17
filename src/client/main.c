@@ -5,11 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-<<<<<<< HEAD
-** Last update Fri Jun 17 06:02:06 2016 Valérian Polizzi
-=======
-** Last update Fri Jun 17 15:07:05 2016 Loïc Weinhard
->>>>>>> 2e5ce198467ccfb1ba22a165f7f2674d4ed5bceb
+** Last update Fri Jun 17 08:01:02 2016 Valérian Polizzi
 */
 
 #include "args.h"
@@ -17,13 +13,16 @@
 #include "client.h"
 #include "xfct.h"
 
-char		*get_server_response(t_client_socket *cli, char **dest)
+char		*get_server_response(t_client_socket *cli, char *msg)
 {
-  char		buff[255];
+  char		buff[254];
+  ssize_t	len;
 
-  xread(cli->fd, &buff, 255);
-  strcpy(*dest, buff);
-  return (*dest);
+  xfree(msg);
+  len = xread(cli->fd, &buff, 255);
+  buff[len] = 0;
+  msg = strdup(buff);  
+  return (msg);
 }
 
 int		send_cmd_server(t_client_socket *cli, char *msg)
@@ -33,12 +32,14 @@ int		send_cmd_server(t_client_socket *cli, char *msg)
 
 void		join_game(t_client_socket *cli, char *team)
 {
-  char		*response;
-
-  printf("%s", get_server_response(cli, &response));
+  char		*msg;
+ 
+  msg = NULL;
+  printf("%s", msg = get_server_response(cli, msg));
   send_cmd_server(cli, team);
-  printf("%s", get_server_response(cli, &response));
-  printf("%s", get_server_response(cli, &response));
+  printf("%s", msg = get_server_response(cli, msg));
+  printf("%s", msg = get_server_response(cli, msg));
+  xfree(msg);
 }
 
 int		main(int argc, char **argv)
@@ -51,5 +52,6 @@ int		main(int argc, char **argv)
   client = init_client_socket(argv);
   join_game(&client, argv[get_arg(argv, "-n") + 1]);
   xclose(client.fd);
+
   return (0);
 }

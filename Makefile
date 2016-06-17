@@ -5,8 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Fri Jun 17 17:34:03 2016 Alexis Miele
-## Last update Tue Jun 14 17:24:26 2016 Alexis Miele
+## Last update Fri Jun 17 17:44:12 2016 Alexis Miele
 ##
 
 SRV_NAME	=	zappy_server
@@ -63,7 +62,7 @@ MR_CLEAN        =       find ./ \( -name "*~" -o -name "\#*\#" \) -delete
 all		:	$(SRV_NAME) $(CLT_NAME)
 
 $(SRV_NAME)	:	$(SRV_OBJ) $(UTILS_OBJ)
-			gcc $(SRV_OBJ) $(UTILS_OBJ) -o $(SRV_NAME)
+			gcc $(SRV_OBJ) $(UTILS_OBJ) -o $(SRV_NAME) -g3
 
 $(CLT_NAME)	:	$(CLT_OBJ) $(UTILS_OBJ)
 			gcc $(CLT_OBJ) $(UTILS_OBJ) -o $(CLT_NAME)

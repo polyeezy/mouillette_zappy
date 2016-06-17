@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:09:23 2016 Loïc Weinhard
-** Last update Fri Jun 17 14:27:32 2016 Loïc Weinhard
+** Last update Fri Jun 17 17:34:35 2016 Loïc Weinhard
 */
 
 #ifndef SERVER_H_

@@ -39,3 +39,12 @@ int	xconnect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
     close_and_exit(sockfd, "ERROR : connect() failed\n");
   return (i);
 }
+
+void    *xcalloc(size_t nmemb, size_t size)
+{
+  void  *ptr;
+
+  if ((ptr = calloc(nmemb, size)) == NULL)
+    exit(fprintf(stderr, "ERROR : calloc() failed\n"));
+  return (ptr);
+}

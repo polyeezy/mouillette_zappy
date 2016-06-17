@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Fri Jun 17 15:06:22 2016 Loïc Weinhard
+** Last update Fri Jun 17 17:07:26 2016 Alexis Miele
 */
 
 #ifndef CLIENT_H_
@@ -31,7 +31,6 @@ typedef struct		s_client
   t_orientation		orientation;
   t_materials		materials;
   struct sockaddr_in	server_addr;
-  socklen_t		server_size;
   struct s_client	*next;
   struct s_client	*prev;
 }			t_client;
@@ -40,9 +39,9 @@ typedef struct		s_client_socket
 {
   int			fd;
   struct sockaddr_in	server_addr;
-  socklen_t		server_size;
 }			t_client_socket;
 
+int		send_cmd_server(t_client_socket *cli, char *msg);
 t_client	init_client(char **argv);
 t_client_socket	init_client_socket(char **argv);
 void		free_clients(t_client *clients);

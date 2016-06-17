@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Fri Jun 17 15:02:26 2016 Loïc Weinhard
+** Last update Fri Jun 17 15:16:32 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -70,7 +70,7 @@ static int	compare_teams(t_server server, char *team)
   players = 0;
   while (server.teams)
     {
-      if (strcmp(server.teams->name, team) == 0)
+      if (strncmp(server.teams->name, team, strlen(server.teams->name)) == 0)
 	{
 	  while (server.teams->members)
 	    {

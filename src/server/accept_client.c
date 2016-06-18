@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Fri Jun 17 18:52:11 2016 Loïc Weinhard
+** Last update Sat Jun 18 12:22:54 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -18,9 +18,9 @@ static t_client	*create_client(t_server *server, int fd)
   t_client	*elem;
   t_client	*tmp;
 
-  srand(time(NULL));
   elem = xmalloc(sizeof(t_client));
   elem->fd = fd;
+  elem->level = 1;
   elem->x = rand() % server->width;
   elem->y = rand() % server->height;
   elem->orientation = rand() % 4;
@@ -35,10 +35,10 @@ static t_client	*create_client(t_server *server, int fd)
   tmp = server->map[elem->y][elem->x].players;
   while (tmp && tmp->next)
     tmp = tmp->next;
-  if (tmp == NULL)
-    tmp = elem;
-  else
-    tmp->next = elem;
+  tmp != NULL ? tmp->next = elem : 0;
+  tmp == NULL ? tmp = elem : 0;
+  while (tmp->prev)
+    tmp = tmp->prev;
   return (elem);
 }
 

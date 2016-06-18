@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Fri Jun 17 17:34:40 2016 Loïc Weinhard
+** Last update Sat Jun 18 16:17:25 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -13,6 +13,7 @@
 #include "server.h"
 #include "sig.h"
 #include "xfct.h"
+#include "cmds.h"
 
 extern char g_exit;
 
@@ -48,8 +49,7 @@ void		fd_isset_clients(t_server *server)
       while (member)
 	{
 	  if (FD_ISSET(member->fd, &(server->readfds)))
-	    dprintf(1, "Le client %d a fait un truc.\n",
-		    member->fd);
+	    handle_cmds(server, member);
 	  member = member->next;
 	}
       team = team->next;

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Fri Jun 17 17:07:26 2016 Alexis Miele
+** Last update Fri Jun 17 19:15:00 2016 Alexis Miele
 */
 
 #ifndef CLIENT_H_

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 20 15:48:55 2016 Loïc Weinhard
-** Last update Mon Jun 20 20:56:41 2016 Loïc Weinhard
+** Last update Mon Jun 20 21:34:19 2016 Loïc Weinhard
 */
 
 #include "map.h"
@@ -13,16 +13,15 @@
 #include "xfct.h"
 #include "utils.h"
 
-static char	*nord(t_server server, t_client player)
+static char	nord(t_server server, t_client player)
 {
   int		i;
   int		x;
   int		y;
   int		limit;
-  char		*str;
 
   i = 0;
-  str = strdup("§ ");
+  dprintf(player.fd, "§");
   while (i <= player.level)
     {
       y = mod(player.y - i, server.height);
@@ -30,27 +29,26 @@ static char	*nord(t_server server, t_client player)
       limit = 0;
       while (limit < (2 * i) + 1)
 	{
-	  str = get_elems(server.map[y][x], str);
+	  get_elems(player, server.map[y][x]);
 	  x = mod(player.x + 1, server.width);
 	  limit += 1;
-          limit < (2 * i) + 1 ? str = my_strcat(str, ", ") : 0;
+          limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      str = my_strcat(str, (i > player.level ? " §" : ", "));
+      dprintf(player.fd, (i <= player.level ? "," : " §"));
     }
-  return (str);
+  return (0);
 }
 
-static char	*est(t_server server, t_client player)
+static char	est(t_server server, t_client player)
 {
   int		i;
   int		x;
   int		y;
   int		limit;
-  char		*str;
 
   i = 0;
-  str = strdup("§ ");
+  dprintf(player.fd, "§");
   while (i <= player.level)
     {
       x = mod(player.x + i, server.width);
@@ -58,27 +56,26 @@ static char	*est(t_server server, t_client player)
       limit = 0;
       while (limit < (2 * i) + 1)
 	{
-          str = get_elems(server.map[y][x], str);
+          get_elems(player, server.map[y][x]);
           y = mod(player.y + 1, server.height);
 	  limit += 1;
-          limit < (2 * i) + 1 ? str = my_strcat(str, ", ") : 0;
+          limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      str = my_strcat(str, (i > player.level ? " §" : ", "));
+      dprintf(player.fd, (i <= player.level ? "," : " §"));
     }
-  return (str);
+  return (0);
 }
 
-static char	*sud(t_server server, t_client player)
+static char	sud(t_server server, t_client player)
 {
   int		i;
   int		x;
   int		y;
   int		limit;
-  char		*str;
 
   i = 0;
-  str = strdup("§ ");
+  dprintf(player.fd, "§");
   while (i <= player.level)
     {
       y = mod(player.y + i, server.height);
@@ -86,27 +83,26 @@ static char	*sud(t_server server, t_client player)
       limit = 0;
       while (limit < (2 * i) + 1)
 	{
-          str = get_elems(server.map[y][x], str);
+          get_elems(player, server.map[y][x]);
           x = mod(player.x - 1, server.width);
 	  limit += 1;
-          limit < (2 * i) + 1 ? str = my_strcat(str, ", ") : 0;
+          limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      str = my_strcat(str, (i > player.level ? " §" : ", "));
+      dprintf(player.fd, (i <= player.level ? "," : " §"));
     }
-  return (str);
+  return (0);
 }
 
-static char	*ouest(t_server server, t_client player)
+static char	ouest(t_server server, t_client player)
 {
   int		i;
   int		x;
   int		y;
   int		limit;
-  char		*str;
 
   i = 0;
-  str = strdup("§ ");
+  dprintf(player.fd, "§");
   while (i <= player.level)
     {
       x = mod(player.x - i, server.width);
@@ -114,29 +110,26 @@ static char	*ouest(t_server server, t_client player)
       limit = 0;
       while (limit < (2 * i) + 1)
 	{
-	  str = get_elems(server.map[y][x], str);
+	  get_elems(player, server.map[y][x]);
 	  y = mod(player.y - 1, server.height);
 	  limit += 1;
-	  limit < (2 * i) + 1 ? str = my_strcat(str, ", ") : 0;
+	  limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      str = my_strcat(str, (i > player.level ? " §" : ", "));
+      dprintf(player.fd, (i <= player.level ? "," : " §"));
     }
-  return (str);
+  return (0);
 }
 
 char	voir(t_server *server, t_client *player, char **tab)
 {
-      char	*(*ptr_func[4])(t_server, t_client);
-      char	*str;
+  char	(*ptr_func[4])(t_server, t_client);
 
   (void)tab;
   ptr_func[NORTH] = &nord;
   ptr_func[EAST] = &est;
   ptr_func[SOUTH] = &sud;
   ptr_func[WEST] = &ouest;
-  dprintf(player->fd, "%s",
-	  str = ptr_func[player->orientation](*server, *player));
-  xfree(str);
+  ptr_func[player->orientation](*server, *player);
   return (0);
 }

@@ -5,31 +5,14 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 20 17:47:29 2016 Loïc Weinhard
-** Last update Mon Jun 20 20:59:04 2016 Loïc Weinhard
+** Last update Mon Jun 20 21:23:59 2016 Loïc Weinhard
 */
 
 #include "utils.h"
 #include "xfct.h"
 #include "map.h"
 
-static char	*concat_all(char flags[9], char **materials, char *str)
-{
-  int		i;
-
-  i = 0;
-  while (materials[i])
-    {
-      if (flags[i] == 1)
-	{
-	  str = my_strcat(str, materials[i]);
-          str = my_strcat(str, " ");
-	}
-      i += 1;
-    }
-  return (str);
-}
-
-char	*get_elems(t_case pos, char *str)
+char	get_elems(t_client player, t_case pos)
 {
   char	*tmp;
   char	**materials;
@@ -44,15 +27,14 @@ char	*get_elems(t_case pos, char *str)
   memset(flags, 0, 9);
   flags[8] = 0;
   if (pos.players != NULL)
-    flags[i++] = 1;
+    dprintf(player.fd, "player(s)");
   while (i < 8)
     {
       if (*material > 0)
-	flags[i] = 1;
+	dprintf(player.fd, " %s", materials[i]);
       i += 1;
       material += sizeof(int);
     }
-  str = concat_all(flags, materials, str);
   free_tab(materials);
-  return (str);
+  return (0);
 }

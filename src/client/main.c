@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Fri Jun 17 17:43:54 2016 Alexis Miele
+** Last update Mon Jun 20 05:31:19 2016 Valérian Polizzi
 */
 
 #include "args.h"
@@ -30,6 +30,21 @@ int		send_cmd_server(t_client_socket *cli, char *msg)
   return (dprintf(cli->fd, "%s\n", msg));
 }
 
+void		do_ai(t_client_socket *cli, char *msg)
+{
+  (void)msg;
+  send_cmd_server(cli, "avance\n");
+}
+
+void		game_loop(t_client_socket *cli)
+{
+  char		*msg;
+  
+  msg = NULL;
+  while (strcmp(msg = get_server_response(cli, msg), "mort\n") != 0)
+    do_ai(cli, msg);
+}
+
 void		join_game(t_client_socket *cli, char *team)
 {
   char		*msg;
@@ -39,6 +54,7 @@ void		join_game(t_client_socket *cli, char *team)
   send_cmd_server(cli, team);
   printf("%s", msg = get_server_response(cli, msg));
   printf("%s", msg = get_server_response(cli, msg));
+  game_loop(cli);
   xfree(msg);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:13:16 2016 Loïc Weinhard
-** Last update Mon Jun 13 11:14:22 2016 Loïc Weinhard
+** Last update Sat Jun 18 12:13:51 2016 Loïc Weinhard
 */
 
 #ifndef ORIENTATION_H_
@@ -13,7 +13,7 @@
 
 typedef enum 	e_orientation
 {
-  NORTH, SOUTH, WEST, EAST
+  NORTH, EAST, SOUTH, WEST
 }		t_orientation;
 
 #endif

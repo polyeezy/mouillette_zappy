@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Fri Jun 17 19:15:00 2016 Alexis Miele
+** Last update Mon Jun 20 10:42:47 2016 Alexis Miele
 */
 
 #ifndef CLIENT_H_
@@ -26,6 +26,7 @@
 typedef struct		s_client
 {
   int			fd;
+  int			level;
   int			x;
   int			y;
   t_orientation		orientation;

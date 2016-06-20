@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Fri Jun 17 17:44:12 2016 Alexis Miele
+## Last update Sat Jun 18 16:45:20 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -21,6 +21,10 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/clients.c		\
 			$(SRV_FOLDER)/signal.c		\
 			$(SRV_FOLDER)/accept_client.c	\
+			$(SRV_FOLDER)/handle_cmds.c	\
+			$(SRV_FOLDER)/droite.c		\
+			$(SRV_FOLDER)/cmds.c		\
+			$(SRV_FOLDER)/gauche.c		\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 
@@ -44,11 +48,13 @@ CLT_OBJ		=	$(CLT_SRC:.c=.o)
 
 UTILS_FOLDER	=	./src/utils
 
-UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c	\
-			$(UTILS_FOLDER)/get_arg.c	\
-			$(UTILS_FOLDER)/xfct_1.c	\
-			$(UTILS_FOLDER)/xfct_2.c	\
-			$(UTILS_FOLDER)/xfct_3.c	\
+UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c		\
+			$(UTILS_FOLDER)/get_arg.c		\
+			$(UTILS_FOLDER)/xfct_1.c		\
+			$(UTILS_FOLDER)/xfct_2.c		\
+			$(UTILS_FOLDER)/xfct_3.c		\
+			$(UTILS_FOLDER)/my_str_to_wordtab.c	\
+			$(UTILS_FOLDER)/free_tab.c		\
 
 UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 

@@ -5,18 +5,22 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Tue Jun 14 16:04:41 2016 Loïc Weinhard
-** Last update Fri Jun 17 12:09:31 2016 Loïc Weinhard
+** Last update Mon Jun 20 18:02:38 2016 Loïc Weinhard
 */
 
 #ifndef MAP_H_
 # define MAP_H_
 
 # include "materials.h"
+# include "client.h"
 
 typedef struct	s_case
 {
   t_client	*players;
   t_materials	materials;
 }		t_case;
+
+int	mod(int pos, int max);
+char	*get_elems(t_case pos, char *str);
 
 #endif

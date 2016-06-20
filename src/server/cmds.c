@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:26:12 2016 Loïc Weinhard
-** Last update Sat Jun 18 16:45:04 2016 Loïc Weinhard
+** Last update Mon Jun 20 15:46:44 2016 Loïc Weinhard
 */
 
 #include "cmds.h"
@@ -21,5 +21,10 @@ t_cmd	g_cmds[NUMBER_OF_COMMANDS] =
       "gauche",
       "gauche : tourne le personnage vers la gauche",
       &gauche
+    },
+    {
+      "voir",
+      "voir : dévoile le contenu des cases alentours",
+      &voir
     }
 };

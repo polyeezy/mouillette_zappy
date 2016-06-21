@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:30:16 2016 Loïc Weinhard
-** Last update Fri Jun 17 14:30:15 2016 Loïc Weinhard
+** Last update Tue Jun 21 17:39:45 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -16,14 +16,16 @@
 
 static void		init_case(t_case *acase)
 {
-  srand(time(NULL));
+  int			i;
+
   acase->players = NULL;
-  acase->materials.linemate = rand() % 21;
-  acase->materials.deraumere = rand() % 21;
-  acase->materials.sibur = rand() % 21;
-  acase->materials.mendiane = rand() % 21;
-  acase->materials.phiras = rand() % 21;
-  acase->materials.thystame = rand() % 21;
+  acase->materials.food = ((i = rand() % 8) > 3 ? 0 : i);
+  acase->materials.linemate = ((i = rand() % 8) > 3 ? 0 : i);
+  acase->materials.deraumere = ((i = rand() % 8) > 3 ? 0 : i);
+  acase->materials.sibur = ((i = rand() % 8) > 3 ? 0 : i);
+  acase->materials.mendiane = ((i = rand() % 8) > 3 ? 0 : i);
+  acase->materials.phiras = ((i = rand() % 8) > 3 ? 0 : i);
+  acase->materials.thystame = ((i = rand() % 8) > 3 ? 0 : i);
 }
 
 static t_case		**init_map(char **argv)

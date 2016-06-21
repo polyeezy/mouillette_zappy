@@ -5,18 +5,16 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:16 2016 Aurelie Orset
-** Last update Fri Jun 17 14:46:18 2016 Aurelie Orset
+** Last update Mon Jun 20 16:51:17 2016 Aurelie Orset
 */
 
-#include "draw.h"
+#include "graphic.h"
 
-extern void drawMap(void);
-
-void draw()
+void draw(SDL_Surface *screen)
 {
-	drawMap();
-	SDL_Flip(screen);
-	SDL_Delay(1);
+  drawMap();
+  SDL_Flip(screen);
+  SDL_Delay(1);
 }
 
 void delay(unsigned int frameLimit)

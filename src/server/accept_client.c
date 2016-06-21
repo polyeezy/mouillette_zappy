@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Sat Jun 18 12:22:54 2016 Loïc Weinhard
+** Last update Tue Jun 21 17:24:22 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -33,12 +33,12 @@ static t_client	*create_client(t_server *server, int fd)
   elem->materials.thystame = 0;
   elem->next = NULL;
   tmp = server->map[elem->y][elem->x].players;
-  while (tmp && tmp->next)
-    tmp = tmp->next;
-  tmp != NULL ? tmp->next = elem : 0;
-  tmp == NULL ? tmp = elem : 0;
-  while (tmp->prev)
-    tmp = tmp->prev;
+  while (tmp && tmp->next && (tmp = tmp->next));
+  elem->prev = (tmp != NULL ? tmp : NULL);
+  tmp = (tmp != NULL ? tmp : elem);
+  tmp->next = (tmp != elem ? elem : NULL);
+  while (tmp->prev && (tmp = tmp->prev));
+  server->map[elem->y][elem->x].players = tmp;
   return (elem);
 }
 

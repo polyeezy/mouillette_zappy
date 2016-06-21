@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 20 15:48:55 2016 Loïc Weinhard
-** Last update Mon Jun 20 21:34:19 2016 Loïc Weinhard
+** Last update Tue Jun 21 17:07:03 2016 Loïc Weinhard
 */
 
 #include "map.h"
@@ -21,7 +21,7 @@ static char	nord(t_server server, t_client player)
   int		limit;
 
   i = 0;
-  dprintf(player.fd, "§");
+  dprintf(player.fd, "{");
   while (i <= player.level)
     {
       y = mod(player.y - i, server.height);
@@ -35,7 +35,7 @@ static char	nord(t_server server, t_client player)
           limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      dprintf(player.fd, (i <= player.level ? "," : " §"));
+      dprintf(player.fd, (i <= player.level ? "," : " }"));
     }
   return (0);
 }
@@ -48,7 +48,7 @@ static char	est(t_server server, t_client player)
   int		limit;
 
   i = 0;
-  dprintf(player.fd, "§");
+  dprintf(player.fd, "{");
   while (i <= player.level)
     {
       x = mod(player.x + i, server.width);
@@ -62,7 +62,7 @@ static char	est(t_server server, t_client player)
           limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      dprintf(player.fd, (i <= player.level ? "," : " §"));
+      dprintf(player.fd, (i <= player.level ? "," : " }"));
     }
   return (0);
 }
@@ -75,7 +75,7 @@ static char	sud(t_server server, t_client player)
   int		limit;
 
   i = 0;
-  dprintf(player.fd, "§");
+  dprintf(player.fd, "{");
   while (i <= player.level)
     {
       y = mod(player.y + i, server.height);
@@ -89,7 +89,7 @@ static char	sud(t_server server, t_client player)
           limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      dprintf(player.fd, (i <= player.level ? "," : " §"));
+      dprintf(player.fd, (i <= player.level ? "," : " }"));
     }
   return (0);
 }
@@ -102,7 +102,7 @@ static char	ouest(t_server server, t_client player)
   int		limit;
 
   i = 0;
-  dprintf(player.fd, "§");
+  dprintf(player.fd, "{");
   while (i <= player.level)
     {
       x = mod(player.x - i, server.width);
@@ -116,7 +116,7 @@ static char	ouest(t_server server, t_client player)
 	  limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
       i += 1;
-      dprintf(player.fd, (i <= player.level ? "," : " §"));
+      dprintf(player.fd, (i <= player.level ? "," : " }"));
     }
   return (0);
 }
@@ -131,5 +131,6 @@ char	voir(t_server *server, t_client *player, char **tab)
   ptr_func[SOUTH] = &sud;
   ptr_func[WEST] = &ouest;
   ptr_func[player->orientation](*server, *player);
+  dprintf(player->fd, "\n");
   return (0);
 }

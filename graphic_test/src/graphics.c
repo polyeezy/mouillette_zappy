@@ -5,10 +5,10 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:25 2016 Aurelie Orset
-** Last update Fri Jun 17 14:50:57 2016 Aurelie Orset
+** Last update Mon Jun 20 16:53:10 2016 Aurelie Orset
 */
 
-#include "graphics.h"
+#include "graphic.h"
 
 SDL_Surface *loadImage(char *name)
 {
@@ -31,7 +31,7 @@ SDL_Surface *loadImage(char *name)
   return image;
 }
 
-void drawImage(SDL_Surface *image, int x, int y)
+void drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen)
 {
   SDL_Rect dest;
 

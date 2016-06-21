@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Mon Jun 20 05:31:19 2016 Valérian Polizzi
+** Last update Tue Jun 21 16:37:22 2016 Valerian Polizzi
 */
 
 #include "args.h"
@@ -29,44 +29,50 @@ int		send_cmd_server(t_client_socket *cli, char *msg)
 {
   return (dprintf(cli->fd, "%s\n", msg));
 }
-
-void		do_ai(t_client_socket *cli, char *msg)
-{
-  (void)msg;
-  send_cmd_server(cli, "avance\n");
-}
-
-void		game_loop(t_client_socket *cli)
+void		game_loop(t_ai *cli)
 {
   char		*msg;
+
+  msg = NULL;
+  send_cmd_server(&cli->socket, "voir");
+  printf("%s\n", msg = get_server_response(&cli->socket, msg));
   
-  msg = NULL;
-  while (strcmp(msg = get_server_response(cli, msg), "mort\n") != 0)
-    do_ai(cli, msg);
 }
 
-void		join_game(t_client_socket *cli, char *team)
+void		join_game(t_ai *cli)
 {
   char		*msg;
 
   msg = NULL;
-  printf("%s", msg = get_server_response(cli, msg));
-  send_cmd_server(cli, team);
-  printf("%s", msg = get_server_response(cli, msg));
-  printf("%s", msg = get_server_response(cli, msg));
+  printf("%s", msg = get_server_response(&cli->socket, msg));
+  send_cmd_server(&cli->socket, cli->team);
+  printf("%s", msg = get_server_response(&cli->socket, msg));
+  printf("%s", msg = get_server_response(&cli->socket, msg));
   game_loop(cli);
   xfree(msg);
 }
 
+void		init_ai(t_ai *ai, char **av)
+{
+  ai->lvl = 1;
+  ai->last_response = NULL;
+  ai->team = av[get_arg(av, "-n") + 1];
+  ai->socket = init_client_socket(av);
+  ai->state = LOOKING_FOR;
+}
+
 int		main(int argc, char **argv)
 {
-  t_client_socket	client;
+  t_ai		ai;
+//t_client_socket	client;
 
   (void)argc;
   if (check_args(argv) == -1)
     return (-1);
-  client = init_client_socket(argv);
-  join_game(&client, argv[get_arg(argv, "-n") + 1]);
-  xclose(client.fd);
+  init_ai(&ai, argv);
+  printf("%d\n", ai.socket.fd);
+  join_game(&ai);
+  xclose(ai.socket.fd);
   return (0);
 }
+

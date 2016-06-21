@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:11:57 2016 Loïc Weinhard
-** Last update Sat Jun 18 16:47:32 2016 Loïc Weinhard
+** Last update Mon Jun 20 17:12:29 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -19,7 +19,6 @@ void	handle_cmds(t_server *server, t_client *player)
   char	**tab;
   int	i;
 
-  (void)server;
   i = 0;
   ret = xread(player->fd, buffer, 4096);
   if (ret == 0)

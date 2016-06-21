@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Mon Jun 20 10:42:47 2016 Alexis Miele
+** Last update Tue Jun 21 16:31:50 2016 Valerian Polizzi
 */
 
 #ifndef CLIENT_H_
@@ -41,6 +41,24 @@ typedef struct		s_client_socket
   int			fd;
   struct sockaddr_in	server_addr;
 }			t_client_socket;
+
+typedef enum		state
+  {
+    SURVIVOR		=	0,
+    LOOKING_FOR		=	1,
+    WAITING_OTHER	=	2,
+    JOINING_OTHER	=	3,
+  }			e_state;
+
+typedef struct		s_ai
+{
+  size_t		lvl;
+  char			*last_response;
+  char			*team;
+  t_client_socket	socket;
+  e_state		state;
+}			t_ai;
+
 
 int		send_cmd_server(t_client_socket *cli, char *msg);
 t_client	init_client(char **argv);

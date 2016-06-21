@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Sat Jun 18 16:17:25 2016 Loïc Weinhard
+** Last update Tue Jun 21 16:55:58 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -56,12 +56,15 @@ void		fd_isset_clients(t_server *server)
     }
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-  t_server	server;
-  int		ret;
+  t_server		server;
+  int			ret;
+  struct timeval	srandinho;
 
   (void)argc;
+  gettimeofday(&srandinho, NULL);
+  srand(srandinho.tv_usec);
   if (check_args(argv) == -1)
     return (-1);
   server = init_server(argv);

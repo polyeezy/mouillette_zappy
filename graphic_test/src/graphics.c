@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:25 2016 Aurelie Orset
-** Last update Mon Jun 20 16:53:10 2016 Aurelie Orset
+** Last update Tue Jun 21 18:00:32 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -20,7 +20,8 @@ SDL_Surface *loadImage(char *name)
       printf("Failed to load image %s\n", name);
       return NULL;
     }
-  SDL_SetColorKey(temp, (SDL_SRCCOLORKEY|SDL_RLEACCEL), SDL_MapRGB(temp->format, 0, 0, 0));
+  SDL_SetColorKey(temp, (SDL_SRCCOLORKEY | SDL_RLEACCEL),\
+		  SDL_MapRGB(temp->format, 0, 0, 0));
   image = SDL_DisplayFormat(temp);
   SDL_FreeSurface(temp);
   if (image == NULL)

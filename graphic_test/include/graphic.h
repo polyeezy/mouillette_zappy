@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Tue Jun 21 16:55:08 2016 Aurelie Orset
+** Last update Tue Jun 21 17:58:04 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -46,8 +46,8 @@ typedef struct s_graph
   SDL_Surface *egg;
   int	map_x;
   int	map_y;
-  int	tile_size;
-  int	stone_size;
+  int	ts; /*TILE SIZE*/
+  int	is; /*ITEM SIZE*/
 }	      t_graph;
 
 void	draw();

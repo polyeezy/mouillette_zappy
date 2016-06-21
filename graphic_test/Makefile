@@ -5,7 +5,7 @@
 ## Login   <orset_a@epitech.net>
 ## 
 ## Started on  Fri Jun 17 15:49:16 2016 Aurelie Orset
-## Last update Tue Jun 21 17:45:32 2016 Aurelie Orset
+## Last update Tue Jun 21 17:52:29 2016 Aurelie Orset
 ##
 
 SRC	=	src/draw.c\
@@ -13,7 +13,7 @@ SRC	=	src/draw.c\
 	 	src/input.c\
 		src/graphics.c\
 		src/main.c\
-		src/map.c
+		src/mapi.c
 
 OBJ	= $(SRC:.c=.o)
 NAME	= zappy

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:15:38 2016 Loïc Weinhard
-** Last update Mon Jun 20 15:47:05 2016 Loïc Weinhard
+** Last update Tue Jun 21 18:25:26 2016 Loïc Weinhard
 */
 
 #ifndef CMDS_H_
@@ -14,7 +14,7 @@
 # include "server.h"
 # include "client.h"
 
-# define NUMBER_OF_COMMANDS 3
+# define NUMBER_OF_COMMANDS 4
 
 typedef struct	s_cmd
 {
@@ -30,5 +30,6 @@ void	handle_cmds(t_server *server, t_client *player);
 char	droite(t_server *server, t_client *player, char **tab);
 char	gauche(t_server *server, t_client *player, char **tab);
 char	voir(t_server *server, t_client *player, char **tab);
+char	inventaire(t_server *server, t_client *player, char **tab);
 
 #endif

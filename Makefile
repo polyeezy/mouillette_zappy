@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Mon Jun 20 18:21:14 2016 Loïc Weinhard
+## Last update Tue Jun 21 18:30:42 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -28,6 +28,7 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/voir.c		\
 			$(SRV_FOLDER)/modulo.c		\
 			$(SRV_FOLDER)/get_elems.c	\
+			$(SRV_FOLDER)/inventaire.c	\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 

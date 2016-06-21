@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:26:12 2016 Loïc Weinhard
-** Last update Mon Jun 20 15:46:44 2016 Loïc Weinhard
+** Last update Tue Jun 21 18:26:01 2016 Loïc Weinhard
 */
 
 #include "cmds.h"
@@ -26,5 +26,10 @@ t_cmd	g_cmds[NUMBER_OF_COMMANDS] =
       "voir",
       "voir : dévoile le contenu des cases alentours",
       &voir
+    },
+    {
+      "inventaire",
+      "inventaire : dévoile le contenu de l'inventaire",
+      &inventaire
     }
 };

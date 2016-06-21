@@ -5,10 +5,10 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:47:38 2016 Aurelie Orset
-** Last update Fri Jun 17 14:47:40 2016 Aurelie Orset
+** Last update Mon Jun 20 16:56:41 2016 Aurelie Orset
 */
 
-#include "input.h"
+#include "graphic.h"
 
 void getInput()
 {

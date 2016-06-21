@@ -5,13 +5,14 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Tue Jun 21 16:37:22 2016 Valerian Polizzi
+** Last update Tue Jun 21 17:35:44 2016 Valerian Polizzi
 */
 
 #include "args.h"
 #include "utils.h"
 #include "client.h"
 #include "xfct.h"
+
 
 char		*get_server_response(t_client_socket *cli, char *msg)
 {
@@ -25,18 +26,30 @@ char		*get_server_response(t_client_socket *cli, char *msg)
   return (msg);
 }
 
+t_materials	parse_inventaire(t_ai *cli)
+{
+  char		*msg;
+  // char		**parsing;
+  t_materials	inv;
+
+  msg = NULL;
+  send_cmd_server(&cli->socket, "inventaire");
+  printf("%s\n", msg = get_server_response(&cli->socket, msg));
+  (void)msg;
+  return (inv);
+}
+
+
 int		send_cmd_server(t_client_socket *cli, char *msg)
 {
   return (dprintf(cli->fd, "%s\n", msg));
 }
 void		game_loop(t_ai *cli)
 {
-  char		*msg;
+  t_materials	inv;
 
-  msg = NULL;
-  send_cmd_server(&cli->socket, "voir");
-  printf("%s\n", msg = get_server_response(&cli->socket, msg));
-  
+  inv = parse_inventaire(cli);
+  (void)inv;
 }
 
 void		join_game(t_ai *cli)
@@ -70,7 +83,6 @@ int		main(int argc, char **argv)
   if (check_args(argv) == -1)
     return (-1);
   init_ai(&ai, argv);
-  printf("%d\n", ai.socket.fd);
   join_game(&ai);
   xclose(ai.socket.fd);
   return (0);

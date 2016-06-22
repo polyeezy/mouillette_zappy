@@ -5,7 +5,7 @@
 ## Login   <orset_a@epitech.net>
 ## 
 ## Started on  Fri Jun 17 15:49:16 2016 Aurelie Orset
-## Last update Tue Jun 21 17:52:29 2016 Aurelie Orset
+## Last update Wed Jun 22 14:19:34 2016 Aurelie Orset
 ##
 
 SRC	=	src/draw.c\
@@ -13,13 +13,14 @@ SRC	=	src/draw.c\
 	 	src/input.c\
 		src/graphics.c\
 		src/main.c\
-		src/mapi.c
+		src/mapi.c\
+		src/info.c
 
 OBJ	= $(SRC:.c=.o)
 NAME	= zappy
 CC	= gcc
 CFLAGS	= -Wall -pedantic -Werror -I./include -g3 
-LFLAGS	= `sdl-config --libs` -lSDL -lSDL_image -lSDL_gfx
+LFLAGS	= `sdl-config --libs` -lSDL -lSDL_image -lSDL_gfx -lSDL_ttf
 
 all: $(NAME)
 

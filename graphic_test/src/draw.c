@@ -5,14 +5,14 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:16 2016 Aurelie Orset
-** Last update Mon Jun 20 16:51:17 2016 Aurelie Orset
+** Last update Tue Jun 21 18:34:11 2016 Aurelie Orset
 */
 
 #include "graphic.h"
 
-void draw(SDL_Surface *screen)
+void draw(SDL_Surface *screen, int mapx, int mapy)
 {
-  drawMap();
+  drawMap(screen, mapx, mapy);
   SDL_Flip(screen);
   SDL_Delay(1);
 }

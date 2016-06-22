@@ -5,64 +5,38 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Tue Jun 21 17:35:44 2016 Valerian Polizzi
+** Last update Wed Jun 22 16:23:08 2016 Valerian Polizzi
 */
 
 #include "args.h"
 #include "utils.h"
 #include "client.h"
 #include "xfct.h"
-
-
-char		*get_server_response(t_client_socket *cli, char *msg)
-{
-  char		buff[254];
-  ssize_t	len;
-
-  xfree(msg);
-  len = xread(cli->fd, &buff, 255);
-  buff[len] = 0;
-  msg = strdup(buff);
-  return (msg);
-}
-
-t_materials	parse_inventaire(t_ai *cli)
-{
-  char		*msg;
-  // char		**parsing;
-  t_materials	inv;
-
-  msg = NULL;
-  send_cmd_server(&cli->socket, "inventaire");
-  printf("%s\n", msg = get_server_response(&cli->socket, msg));
-  (void)msg;
-  return (inv);
-}
-
-
-int		send_cmd_server(t_client_socket *cli, char *msg)
-{
-  return (dprintf(cli->fd, "%s\n", msg));
-}
+ 
 void		game_loop(t_ai *cli)
 {
-  t_materials	inv;
+  (void)cli;
+    int		cell = -1;
+   char		**parsing;
 
-  inv = parse_inventaire(cli);
-  (void)inv;
-}
+
+    parsing = parse_voir(cli);
+
+    while ((cell = look_for_object(parsing, "linemate")) > -1)
+      {
+	//go_to_cell(cli, cell);
+	free_tab(parsing);
+	parsing = parse_voir(cli);
+      }
+ }
 
 void		join_game(t_ai *cli)
 {
-  char		*msg;
-
-  msg = NULL;
-  printf("%s", msg = get_server_response(&cli->socket, msg));
-  send_cmd_server(&cli->socket, cli->team);
-  printf("%s", msg = get_server_response(&cli->socket, msg));
-  printf("%s", msg = get_server_response(&cli->socket, msg));
+  printf("%s", get_server_response(cli));
+  printf("%s", send_and_get(cli, cli->team));
+  printf("%s", get_server_response(cli));
   game_loop(cli);
-  xfree(msg);
+  xfree(cli->last_response);
 }
 
 void		init_ai(t_ai *ai, char **av)
@@ -77,7 +51,6 @@ void		init_ai(t_ai *ai, char **av)
 int		main(int argc, char **argv)
 {
   t_ai		ai;
-//t_client_socket	client;
 
   (void)argc;
   if (check_args(argv) == -1)
@@ -87,4 +60,3 @@ int		main(int argc, char **argv)
   xclose(ai.socket.fd);
   return (0);
 }
-

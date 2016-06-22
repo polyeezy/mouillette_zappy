@@ -5,11 +5,11 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Wed Jun 22 15:23:03 2016 Aurelie Orset
+** Last update Wed Jun 22 17:11:54 2016 Aurelie Orset
 */
 
 #include "graphic.h"
-#include <SDL/SDL_ttf.h>
+
 int main(int ac, char **av)
 {
   unsigned int frameLimit = SDL_GetTicks() + 16;

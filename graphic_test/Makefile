@@ -5,7 +5,7 @@
 ## Login   <orset_a@epitech.net>
 ## 
 ## Started on  Fri Jun 17 15:49:16 2016 Aurelie Orset
-## Last update Wed Jun 22 14:19:34 2016 Aurelie Orset
+## Last update Wed Jun 22 15:46:04 2016 Aurelie Orset
 ##
 
 SRC	=	src/draw.c\
@@ -14,6 +14,7 @@ SRC	=	src/draw.c\
 		src/graphics.c\
 		src/main.c\
 		src/mapi.c\
+		src/free.c\
 		src/info.c
 
 OBJ	= $(SRC:.c=.o)

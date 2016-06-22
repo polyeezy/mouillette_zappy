@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Wed Jun 22 14:03:43 2016 Loïc Weinhard
+## Last update Wed Jun 22 14:44:03 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -31,6 +31,9 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/inventaire.c	\
 			$(SRV_FOLDER)/avance.c		\
 			$(SRV_FOLDER)/relink.c		\
+			$(SRV_FOLDER)/check_syntax.c	\
+			$(SRV_FOLDER)/prend.c		\
+			$(SRV_FOLDER)/pose.c		\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 
@@ -62,6 +65,7 @@ UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c		\
 			$(UTILS_FOLDER)/my_str_to_wordtab.c	\
 			$(UTILS_FOLDER)/free_tab.c		\
 			$(UTILS_FOLDER)/my_strcat.c		\
+			$(UTILS_FOLDER)/lentab.c		\
 
 UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 

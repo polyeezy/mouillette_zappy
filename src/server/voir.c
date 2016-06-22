@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 20 15:48:55 2016 Loïc Weinhard
-** Last update Tue Jun 21 17:07:03 2016 Loïc Weinhard
+** Last update Wed Jun 22 16:36:29 2016 Loïc Weinhard
 */
 
 #include "map.h"
@@ -30,7 +30,7 @@ static char	nord(t_server server, t_client player)
       while (limit < (2 * i) + 1)
 	{
 	  get_elems(player, server.map[y][x]);
-	  x = mod(player.x + 1, server.width);
+	  x = mod(x + 1, server.width);
 	  limit += 1;
           limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
@@ -57,7 +57,7 @@ static char	est(t_server server, t_client player)
       while (limit < (2 * i) + 1)
 	{
           get_elems(player, server.map[y][x]);
-          y = mod(player.y + 1, server.height);
+          y = mod(y + 1, server.height);
 	  limit += 1;
           limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
@@ -84,7 +84,7 @@ static char	sud(t_server server, t_client player)
       while (limit < (2 * i) + 1)
 	{
           get_elems(player, server.map[y][x]);
-          x = mod(player.x - 1, server.width);
+          x = mod(x - 1, server.width);
 	  limit += 1;
           limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}
@@ -111,7 +111,7 @@ static char	ouest(t_server server, t_client player)
       while (limit < (2 * i) + 1)
 	{
 	  get_elems(player, server.map[y][x]);
-	  y = mod(player.y - 1, server.height);
+	  y = mod(y - 1, server.height);
 	  limit += 1;
 	  limit < (2 * i) + 1 ? dprintf(player.fd, ",") : 0;
 	}

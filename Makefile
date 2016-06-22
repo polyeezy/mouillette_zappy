@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Wed Jun 22 16:20:13 2016 Valerian Polizzi
+## Last update Wed Jun 22 16:32:41 2016 Valerian Polizzi
 ##
 
 SRV_NAME	=	zappy_server
@@ -28,6 +28,14 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/voir.c		\
 			$(SRV_FOLDER)/modulo.c		\
 			$(SRV_FOLDER)/get_elems.c	\
+			$(SRV_FOLDER)/inventaire.c	\
+			$(SRV_FOLDER)/avance.c		\
+			$(SRV_FOLDER)/relink.c		\
+			$(SRV_FOLDER)/check_syntax.c	\
+			$(SRV_FOLDER)/prend.c		\
+			$(SRV_FOLDER)/pose.c		\
+			$(SRV_FOLDER)/levels.c		\
+			$(SRV_FOLDER)/incantation.c	\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 
@@ -37,14 +45,16 @@ CLT_NAME	=	zappy_ai
 
 CLT_FOLDER	=	./src/client
 
-CLT_SRC		=	$(CLT_FOLDER)/args.c		\
-			$(CLT_FOLDER)/check_args.c	\
-			$(CLT_FOLDER)/init.c		\
-			$(CLT_FOLDER)/client_communication.c		\
+CLT_SRC		=	$(CLT_FOLDER)/args.c			\
+			$(CLT_FOLDER)/check_args.c		\
+			$(CLT_FOLDER)/init.c			\
+			$(CLT_FOLDER)/client_communication.c	\
 			$(CLT_FOLDER)/client_objects.c		\
 			$(CLT_FOLDER)/client_print.c		\
 			$(CLT_FOLDER)/client_vision.c		\
-			$(CLT_FOLDER)/main.c		\
+			$(CLT_FOLDER)/client_movement.c		\
+			$(CLT_FOLDER)/ai_cmd_1.c			\
+			$(CLT_FOLDER)/main.c			\
 
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
@@ -61,6 +71,7 @@ UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c		\
 			$(UTILS_FOLDER)/my_str_to_wordtab.c	\
 			$(UTILS_FOLDER)/free_tab.c		\
 			$(UTILS_FOLDER)/my_strcat.c		\
+			$(UTILS_FOLDER)/lentab.c		\
 
 UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 

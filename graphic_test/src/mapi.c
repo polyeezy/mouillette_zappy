@@ -5,12 +5,13 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Tue Jun 21 18:07:15 2016 Aurelie Orset
+** Last update Wed Jun 22 15:37:27 2016 Aurelie Orset
 */
 
 #include <stdio.h>
 #include <SDL/SDL_rotozoom.h>
 #include "graphic.h"
+#include <SDL/SDL_ttf.h>
 
 t_tile	*ressources(t_tile *tile)
 {
@@ -55,6 +56,7 @@ t_graph *resize(t_graph *g, float co)
   g->est = rotozoomSurface(g->est, 0.0, co, 1);
   g->ouest = rotozoomSurface(g->ouest, 0.0, co, 1);
   g->egg = rotozoomSurface(g->egg, 0.0, co, 1);
+  g->incant = rotozoomSurface(g->incant, 0.0, co, 1);
   g->is = g->is * co;
   g->ts = g->ts * co;
   return (g);
@@ -75,11 +77,13 @@ t_graph	*init_graph(int x, int y, SDL_Surface *screen)
   g->m = loadImage("gfx/mendiane_small.png");
   g->p = loadImage("gfx/phiras_small.png");
   g->t = loadImage("gfx/thystame_small.png");
-  g->nord = loadImage("gfx/nord.png");
+  g->nord = loadImage("gfx/nord2.png");
   g->sud = loadImage("gfx/sud.png");
-  g->est = loadImage("gfx/est.png");
-  g->ouest = loadImage("gfx/ouest.png");
+  g->est = loadImage("gfx/est2.png");
+  g->ouest = loadImage("gfx/ouest2.png");
   g->egg = loadImage("gfx/egg.png");
+  g->incant = loadImage("gfx/incant.png");
+  g->info = loadImage("gfx/info.png");
   g->screen = screen;
   g->is = 32;
   g->ts = 96;
@@ -105,17 +109,24 @@ void	drawGround(t_graph *g)
     }
 }
 
-void drawMap(SDL_Surface *screen)
+void drawMap(SDL_Surface *screen, int mapx, int mapy)
 {
   int	x;
   int	y;
   t_tile	*tl;
   t_graph	*g;
+  int		calc;
+  float co;
 
   tl = malloc(sizeof(t_tile));
-  g = init_graph(5, 5, screen);
+  g = init_graph(mapx, mapy, screen);
   y = 0;
-  g = resize(g, 1);
+  calc = mapx;
+  if (calc < mapy)
+    calc = mapy;
+  co = 1000 / calc;
+  co /= g->ts;
+  g = resize(g, co);
   drawGround(g);
   while (y < g->map_y)
     {
@@ -139,9 +150,23 @@ void drawMap(SDL_Surface *screen)
 	  if (tl->t > 0)
 	    drawImage(g->t, x * g->ts, (y * g->ts) + (2* g->is), g->screen);
 	  /*REQUETE SERVEUR POUR LES PERSOS ET LES OEUFS*/
-	  drawImage(g->egg, x * g->ts, y * g->ts, g->screen);
+	  if (x == 1)
+	    drawImage(g->incant, x * g->ts, y * g->ts, g->screen);
+	  if (x == 1 || x == 0)
+	    drawImage(g->sud, x * g->ts, y * g->ts, g->screen);
+	  if (x == 2)
+	    drawImage(g->nord, x * g->ts, y * g->ts, g->screen);
+	  if (x == 3)
+	    drawImage(g->est, x * g->ts, y * g->ts, g->screen);
+	  if (x == 4)
+	    drawImage(g->ouest, x * g->ts, y * g->ts, g->screen);
+	  if (x == 5)
+	    drawImage(g->egg, x * g->ts, y * g->ts, g->screen);
 	  x++;
 	}
       y++;
     }
+  drawInfo(0, 0, g);
+  free(tl);
+  free(g);
 }

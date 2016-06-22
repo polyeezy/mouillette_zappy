@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Tue Jun 21 17:24:22 2016 Loïc Weinhard
+** Last update Wed Jun 22 15:51:19 2016 Loïc Weinhard
 */
 
 #include <time.h>

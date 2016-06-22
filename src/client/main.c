@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Wed Jun 22 16:23:08 2016 Valerian Polizzi
+** Last update Wed Jun 22 16:49:38 2016 Valerian Polizzi
 */
 
 #include "args.h"
@@ -24,7 +24,7 @@ void		game_loop(t_ai *cli)
 
     while ((cell = look_for_object(parsing, "linemate")) > -1)
       {
-	//go_to_cell(cli, cell);
+	ai_count_move(cli, cell);
 	free_tab(parsing);
 	parsing = parse_voir(cli);
       }

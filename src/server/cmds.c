@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:26:12 2016 Loïc Weinhard
-** Last update Wed Jun 22 14:10:07 2016 Loïc Weinhard
+** Last update Wed Jun 22 15:54:56 2016 Loïc Weinhard
 */
 
 #include "cmds.h"
@@ -46,5 +46,10 @@ t_cmd	g_cmds[NUMBER_OF_COMMANDS] =
       "pose",
       "pose objet : pose l'objet sur la case",
       &pose
+    },
+    {
+      "incantation",
+      "incantation : augmente le niveau du personnage",
+      &incantation
     }
 };

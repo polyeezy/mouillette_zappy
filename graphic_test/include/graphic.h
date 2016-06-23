@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Thu Jun 23 12:51:03 2016 Aurelie Orset
+** Last update Thu Jun 23 13:45:59 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -55,30 +55,35 @@ typedef struct s_graph
   int	is; /*ITEM SIZE*/
 }	      t_graph;
 
-typedef struct s_info
+typedef struct	s_info
 {
-  SDL_Surface *n;
-  SDL_Surface *l;
-  SDL_Surface *d;
-  SDL_Surface *s;
-  SDL_Surface *m;
-  SDL_Surface *p;
-  SDL_Surface *t;
-  SDL_Surface *info;
-}	      t_info;
+  SDL_Surface *screen;
+  SDL_Surface	*n;
+  SDL_Surface	*l;
+  SDL_Surface	*d;
+  SDL_Surface	*s;
+  SDL_Surface	*m;
+  SDL_Surface	*p;
+  SDL_Surface	*t;
+  SDL_Surface	*info;
+  TTF_Font	*police;
+  SDL_Color	color;
+}		t_info;
 
-void	draw();
-void	delay(unsigned int frameLimit);
-SDL_Surface *loadImage(char *name);
-void free_all(t_graph *g);
-void free_all_info(t_info *g);
-void drawMap(SDL_Surface *screen, int mapx, int mapy);
-void draw(SDL_Surface *screen, int mapx, int mapy);
-void drawInfo(int x, int y, t_graph *g);
-void drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
-SDL_Surface *init(char *title, int x, int y);
-void getInput();
-void loadMap(char *name);
-void drawCase();
+void		draw();
+t_info		*init_info();
+t_info		*resize_info(t_info *i);
+void		delay(unsigned int frameLimit);
+SDL_Surface	*loadImage(char *name);
+void		free_all(t_graph *g);
+void		free_all_info(t_info *g);
+void		drawMap(SDL_Surface *screen, int mapx, int mapy);
+void		draw(SDL_Surface *screen, int mapx, int mapy);
+void		drawInfo(int x, int y, t_graph *g);
+void		drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
+SDL_Surface	*init(char *title, int x, int y);
+void		getInput();
+void		loadMap(char *name);
+void		drawCase();
 
 #endif

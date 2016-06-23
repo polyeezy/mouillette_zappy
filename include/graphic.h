@@ -5,18 +5,29 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Thu Jun 23 15:20:33 2016 Aurelie Orset
+** Last update Thu Jun 23 16:43:57 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
 # define	GRAPHIC_H_
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_ttf.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_rotozoom.h>
-#include <SDL/SDL_ttf.h>
-#include <stdio.h>
+# include <sys/types.h>
+# include <sys/socket.h>
+# include <sys/select.h>
+# include <sys/time.h>
+# include <sys/types.h>
+# include <unistd.h>
+# include <netinet/in.h>
+# include <utils.h>
+# include <string.h>
+# include <ai_cmd.h>
+# include <SDL/SDL.h>
+# include <SDL/SDL_ttf.h>
+# include <SDL/SDL_image.h>
+# include <SDL/SDL_rotozoom.h>
+# include <SDL/SDL_ttf.h>
+# include <stdio.h>
+# include "client.h"
 
 #define TILE_SIZE 48
 #define STONE_SIZE 32
@@ -79,6 +90,10 @@ typedef struct	s_player
   struct s_payer	*next;
 }			t_player;
 
+int             send_cmd_server_gfx(t_client_socket *cli, char *msg);
+char            *get_server_response_gfx(t_client_socket *cli);
+char    *send_and_get_gfx(t_client_socket *cli, char *cmd);
+t_client_socket		init_client_socket(char **argv);
 void		draw();
 t_info		*init_info();
 t_info		*resize_info(t_info *i, float co);

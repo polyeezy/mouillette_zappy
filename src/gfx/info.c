@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Thu Jun 23 16:09:50 2016 Aurelie Orset
+** Last update Thu Jun 23 16:21:14 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -154,8 +154,10 @@ void	drawInfo(int x, int y, t_graph *g)
 	  drawCoord(i, g, x, y);
 	  drawFood(i, g);
 	  drawPlayer(i, g, 42, 3);
-	  /*i = resize_info(i, 0.8);
-	    drawInventaire(i, g);*/
+	  free_all_info(i);
+	  i = init_info();
+	  i = resize_info(i, 0.3);
+	  drawInventaire(i, g);
 	}
       else if (event.type == SDL_QUIT)
 	{

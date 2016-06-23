@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Thu Jun 23 16:21:14 2016 Aurelie Orset
+** Last update Thu Jun 23 21:07:52 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -15,7 +15,7 @@ int	convertX(int x, t_graph *g)
   double calc;
 
   calc = (x / g->ts);
-  x = calc + 1;
+  x = calc;
   return (x);
 }
 
@@ -85,33 +85,31 @@ void	drawPlayer(t_info *i, t_graph *g, int id, int lvl)
 
 }
 
-void	drawFood(t_info *i, t_graph *g)
+void	drawFood(t_info *i, t_graph *g, int x, int y, t_client_socket client)
 {
   char *str;
+  char	**tab;
 
-  str = malloc(sizeof(str) * 15);
+  str = malloc(sizeof(char) * 255);
+  sprintf(str, "bct %d %d", x, y);
+  str = send_and_get_gfx(&client, str);
+  tab = my_str_to_wordtab(str, " \n");
+  printf("FOOD REQUEST %s\n", str);
   i->screen = g->screen;
-  sprintf(str, "%d", 122);
   drawImage(i->l, 1050, 100, g->screen);
-  drawTexte(i, 1150, 110, str);
-  sprintf(str, "%d", 213);
+  drawTexte(i, 1150, 110, tab[4]);
   drawImage(i->d, 1250, 100, g->screen);
-  drawTexte(i, 1350, 110, str);
-  sprintf(str, "%d", 2);
+  drawTexte(i, 1350, 110, tab[5]);
   drawImage(i->s, 1050, 200, g->screen);
-  drawTexte(i, 1150, 210, str);
-  sprintf(str, "%d", 2);
+  drawTexte(i, 1150, 210, tab[6]);
   drawImage(i->m, 1250, 200, g->screen);
-  drawTexte(i, 1350, 210, str);
-  sprintf(str, "%d", 2);
+  drawTexte(i, 1350, 210, tab[7]);
   drawImage(i->p, 1050, 300, g->screen);
-  drawTexte(i, 1150, 310, str);
-  sprintf(str, "%d", 29);
+  drawTexte(i, 1150, 310, tab[8]);
   drawImage(i->t, 1250, 300, g->screen);
-  drawTexte(i, 1350, 310, str);
-  sprintf(str, "%d", 2);
+  drawTexte(i, 1350, 310, tab[9]);
   drawImage(i->n, 1150, 400, g->screen);
-  drawTexte(i, 1250, 410, str);
+  drawTexte(i, 1250, 410, tab[3]);
   free(str);
 }
 
@@ -123,9 +121,6 @@ void	drawCoord(t_info *i, t_graph *g, int x, int y)
   char str[18];
   char str1[18];
 
-  SDL_GetMouseState(&x, &y);
-  x = convertX(x, g);
-  y = convertX(y, g);
   sprintf(str, "x: %d", x);
   sprintf(str1, "y: %d", y);
   drawImage(i->info, 1000, 0, g->screen);
@@ -140,7 +135,7 @@ void	drawCoord(t_info *i, t_graph *g, int x, int y)
   SDL_FreeSurface(texte3);
 }
 
-void	drawInfo(int x, int y, t_graph *g)
+void	drawInfo(int x, int y, t_graph *g, t_client_socket client)
 {
   SDL_Event event;
   t_info *i;
@@ -151,13 +146,16 @@ void	drawInfo(int x, int y, t_graph *g)
     {
       if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
+	  SDL_GetMouseState(&x, &y);
+	  x = convertX(x, g);
+	  y = convertX(y, g);
 	  drawCoord(i, g, x, y);
-	  drawFood(i, g);
+	  drawFood(i, g, x, y, client);
 	  drawPlayer(i, g, 42, 3);
 	  free_all_info(i);
 	  i = init_info();
 	  i = resize_info(i, 0.3);
-	  drawInventaire(i, g);
+	  /*drawInventaire(i, g);*/
 	}
       else if (event.type == SDL_QUIT)
 	{

@@ -5,9 +5,10 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Thu Jun 23 16:47:08 2016 Aurelie Orset
+** Last update Thu Jun 23 20:22:46 2016 Aurelie Orset
 */
 
+#include "args.h"
 #include "graphic.h"
 
 int main(int ac, char **av)
@@ -18,14 +19,21 @@ int main(int ac, char **av)
   int	mapx;
   int	mapy;
   t_client_socket client;
+  char	**tab;
+  char *str;
 
-  /*  mapx = atoi(av[1]);
-      mapy = atoi(av[2]);*/
   ac = ac;
+  if (check_args(av) == -1)
+    return (-1);
   mapx = 10;
   mapy = 10;
   client = init_client_socket(av);
-  send_and_get_gfx(&client, "test\n");
+  printf("%s\n", get_server_response_gfx(&client));
+  str = send_and_get_gfx(&client, "GRAPHIC\n");
+  tab = my_str_to_wordtab(str, " ");
+  printf("tableauuuu %s %s\n", tab[0], tab[1]);
+  mapx = atoi(tab[1]);
+  mapy = atoi(tab[2]);
   if (TTF_Init()==-1) {
     printf("TTF_Init: %s\n", TTF_GetError());
     exit(2);
@@ -33,10 +41,10 @@ int main(int ac, char **av)
   screen = init("MOUILLETTE ZAPPY", 1500, 1000);
   go = 1;
   while (go == 1)
-    {
-      draw(screen, mapx, mapy);
-      delay(frameLimit);
-      frameLimit = SDL_GetTicks() + 16;
-    }
+  {
+    draw(screen, mapx, mapy, client);
+    delay(frameLimit);
+    frameLimit = SDL_GetTicks() + 16;
+  }
   exit(0);
 }

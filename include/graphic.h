@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Thu Jun 23 16:43:57 2016 Aurelie Orset
+** Last update Thu Jun 23 20:58:24 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -101,9 +101,9 @@ void		delay(unsigned int frameLimit);
 SDL_Surface	*loadImage(char *name);
 void		free_all(t_graph *g);
 void		free_all_info(t_info *g);
-void		drawMap(SDL_Surface *screen, int mapx, int mapy);
-void		draw(SDL_Surface *screen, int mapx, int mapy);
-void		drawInfo(int x, int y, t_graph *g);
+void		drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
+void		draw(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
+void		drawInfo(int x, int y, t_graph *g, t_client_socket client);
 void		drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
 SDL_Surface	*init(char *title, int x, int y);
 void		getInput();

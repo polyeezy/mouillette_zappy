@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Thu Jun 23 16:35:18 2016 Aurelie Orset
+** Last update Thu Jun 23 21:15:45 2016 Aurelie Orset
 */
 
 #ifndef CLIENT_H_
@@ -18,12 +18,13 @@
 # include <sys/types.h>
 # include <unistd.h>
 # include <netinet/in.h>
-# include "orientation.h"
-# include "materials.h"
 # include <utils.h>
 # include <stdio.h>
 # include <string.h>
 # include <ai_cmd.h>
+# include "orientation.h"
+# include "materials.h"
+
 
 typedef struct		s_client
 {

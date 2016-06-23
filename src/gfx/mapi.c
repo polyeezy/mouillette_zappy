@@ -5,36 +5,23 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Thu Jun 23 14:42:20 2016 Aurelie Orset
+** Last update Thu Jun 23 21:08:11 2016 Aurelie Orset
 */
 
 #include "graphic.h"
 
-t_tile	*ressources(t_tile *tile)
+t_tile	*ressources(t_tile *tile, char *str)
 {
-  FILE *fp;
-  int x;
-  int y;
-  int n;
-  int l;
-  int d;
-  int s;
-  int m;
-  int p;
-  int t;
+  char **tab;
 
-  fp = fopen("test.txt", "r");
-  if (fp == NULL)
-    exit(0);
-  fscanf(fp, "%d %d %d %d %d %d %d %d %d", &x, &y, &n, &l, &d, &s, &m, &p, &t);
-  tile->n = n;
-  tile->l = l;
-  tile->d = d;
-  tile->s = s;
-  tile->m = m;
-  tile->p = p;
-  tile->t = t;
-  fclose(fp);
+  tab = my_str_to_wordtab(str, " \n");
+  tile->n = atoi(tab[3]);
+  tile->l = atoi(tab[4]);
+  tile->d = atoi(tab[5]);
+  tile->s = atoi(tab[6]);
+  tile->m = atoi(tab[7]);
+  tile->p = atoi(tab[8]);
+  tile->t = atoi(tab[9]);
   return (tile);
 }
 
@@ -105,7 +92,7 @@ void	drawGround(t_graph *g)
     }
 }
 
-void drawMap(SDL_Surface *screen, int mapx, int mapy)
+void drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client)
 {
   int	x;
   int	y;
@@ -113,8 +100,11 @@ void drawMap(SDL_Surface *screen, int mapx, int mapy)
   t_graph	*g;
   int		calc;
   float co;
+  /*char	**tab;*/
+  char	*str;
 
   tl = malloc(sizeof(t_tile));
+  str = malloc(sizeof(char) * 255);
   g = init_graph(mapx, mapy, screen);
   y = 0;
   calc = mapx;
@@ -129,7 +119,11 @@ void drawMap(SDL_Surface *screen, int mapx, int mapy)
       x = 0;
       while (x < g->map_x)
 	{
-	  tl = ressources(tl);
+	  sprintf(str, "bct %d %d", x, y);
+	  /*printf("str : %s\n", str);*/
+	  str = send_and_get_gfx(&client, str);
+	  printf("%s\n", str);
+	  tl = ressources(tl, str);
 	  /*REQUETE SERVEUR POUR RECUP LES DONNEEES DE LA MAP*/
 	  if (tl->n > 0)
 	    drawImage(g->n, x * g->ts, y * g->ts, g->screen);
@@ -146,23 +140,11 @@ void drawMap(SDL_Surface *screen, int mapx, int mapy)
 	  if (tl->t > 0)
 	    drawImage(g->t, x * g->ts, (y * g->ts) + (2* g->is), g->screen);
 	  /*REQUETE SERVEUR POUR LES PERSOS ET LES OEUFS*/
-	  if (x == 1)
-	    drawImage(g->incant, x * g->ts, y * g->ts, g->screen);
-	  if (x == 1 || x == 0)
-	    drawImage(g->sud, x * g->ts, y * g->ts, g->screen);
-	  if (x == 2)
-	    drawImage(g->nord, x * g->ts, y * g->ts, g->screen);
-	  if (x == 3)
-	    drawImage(g->est, x * g->ts, y * g->ts, g->screen);
-	  if (x == 4)
-	    drawImage(g->ouest, x * g->ts, y * g->ts, g->screen);
-	  if (x == 5)
-	    drawImage(g->egg, x * g->ts, y * g->ts, g->screen);
 	  x++;
 	}
       y++;
     }
-  drawInfo(0, 0, g);
+  drawInfo(0, 0, g, client);
   free(tl);
   free_all(g);
 }

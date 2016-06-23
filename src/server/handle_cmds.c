@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:11:57 2016 Loïc Weinhard
-** Last update Mon Jun 20 17:12:29 2016 Loïc Weinhard
+** Last update Thu Jun 23 17:24:48 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -21,9 +21,14 @@ void	handle_cmds(t_server *server, t_client *player)
 
   i = 0;
   ret = xread(player->fd, buffer, 4096);
-  if (ret == 0)
-    return;
+  if (ret == 0 || ret == 1)
+    {
+      remove_client(server, player, ret);
+      return;
+    }
   buffer[ret] = 0;
+  printf("Player %d sent : [%.*s]\n", player->fd,
+	 my_strlen(buffer) - 1, buffer);
   tab = my_str_to_wordtab(buffer, " \t\r\n");
   while (i < NUMBER_OF_COMMANDS)
     {

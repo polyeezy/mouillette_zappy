@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Tue Jun 21 16:55:58 2016 Loïc Weinhard
+** Last update Thu Jun 23 18:14:10 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -41,6 +41,7 @@ void		fd_isset_clients(t_server *server)
 {
   t_team	*team;
   t_client	*member;
+  t_client	*next;
 
   team = server->teams;
   while (team)
@@ -48,9 +49,10 @@ void		fd_isset_clients(t_server *server)
       member = team->members;
       while (member)
 	{
+	  next = member->next;
 	  if (FD_ISSET(member->fd, &(server->readfds)))
 	    handle_cmds(server, member);
-	  member = member->next;
+	  member = next;
 	}
       team = team->next;
     }

@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Thu Jun 23 17:00:53 2016 Loïc Weinhard
+## Last update Thu Jun 23 17:22:47 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -37,6 +37,7 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/levels.c		\
 			$(SRV_FOLDER)/incantation.c	\
 			$(SRV_FOLDER)/broadcast.c	\
+			$(SRV_FOLDER)/remove_client.c	\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 

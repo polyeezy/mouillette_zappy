@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:09:23 2016 Loïc Weinhard
-** Last update Fri Jun 17 17:34:35 2016 Loïc Weinhard
+** Last update Thu Jun 23 17:24:58 2016 Loïc Weinhard
 */
 
 #ifndef SERVER_H_
@@ -38,6 +38,7 @@ typedef struct 		s_server
 
 t_server	init_server(char **argv);
 void		accept_client(t_server *server);
+void		remove_client(t_server *server, t_client *player, int ret);
 void		close_server(t_server server);
 
 #endif

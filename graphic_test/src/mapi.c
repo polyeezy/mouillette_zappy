@@ -5,13 +5,10 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Wed Jun 22 15:37:27 2016 Aurelie Orset
+** Last update Wed Jun 22 17:06:46 2016 Aurelie Orset
 */
 
-#include <stdio.h>
-#include <SDL/SDL_rotozoom.h>
 #include "graphic.h"
-#include <SDL/SDL_ttf.h>
 
 t_tile	*ressources(t_tile *tile)
 {
@@ -83,7 +80,6 @@ t_graph	*init_graph(int x, int y, SDL_Surface *screen)
   g->ouest = loadImage("gfx/ouest2.png");
   g->egg = loadImage("gfx/egg.png");
   g->incant = loadImage("gfx/incant.png");
-  g->info = loadImage("gfx/info.png");
   g->screen = screen;
   g->is = 32;
   g->ts = 96;
@@ -168,5 +164,5 @@ void drawMap(SDL_Surface *screen, int mapx, int mapy)
     }
   drawInfo(0, 0, g);
   free(tl);
-  free(g);
+  free_all(g);
 }

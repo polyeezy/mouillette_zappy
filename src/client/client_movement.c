@@ -5,10 +5,12 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Wed Jun 22 15:39:10 2016 Alexis Miele
-** Last update Wed Jun 22 15:46:51 2016 Alexis Miele
+** Last update Wed Jun 22 16:48:22 2016 Valerian Polizzi
 */
 
-static void	ai_do_move(t_ai *cl, int f1, int d, int f2)
+#include <client.h>
+
+void	ai_do_move(t_ai *cl, int f1, int d, int f2)
 {
   while (f1-- > 0)
     ai_avance(cl);
@@ -38,11 +40,11 @@ void	ai_count_move(t_ai *cl, int cell)
     }
   last = k - (j / 2) - 1;
   if (cell == last)
-    last = 0;
+    k = 0;
   else if (cell < last)
-    last = -1;
+    k = -1;
   else
-    last = 1;
+    k = 1;
   j = ((last - cell) < 0 ? (last - cell) * -1 : last - cell);
-  ai_do_move(cl, i, last, j);
+  ai_do_move(cl, i, k, j);
 }

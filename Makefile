@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Thu Jun 23 14:47:08 2016 Loïc Weinhard
+## Last update Thu Jun 23 15:08:38 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -41,18 +41,23 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 
 
-
 CLT_NAME	=	zappy_ai
 
 CLT_FOLDER	=	./src/client
 
-CLT_SRC		=	$(CLT_FOLDER)/main.c		\
-			$(CLT_FOLDER)/args.c		\
-			$(CLT_FOLDER)/check_args.c	\
-			$(CLT_FOLDER)/init.c		\
-			$(CLT_FOLDER)/ai_cmd_1.c	\
-			$(CLT_FOLDER)/ai_cmd_2.c	\
-			$(CLT_FOLDER)/ai_cmd_3.c	\
+CLT_SRC		=	$(CLT_FOLDER)/args.c			\
+			$(CLT_FOLDER)/check_args.c		\
+			$(CLT_FOLDER)/init.c			\
+			$(CLT_FOLDER)/client_communication.c	\
+			$(CLT_FOLDER)/client_objects.c		\
+			$(CLT_FOLDER)/client_print.c		\
+			$(CLT_FOLDER)/client_vision.c		\
+			$(CLT_FOLDER)/client_movement.c		\
+			$(CLT_FOLDER)/ai_cmd_1.c		\
+			$(CLT_FOLDER)/ai_cmd_2.c		\
+			$(CLT_FOLDER)/client_get_lvl1.c		\
+			$(CLT_FOLDER)/main.c			\
+
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
 

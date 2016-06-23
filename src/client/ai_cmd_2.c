@@ -5,13 +5,13 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Fri Jun 17 17:22:38 2016 Alexis Miele
-** Last update Fri Jun 17 17:39:44 2016 Alexis Miele
+** Last update Thu Jun 23 12:36:35 2016 Valerian Polizzi
 */
 
 #include "client.h"
 #include "xfct.h"
 
-void	ai_prend(t_client_socket *client, char *arg)
+void	ai_prend(t_ai *client, char *arg)
 {
   char	*msg;
 
@@ -22,7 +22,7 @@ void	ai_prend(t_client_socket *client, char *arg)
   xfree(msg);
 }
 
-void	ai_pose(t_client_socket *client, char *arg)
+void	ai_pose(t_ai *client, char *arg)
 {
   char	*msg;
 
@@ -33,13 +33,13 @@ void	ai_pose(t_client_socket *client, char *arg)
   xfree(msg);
 }
 
-void	ai_expulse(t_client_socket *client, char *arg)
+void	ai_expulse(t_ai *client, char *arg)
 {
   (void)arg;
   send_cmd_server(client, "expulse");
 }
 
-void	ai_broadcast(t_client_socket *client, char *arg)
+void	ai_broadcast(t_ai *client, char *arg)
 {
   char	*msg;
 
@@ -50,7 +50,7 @@ void	ai_broadcast(t_client_socket *client, char *arg)
   xfree(msg);
 }
 
-void	ai_incantation(t_client_socket *client, char *arg)
+void	ai_incantation(t_ai *client, char *arg)
 {
   (void)arg;
   send_cmd_server(client, "incantation");

@@ -5,10 +5,11 @@
 ** Login   <guarni_l@epitech.net>
 ** 
 ** Started on  Sun May 24 14:55:48 2015 luca guarnieri
-** Last update Thu May  5 15:50:19 2016 Loïc Weinhard
+** Last update Wed Jun 22 11:08:53 2016 Valerian Polizzi
 */
 
 #include "xfct.h"
+#include <args.h>
 
 static int	parser(char c, char *separators)
 {

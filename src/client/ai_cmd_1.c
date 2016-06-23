@@ -5,37 +5,32 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Fri Jun 17 17:02:23 2016 Alexis Miele
-** Last update Fri Jun 17 17:22:13 2016 Alexis Miele
+** Last update Wed Jun 22 16:43:05 2016 Valerian Polizzi
 */
 
 #include "client.h"
 
-void	ai_avance(t_client_socket *client, char *arg)
+void	ai_avance(t_ai *cli)
 {
-  (void)arg;
-  send_cmd_server(client, "avance");
+  send_and_get(cli, "avance");
 }
 
-void	ai_droite(t_client_socket *client, char *arg)
+void	ai_droite(t_ai *cli)
 {
-  (void)arg;
-  send_cmd_server(client, "droite");
+  send_and_get(cli, "droite");
 }
 
-void	ai_gauche(t_client_socket *client, char *arg)
+void	ai_gauche(t_ai *cli)
 {
-  (void)arg;
-  send_cmd_server(client, "gauche");
+  send_and_get(cli, "gauche");
 }
 
-void	ai_voir(t_client_socket *client, char *arg)
+void	ai_voir(t_ai *cli)
 {
-  (void)arg;
-  send_cmd_server(client, "voir");
+  send_and_get(cli, "voir");
 }
 
-void	ai_inventaire(t_client_socket *client, char *arg)
+void	ai_inventaire(t_ai *cli)
 {
-  (void)arg;
-  send_cmd_server(client, "inventaire");
+  send_and_get(cli, "inventaire");
 }

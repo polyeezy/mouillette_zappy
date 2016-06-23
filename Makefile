@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Thu Jun 23 16:59:27 2016 Loïc Weinhard
+## Last update Thu Jun 23 17:00:53 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -122,10 +122,12 @@ clean		:
 			rm -rf $(SRV_OBJ)
 			rm -rf $(CLT_OBJ)
 			rm -rf $(UTILS_OBJ)
+			rm -rf $(GFX_OBJ)
 
 fclean		:	clean
 			rm -rf $(SRV_NAME)
 			rm -rf $(CLT_NAME)
+			rm -rf $(GFX_NAME)
 
 re		:	fclean all
 

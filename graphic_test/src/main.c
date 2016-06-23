@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Thu Jun 23 13:38:57 2016 Aurelie Orset
+** Last update Thu Jun 23 13:50:21 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -30,7 +30,6 @@ int main(int ac, char **av)
   go = 1;
   while (go == 1)
     {
-      /*      getInput();*/
       draw(screen, mapx, mapy);
       delay(frameLimit);
       frameLimit = SDL_GetTicks() + 16;

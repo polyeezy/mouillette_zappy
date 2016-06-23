@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Thu Jun 23 13:47:36 2016 Aurelie Orset
+** Last update Thu Jun 23 13:59:35 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -56,40 +56,44 @@ void	drawFood(t_info *i, t_graph *g)
   drawTexte(i, 1250, 410, str);
 }
 
-void	drawInfo(int x, int y, t_graph *g)
+void	drawCoord(t_info *i, t_graph *g, int x, int y)
 {
   SDL_Surface *texte;
   SDL_Surface *texte2;
   SDL_Surface *texte3;
-  SDL_Event event;
   char str[18];
   char str1[18];
+
+  SDL_GetMouseState(&x, &y);
+  x = convertX(x, g);
+  y = convertX(y, g);
+  sprintf(str, "x: %d", x);
+  sprintf(str1, "y: %d", y);
+  drawImage(i->info, 1000, 0, g->screen);
+  texte = TTF_RenderText_Solid(i->police, "INFO", i->color);
+  texte2 = TTF_RenderText_Solid(i->police, str, i->color);
+  texte3 = TTF_RenderText_Solid(i->police, str1, i->color);
+  drawImage(texte, 1010, 10, g->screen);
+  drawImage(texte2, 1180, 10, g->screen);
+  drawImage(texte3, 1340, 10, g->screen);
+  SDL_FreeSurface(texte);
+  SDL_FreeSurface(texte2);
+  SDL_FreeSurface(texte3);
+}
+
+void	drawInfo(int x, int y, t_graph *g)
+{
+  SDL_Event event;
   t_info *i;
 
   i = init_info();
   i = resize_info(i);
-  if (i == NULL)
-    printf("NULL PAS INIT CACAC\n");
   while (SDL_PollEvent(&event))
     {
       if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
-	  SDL_GetMouseState(&x, &y);
-	  x = convertX(x, g);
-	  y = convertX(y, g);
-	  sprintf(str, "x: %d", x);
-	  sprintf(str1, "y: %d", y);
-	  drawImage(i->info, 1000, 0, g->screen);
-	  texte = TTF_RenderText_Solid(i->police, "INFO", i->color);
-	  texte2 = TTF_RenderText_Solid(i->police, str, i->color);
-	  texte3 = TTF_RenderText_Solid(i->police, str1, i->color);
-	  drawImage(texte, 1010, 10, g->screen);
-	  drawImage(texte2, 1180, 10, g->screen);
-	  drawImage(texte3, 1340, 10, g->screen);
+	  drawCoord(i, g, x, y);
 	  drawFood(i, g);
-	  SDL_FreeSurface(texte);
-	  SDL_FreeSurface(texte2);
-	  SDL_FreeSurface(texte3);
 	}
       if (event.type == SDL_QUIT)
 	{

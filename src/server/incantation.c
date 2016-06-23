@@ -5,9 +5,10 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 15:30:55 2016 Loïc Weinhard
-** Last update Wed Jun 22 15:56:09 2016 Loïc Weinhard
+** Last update Thu Jun 23 14:33:40 2016 Loïc Weinhard
 */
 
+#include "xfct.h"
 #include "server.h"
 #include "incantations.h"
 
@@ -26,7 +27,7 @@ static int	check_players(t_case pos, int level, int players, int fd)
     }
   if (i < players)
     {
-      dprintf(fd, "ko\n");
+      xwrite(fd, "ko\n");
       return (-1);
     }
   else
@@ -50,13 +51,13 @@ char		incantation(t_server *server, t_client *player, char **tab)
     {
       if (*case_material < *required_material)
 	{
-	  dprintf(player->fd, "ko\n");
+	  xwrite(player->fd, "ko\n");
 	  return (0);
 	}
       case_material++;
       required_material++;
     }
   player->level += 1;
-  dprintf(player->fd, "ok\n");
+  xwrite(player->fd, "ok\n");
   return (0);
 }

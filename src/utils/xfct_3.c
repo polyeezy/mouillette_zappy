@@ -48,3 +48,12 @@ void    *xcalloc(size_t nmemb, size_t size)
     exit(fprintf(stderr, "ERROR : calloc() failed\n"));
   return (ptr);
 }
+
+ssize_t		xwrite(int fd, const void *buf)
+{
+  ssize_t	i;
+
+  if ((i = write(fd, buf, my_strlen((char *)buf))) < 0)
+    exit(fprintf(stderr, "ERROR : write() failed"));
+  return (i);
+}

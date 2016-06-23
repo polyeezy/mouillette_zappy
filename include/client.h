@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Thu Jun 23 12:37:46 2016 Valerian Polizzi
+** Last update Thu Jun 23 16:35:18 2016 Aurelie Orset
 */
 
 #ifndef CLIENT_H_
@@ -49,7 +49,7 @@ typedef enum		state
     SURVIVOR		=	0,
     LOOKING_FOR		=	1,
     WAITING_OTHER	=	2,
-    JOINING_OTHER	=	3,
+    JOINING_OTHER	=	3
   }			e_state;
 
 typedef struct		s_ai

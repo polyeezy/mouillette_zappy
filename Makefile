@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Thu Jun 23 12:38:14 2016 Valerian Polizzi
+## Last update Thu Jun 23 16:45:29 2016 Aurelie Orset
 ##
 
 SRV_NAME	=	zappy_server
@@ -61,6 +61,24 @@ CLT_SRC		=	$(CLT_FOLDER)/args.c			\
 
 CLT_OBJ		=	$(CLT_SRC:.c=.o)
 
+GFX_NAME	=	zappy_gfx
+
+GFX_FOLDER	=	./src/gfx
+
+GFX_SRC		=	$(GFX_FOLDER)/draw.c			\
+			$(GFX_FOLDER)/free.c			\
+			$(GFX_FOLDER)/graphics.c		\
+			$(GFX_FOLDER)/info.c			\
+			$(GFX_FOLDER)/init.c			\
+			$(GFX_FOLDER)/init_info.c		\
+			$(GFX_FOLDER)/input.c			\
+			$(GFX_FOLDER)/main.c			\
+			$(GFX_FOLDER)/client_communication.c	\
+			$(GFX_FOLDER)/init_client.c		\
+			$(GFX_FOLDER)/mapi.c			\
+			$(GFX_FOLDER)/args.c			\
+
+GFX_OBJ		=	$(GFX_SRC:.c=.o)
 
 
 UTILS_FOLDER	=	./src/utils
@@ -81,16 +99,21 @@ UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 
 CFLAGS		+=	-Wall -Wextra -Werror -g
 CFLAGS		+=	-Iinclude
+LFLAGS		=	`sdl-config --libs` -lSDL -lSDL_image -lSDL_gfx -lSDL_ttf
 
 MR_CLEAN        =       find ./ \( -name "*~" -o -name "\#*\#" \) -delete
 
-all		:	$(SRV_NAME) $(CLT_NAME)
+all		:	$(SRV_NAME) $(CLT_NAME) $(GFX_NAME)
 
 $(SRV_NAME)	:	$(SRV_OBJ) $(UTILS_OBJ)
 			gcc $(SRV_OBJ) $(UTILS_OBJ) -o $(SRV_NAME) -g3
 
 $(CLT_NAME)	:	$(CLT_OBJ) $(UTILS_OBJ)
 			gcc $(CLT_OBJ) $(UTILS_OBJ) -o $(CLT_NAME)
+
+$(GFX_NAME)	:	$(GFX_OBJ) $(UTILS_OBJ) 
+			gcc $(LFLAGS) $(GFX_OBJ) $(UTILS_OBJ) -o $(GFX_NAME)
+
 
 clean		:
 			$(MR_CLEAN)

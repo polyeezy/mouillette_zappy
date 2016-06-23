@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Thu Jun 23 15:08:38 2016 Loïc Weinhard
+## Last update Thu Jun 23 16:37:14 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -75,6 +75,7 @@ UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c		\
 			$(UTILS_FOLDER)/my_strcat.c		\
 			$(UTILS_FOLDER)/lentab.c		\
 			$(UTILS_FOLDER)/my_strlen.c		\
+			$(UTILS_FOLDER)/itoa.c			\
 
 UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 

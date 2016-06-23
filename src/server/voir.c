@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 20 15:48:55 2016 Loïc Weinhard
-** Last update Thu Jun 23 15:01:14 2016 Loïc Weinhard
+** Last update Thu Jun 23 15:13:12 2016 Loïc Weinhard
 */
 
 #include "map.h"

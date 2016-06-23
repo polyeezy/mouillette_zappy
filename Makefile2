@@ -5,7 +5,11 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
+<<<<<<< HEAD
 ## Last update Thu Jun 23 16:45:29 2016 Aurelie Orset
+=======
+## Last update Thu Jun 23 15:08:38 2016 Loïc Weinhard
+>>>>>>> f2ff4b818ae6a13f0313297907bd5197c1ed6a2e
 ##
 
 SRV_NAME	=	zappy_server
@@ -36,9 +40,9 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/pose.c		\
 			$(SRV_FOLDER)/levels.c		\
 			$(SRV_FOLDER)/incantation.c	\
+			$(SRV_FOLDER)/broadcast.c	\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
-
 
 
 CLT_NAME	=	zappy_ai
@@ -92,6 +96,7 @@ UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c		\
 			$(UTILS_FOLDER)/free_tab.c		\
 			$(UTILS_FOLDER)/my_strcat.c		\
 			$(UTILS_FOLDER)/lentab.c		\
+			$(UTILS_FOLDER)/my_strlen.c		\
 
 UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 

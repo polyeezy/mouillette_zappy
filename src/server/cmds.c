@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:26:12 2016 Loïc Weinhard
-** Last update Wed Jun 22 15:54:56 2016 Loïc Weinhard
+** Last update Wed Jun 22 17:40:35 2016 Loïc Weinhard
 */
 
 #include "cmds.h"
@@ -51,5 +51,10 @@ t_cmd	g_cmds[NUMBER_OF_COMMANDS] =
       "incantation",
       "incantation : augmente le niveau du personnage",
       &incantation
+    },
+    {
+      "broadcast",
+      "broadcast message : envoie un message à tous les joueurs",
+      &broadcast
     }
 };

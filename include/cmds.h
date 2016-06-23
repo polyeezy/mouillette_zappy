@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:15:38 2016 Loïc Weinhard
-** Last update Wed Jun 22 15:55:04 2016 Loïc Weinhard
+** Last update Wed Jun 22 17:39:52 2016 Loïc Weinhard
 */
 
 #ifndef CMDS_H_
@@ -14,7 +14,7 @@
 # include "server.h"
 # include "client.h"
 
-# define NUMBER_OF_COMMANDS 8
+# define NUMBER_OF_COMMANDS 9
 
 typedef struct	s_cmd
 {
@@ -40,5 +40,6 @@ char		pose(t_server *server, t_client *player, char **tab);
 int		check_syntax(t_client *player, char **tab);
 
 char		incantation(t_server *server, t_client *player, char **tab);
+char		broadcast(t_server *server, t_client *player, char **tab);
 
 #endif

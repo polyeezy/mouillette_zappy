@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 11:21:52 2016 Loïc Weinhard
-** Last update Wed Jun 22 16:37:17 2016 Loïc Weinhard
+** Last update Thu Jun 23 14:30:19 2016 Loïc Weinhard
 */
 
 #include "utils.h"
@@ -102,6 +102,6 @@ char	avance(t_server *server, t_client *player, char **tab)
   ptr_func[SOUTH] = &sud;
   ptr_func[WEST] = &ouest;
   ptr_func[player->orientation](server, player);
-  dprintf(player->fd, "ok\n");
+  xwrite(player->fd, "ok\n");
   return (0);
 }

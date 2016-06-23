@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Tue Jun 14 16:04:41 2016 Loïc Weinhard
-** Last update Mon Jun 20 21:22:04 2016 Loïc Weinhard
+** Last update Thu Jun 23 14:51:10 2016 Loïc Weinhard
 */
 
 #ifndef MAP_H_
@@ -21,6 +21,6 @@ typedef struct	s_case
 }		t_case;
 
 int	mod(int pos, int max);
-char	get_elems(t_client player, t_case pos);
+char	*get_elems(t_case pos);
 
 #endif

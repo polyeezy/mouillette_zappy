@@ -5,9 +5,10 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:42:59 2016 Loïc Weinhard
-** Last update Tue Jun 21 17:06:02 2016 Loïc Weinhard
+** Last update Thu Jun 23 14:32:44 2016 Loïc Weinhard
 */
 
+#include "xfct.h"
 #include "cmds.h"
 
 char	gauche(t_server *server, t_client *player, char **tab)
@@ -18,6 +19,6 @@ char	gauche(t_server *server, t_client *player, char **tab)
     player->orientation = 3;
   else
     player->orientation -= 1;
-  dprintf(player->fd, "ok\n");
+  xwrite(player->fd, "ok\n");
   return (0);
 }

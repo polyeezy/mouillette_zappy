@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Wed Jun 22 17:39:48 2016 Aurelie Orset
+** Last update Thu Jun 23 12:52:10 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -124,7 +124,7 @@ void	drawInfo(int x, int y, t_graph *g)
 	  SDL_FreeSurface(texte3);
 	  SDL_FreeSurface(player);
 	}
-      if(event.type == SDL_QUIT)
+      if (event.type == SDL_QUIT)
 	{
 	  SDL_FreeSurface(g->screen);
 	  free_all_info(i);

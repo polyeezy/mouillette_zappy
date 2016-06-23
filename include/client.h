@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Wed Jun 22 16:39:21 2016 Valerian Polizzi
+** Last update Thu Jun 23 12:37:46 2016 Valerian Polizzi
 */
 
 #ifndef CLIENT_H_
@@ -20,6 +20,7 @@
 # include <netinet/in.h>
 # include "orientation.h"
 # include "materials.h"
+# include <utils.h>
 # include <stdio.h>
 # include <string.h>
 # include <ai_cmd.h>
@@ -79,13 +80,16 @@ void            ai_droite(t_ai*);
 void            ai_gauche(t_ai*);
 void            ai_voir(t_ai*);
 void            ai_inventaire(t_ai*);
-void            ai_prend(t_ai*);
-void            ai_pose(t_ai*);
-void            ai_expulse(t_ai*);
-void            ai_broadcast(t_ai*);
-void            ai_incantation(t_ai*);
-void            ai_fork(t_ai*);
+void            ai_prend(t_ai*, char*);
+void            ai_pose(t_ai*, char*);
+void            ai_expulse(t_ai*, char*);
+void            ai_broadcast(t_ai*, char*);
+void            ai_incantation(t_ai*, char*);
+void            ai_fork(t_ai*, char*);
 void            ai_connect_nbr(t_ai*);
 void            ai_dead(t_ai*);
+void		client_get_lvl1(t_ai *cli);
+void		get_rid(t_ai *cli, char **required);
+
 
 #endif

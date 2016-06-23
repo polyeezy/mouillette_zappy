@@ -5,30 +5,17 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Wed Jun 22 16:49:38 2016 Valerian Polizzi
+** Last update Thu Jun 23 12:50:45 2016 Valerian Polizzi
 */
 
 #include "args.h"
-#include "utils.h"
 #include "client.h"
 #include "xfct.h"
  
 void		game_loop(t_ai *cli)
 {
-  (void)cli;
-    int		cell = -1;
-   char		**parsing;
-
-
-    parsing = parse_voir(cli);
-
-    while ((cell = look_for_object(parsing, "linemate")) > -1)
-      {
-	ai_count_move(cli, cell);
-	free_tab(parsing);
-	parsing = parse_voir(cli);
-      }
- }
+  client_get_lvl1(cli);
+}
 
 void		join_game(t_ai *cli)
 {
@@ -57,6 +44,6 @@ int		main(int argc, char **argv)
     return (-1);
   init_ai(&ai, argv);
   join_game(&ai);
-  xclose(ai.socket.fd);
+  //  xclose(ai.socket.fd);
   return (0);
 }

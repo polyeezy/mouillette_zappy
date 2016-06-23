@@ -5,13 +5,14 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Wed Jun 22 16:24:11 2016 Valerian Polizzi
+** Last update Thu Jun 23 13:07:34 2016 Valerian Polizzi
 */
 
 #include <client.h>
 #include <utils.h>
 #include <stdlib.h>
 #include <args.h>
+#include "xfct.h"
 
 int             object_is_in_cell(char *cell, char *obj)
 {
@@ -29,6 +30,67 @@ int             object_is_in_cell(char *cell, char *obj)
       i++;
     }
   return (-1);
+}
+
+char		*epur_str(char *str)
+{
+  char *src;
+  int i;
+  int j;
+  i = 0;
+  j = 0;
+  src = xmalloc(sizeof(char *) * strlen(str));
+  while (str[i] != '\0')
+    {
+      if (str[i] == ' ' || str[i] == '\t')
+	{
+	  while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0')
+	    i = i + 1;
+	  if (j > 0 && str[i] != '\0')
+	    src[j++] = ' ';
+	}
+      src[j] = str[i];
+      j = j + 1;
+      i = i + 1;
+    }
+  src[j] = '\0';
+  return (src);
+}
+
+void		get_rid(t_ai *cli, char **required)
+{
+  char		**content;
+  char		*cell;
+  char		**floor;
+  
+
+  int		i;
+  int		j;
+
+  content = parse_voir(cli);
+  cell = content[0];
+  floor = my_str_to_wordtab(cell, " ");
+
+  int		z;
+
+  z = 0;
+
+  while (floor[z])
+    printf("FLOOR: -%s-\n", floor[z++]);
+  printf("endfloor\n");
+
+  while (floor[i])
+    {
+      j = 0;
+      while (required[j])
+	{
+	  printf("--%s--\n", epur_str(floor[i]));
+	  if (strcmp(required[j], epur_str(floor[i])) != 0 && strcmp(epur_str(floor[i]), "joueur") != 0)
+	    ai_prend(cli, floor[i]);
+	  j++;
+	}
+      i++;
+    }
 }
 
 int             look_for_object(char **vision, char *to_find)
@@ -67,4 +129,3 @@ t_materials  parse_inventaire(t_ai *cli)
   debug_material(&inv);
   return (inv);
 }
-

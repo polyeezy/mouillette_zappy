@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 15:54:18 2016 Valerian Polizzi
-** Last update Wed Jun 22 15:55:58 2016 Valerian Polizzi
+** Last update Fri Jun 24 16:12:30 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -33,7 +33,9 @@ char            *get_server_response(t_ai *cli)
 
 char    *send_and_get(t_ai *cli, char *cmd)
 {
+  printf("player %d : %s\n", cli->socket.fd, cmd);
   send_cmd_server(cli, cmd);
   get_server_response(cli);
+  printf("\033[34;01m%s\033[00m", cli->last_response);
   return (cli->last_response);
 }

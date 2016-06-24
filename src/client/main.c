@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Thu Jun 23 12:50:45 2016 Valerian Polizzi
+** Last update Fri Jun 24 16:14:43 2016 Valerian Polizzi
 */
 
 #include "args.h"
@@ -14,7 +14,8 @@
  
 void		game_loop(t_ai *cli)
 {
-  client_get_lvl1(cli);
+  while (strcmp(cli->last_response, "mort\n") != 0)
+    client_get_lvl1(cli);
 }
 
 void		join_game(t_ai *cli)
@@ -44,6 +45,6 @@ int		main(int argc, char **argv)
     return (-1);
   init_ai(&ai, argv);
   join_game(&ai);
-  //  xclose(ai.socket.fd);
+  xclose(ai.socket.fd);
   return (0);
 }

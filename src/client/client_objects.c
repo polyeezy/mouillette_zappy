@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Thu Jun 23 13:07:34 2016 Valerian Polizzi
+** Last update Fri Jun 24 16:06:09 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -70,21 +70,11 @@ void		get_rid(t_ai *cli, char **required)
   content = parse_voir(cli);
   cell = content[0];
   floor = my_str_to_wordtab(cell, " ");
-
-  int		z;
-
-  z = 0;
-
-  while (floor[z])
-    printf("FLOOR: -%s-\n", floor[z++]);
-  printf("endfloor\n");
-
   while (floor[i])
     {
       j = 0;
       while (required[j])
 	{
-	  printf("--%s--\n", epur_str(floor[i]));
 	  if (strcmp(required[j], epur_str(floor[i])) != 0 && strcmp(epur_str(floor[i]), "joueur") != 0)
 	    ai_prend(cli, floor[i]);
 	  j++;
@@ -117,8 +107,8 @@ t_materials  parse_inventaire(t_ai *cli)
   t_materials        inv;
 
   msg = NULL;
-  printf("%s\n", send_and_get(cli, "inventaire"));
-   parsing = my_str_to_wordtab(msg, "{ , }");
+  send_and_get(cli, "inventaire");
+  parsing = my_str_to_wordtab(msg, "{ , }");
   inv.food = atoi(parsing[get_arg(parsing, "nourriture") + 1]);
   inv.linemate = atoi(parsing[get_arg(parsing, "linemate") + 1]);
   inv.deraumere = atoi(parsing[get_arg(parsing, "deraumere") + 1]);

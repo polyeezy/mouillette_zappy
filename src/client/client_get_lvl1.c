@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Thu Jun 23 12:15:49 2016 Valerian Polizzi
-** Last update Thu Jun 23 13:04:43 2016 Valerian Polizzi
+** Last update Fri Jun 24 16:09:19 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -41,6 +41,5 @@ void			client_get_lvl1(t_ai *cli)
 	}
     }
   get_rid(cli, my_str_to_wordtab("linemate", ""));
-  parse_voir(cli);
   ai_incantation(cli, " ");
 }

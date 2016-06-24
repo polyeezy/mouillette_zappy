@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Fri Jun 24 18:44:05 2016 Aurelie Orset
+** Last update Fri Jun 24 19:04:19 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -114,8 +114,8 @@ void	drawPlayer(t_info *i, t_graph *g, t_client_socket client)
   int	id;
   int lvl;
 
-  lvl = 0;
   id = getID(client, g);
+  lvl = getLvl(client, id);
   printf("ID : %d\n", id);
   if (id != -1)
     {

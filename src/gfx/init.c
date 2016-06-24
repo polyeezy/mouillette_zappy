@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:06 2016 Aurelie Orset
-** Last update Wed Jun 22 14:40:57 2016 Aurelie Orset
+** Last update Fri Jun 24 11:48:44 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -14,6 +14,10 @@ SDL_Surface *init(char *title, int x, int y)
 {
   SDL_Surface *screen;
 
+  if (TTF_Init()==-1) {
+    printf("TTF_Init: %s\n", TTF_GetError());
+    exit(2);
+  }
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
       printf("Could not initialize SDL: %s\n", SDL_GetError());

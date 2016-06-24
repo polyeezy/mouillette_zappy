@@ -5,12 +5,12 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Thu Jun 23 13:16:06 2016 Aurelie Orset
-** Last update Thu Jun 23 15:20:16 2016 Aurelie Orset
+** Last update Fri Jun 24 12:15:17 2016 Aurelie Orset
 */
 
 #include "graphic.h"
 
-t_info	*init_info()
+t_info	*init_info(t_graph *g)
 {
   t_info *i;
 
@@ -28,6 +28,7 @@ t_info	*init_info()
   i->color.r = 255;
   i->color.g = 255;
   i->color.b = 255;
+  i->screen = g->screen;
   return (i);
 }
 

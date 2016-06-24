@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Thu Jun 23 20:58:24 2016 Aurelie Orset
+** Last update Fri Jun 24 12:16:05 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -95,7 +95,7 @@ char            *get_server_response_gfx(t_client_socket *cli);
 char    *send_and_get_gfx(t_client_socket *cli, char *cmd);
 t_client_socket		init_client_socket(char **argv);
 void		draw();
-t_info		*init_info();
+t_info		*init_info(t_graph *g);
 t_info		*resize_info(t_info *i, float co);
 void		delay(unsigned int frameLimit);
 SDL_Surface	*loadImage(char *name);
@@ -106,8 +106,9 @@ void		draw(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
 void		drawInfo(int x, int y, t_graph *g, t_client_socket client);
 void		drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
 SDL_Surface	*init(char *title, int x, int y);
+float		calcCo(int mapy, int mapx, t_graph *g);
 void		getInput();
 void		loadMap(char *name);
 void		drawCase();
-
+t_graph		*resize(t_graph *g, float co);
 #endif

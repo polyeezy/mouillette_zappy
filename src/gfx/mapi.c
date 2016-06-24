@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Thu Jun 23 21:08:11 2016 Aurelie Orset
+** Last update Fri Jun 24 12:08:29 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -23,27 +23,6 @@ t_tile	*ressources(t_tile *tile, char *str)
   tile->p = atoi(tab[8]);
   tile->t = atoi(tab[9]);
   return (tile);
-}
-
-t_graph *resize(t_graph *g, float co)
-{
-  g->ground = rotozoomSurface(g->ground, 0.0, co, 1);
-  g->n = rotozoomSurface(g->n, 0.0, co, 1);
-  g->l = rotozoomSurface(g->l, 0.0, co, 1);
-  g->d = rotozoomSurface(g->d, 0.0, co, 1);
-  g->s = rotozoomSurface(g->s, 0.0, co, 1);
-  g->m = rotozoomSurface(g->m, 0.0, co, 1);
-  g->p = rotozoomSurface(g->p, 0.0, co, 1);
-  g->t = rotozoomSurface(g->t, 0.0, co, 1);
-  g->nord = rotozoomSurface(g->nord, 0.0, co, 1);
-  g->sud = rotozoomSurface(g->sud, 0.0, co, 1);
-  g->est = rotozoomSurface(g->est, 0.0, co, 1);
-  g->ouest = rotozoomSurface(g->ouest, 0.0, co, 1);
-  g->egg = rotozoomSurface(g->egg, 0.0, co, 1);
-  g->incant = rotozoomSurface(g->incant, 0.0, co, 1);
-  g->is = g->is * co;
-  g->ts = g->ts * co;
-  return (g);
 }
 
 t_graph	*init_graph(int x, int y, SDL_Surface *screen)
@@ -92,53 +71,47 @@ void	drawGround(t_graph *g)
     }
 }
 
+void	drawStones(t_graph *g, t_tile *tl, int x, int y)
+{
+  if (tl->n > 0)
+    drawImage(g->n, x * g->ts, y * g->ts, g->screen);
+  if (tl->l > 0)
+    drawImage(g->l, (x * g->ts) + g->is, y * g->ts, g->screen);
+  if (tl->d > 0)
+    drawImage(g->d, (x * g->ts) + (2 * g->is), y * g->ts, g->screen);
+  if (tl->s > 0)
+    drawImage(g->s, x * g->ts, (y * g->ts) + g->is, g->screen);
+  if (tl->m > 0)
+    drawImage(g->m, (x * g->ts) + g->is, (y * g->ts) + g->is, g->screen);
+  if (tl->p > 0)
+    drawImage(g->p, x * g->ts + 2 * g->is, y * g->ts + g->is, g->screen);
+  if (tl->t > 0)
+    drawImage(g->t, x * g->ts, (y * g->ts) + (2* g->is), g->screen);
+}
+
 void drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client)
 {
   int	x;
   int	y;
   t_tile	*tl;
   t_graph	*g;
-  int		calc;
-  float co;
-  /*char	**tab;*/
   char	*str;
 
   tl = malloc(sizeof(t_tile));
   str = malloc(sizeof(char) * 255);
   g = init_graph(mapx, mapy, screen);
-  y = 0;
-  calc = mapx;
-  if (calc < mapy)
-    calc = mapy;
-  co = 1000 / calc;
-  co /= g->ts;
-  g = resize(g, co);
+  g = resize(g, calcCo(mapx, mapy, g));
   drawGround(g);
+  y = 0;
   while (y < g->map_y)
     {
       x = 0;
       while (x < g->map_x)
 	{
 	  sprintf(str, "bct %d %d", x, y);
-	  /*printf("str : %s\n", str);*/
 	  str = send_and_get_gfx(&client, str);
-	  printf("%s\n", str);
 	  tl = ressources(tl, str);
-	  /*REQUETE SERVEUR POUR RECUP LES DONNEEES DE LA MAP*/
-	  if (tl->n > 0)
-	    drawImage(g->n, x * g->ts, y * g->ts, g->screen);
-	  if (tl->l > 0)
-	    drawImage(g->l, (x * g->ts) + g->is, y * g->ts, g->screen);
-	  if (tl->d > 0)
-	    drawImage(g->d, (x * g->ts) + (2 * g->is), y * g->ts, g->screen);
-	  if (tl->s > 0)
-	    drawImage(g->s, x * g->ts, (y * g->ts) + g->is, g->screen);
-	  if (tl->m > 0)
-	    drawImage(g->m, (x * g->ts) + g->is, (y * g->ts) + g->is, g->screen);
-	  if (tl->p > 0)
-	    drawImage(g->p, x * g->ts + 2 * g->is, y * g->ts + g->is, g->screen);
-	  if (tl->t > 0)
-	    drawImage(g->t, x * g->ts, (y * g->ts) + (2* g->is), g->screen);
+	  drawStones(g, tl, x, y);
 	  /*REQUETE SERVEUR POUR LES PERSOS ET LES OEUFS*/
 	  x++;
 	}

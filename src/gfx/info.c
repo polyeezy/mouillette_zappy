@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Thu Jun 23 21:07:52 2016 Aurelie Orset
+** Last update Fri Jun 24 12:23:22 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -85,7 +85,7 @@ void	drawPlayer(t_info *i, t_graph *g, int id, int lvl)
 
 }
 
-void	drawFood(t_info *i, t_graph *g, int x, int y, t_client_socket client)
+void	drawFood(t_info *i, int x, int y, t_client_socket client)
 {
   char *str;
   char	**tab;
@@ -95,20 +95,19 @@ void	drawFood(t_info *i, t_graph *g, int x, int y, t_client_socket client)
   str = send_and_get_gfx(&client, str);
   tab = my_str_to_wordtab(str, " \n");
   printf("FOOD REQUEST %s\n", str);
-  i->screen = g->screen;
-  drawImage(i->l, 1050, 100, g->screen);
+  drawImage(i->l, 1050, 100, i->screen);
   drawTexte(i, 1150, 110, tab[4]);
-  drawImage(i->d, 1250, 100, g->screen);
+  drawImage(i->d, 1250, 100, i->screen);
   drawTexte(i, 1350, 110, tab[5]);
-  drawImage(i->s, 1050, 200, g->screen);
+  drawImage(i->s, 1050, 200, i->screen);
   drawTexte(i, 1150, 210, tab[6]);
-  drawImage(i->m, 1250, 200, g->screen);
+  drawImage(i->m, 1250, 200, i->screen);
   drawTexte(i, 1350, 210, tab[7]);
-  drawImage(i->p, 1050, 300, g->screen);
+  drawImage(i->p, 1050, 300, i->screen);
   drawTexte(i, 1150, 310, tab[8]);
-  drawImage(i->t, 1250, 300, g->screen);
+  drawImage(i->t, 1250, 300, i->screen);
   drawTexte(i, 1350, 310, tab[9]);
-  drawImage(i->n, 1150, 400, g->screen);
+  drawImage(i->n, 1150, 400, i->screen);
   drawTexte(i, 1250, 410, tab[3]);
   free(str);
 }
@@ -140,7 +139,7 @@ void	drawInfo(int x, int y, t_graph *g, t_client_socket client)
   SDL_Event event;
   t_info *i;
 
-  i = init_info();
+  i = init_info(g);
   i = resize_info(i, 0.5);
   while (SDL_PollEvent(&event))
     {
@@ -149,12 +148,12 @@ void	drawInfo(int x, int y, t_graph *g, t_client_socket client)
 	  SDL_GetMouseState(&x, &y);
 	  x = convertX(x, g);
 	  y = convertX(y, g);
-	  drawCoord(i, g, x, y);
-	  drawFood(i, g, x, y, client);
+	  if ( x <= g->map_x && y <= g->map_y)
+	    {
+	      drawCoord(i, g, x, y);
+	      drawFood(i, x, y, client);
+	    }
 	  drawPlayer(i, g, 42, 3);
-	  free_all_info(i);
-	  i = init_info();
-	  i = resize_info(i, 0.3);
 	  /*drawInventaire(i, g);*/
 	}
       else if (event.type == SDL_QUIT)
@@ -165,6 +164,5 @@ void	drawInfo(int x, int y, t_graph *g, t_client_socket client)
 	  exit(0);
 	}
     }
-  TTF_CloseFont(i->police);
   free_all_info(i);
 }

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 15:42:21 2016 Aurelie Orset
-** Last update Wed Jun 22 16:54:29 2016 Aurelie Orset
+** Last update Fri Jun 24 12:11:31 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -31,6 +31,7 @@ void	free_all(t_graph *g)
 
 void	free_all_info(t_info *g)
 {
+  TTF_CloseFont(g->police);
   SDL_FreeSurface(g->n);
   SDL_FreeSurface(g->l);
   SDL_FreeSurface(g->d);

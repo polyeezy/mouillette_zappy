@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Fri Jun 24 12:03:53 2016 Aurelie Orset
+## Last update Fri Jun 24 16:01:46 2016 Aurelie Orset
 ##
 
 SRV_NAME	=	zappy_server
@@ -70,7 +70,8 @@ GFX_SRC		=	$(GFX_FOLDER)/main.c			\
 			$(GFX_FOLDER)/client_communication.c	\
 			$(GFX_FOLDER)/init_client.c		\
 			$(GFX_FOLDER)/args.c			\
-			$(GFX_FOLDER)/check_args.c			\
+			$(GFX_FOLDER)/check_args.c		\
+			$(GFX_FOLDER)/players.c			\
 			$(GFX_FOLDER)/draw.c			\
 			$(GFX_FOLDER)/free.c			\
 			$(GFX_FOLDER)/init_info.c		\
@@ -135,4 +136,4 @@ fclean		:	clean
 
 re		:	fclean all
 
-.PHONY		:	all re clean fclean
+.PHONY	: all re clean fclean

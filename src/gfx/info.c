@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Fri Jun 24 12:23:22 2016 Aurelie Orset
+** Last update Fri Jun 24 16:01:10 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -28,34 +28,39 @@ void	drawTexte(t_info *i, int x, int y, char *str)
   SDL_FreeSurface(texte);
 }
 
-void	drawInventaire(t_info *i, t_graph *g)
+void	drawInventaire(t_graph *g, int id, t_client_socket client)
 {
   char *str;
+  char	**tab;
 
-  /*  i = resize_info(i, 0.8);*/
-  str = malloc(sizeof(str) * 15);
-  i->screen = g->screen;
-  sprintf(str, "%d", 122);
-  drawImage(i->l, 1050, 700, g->screen);
-  drawTexte(i, 1150, 110, str);
-  sprintf(str, "%d", 213);
-  drawImage(i->d, 1250, 700, g->screen);
-  drawTexte(i, 1350, 110, str);
-  sprintf(str, "%d", 2);
-  drawImage(i->s, 1050, 800, g->screen);
-  drawTexte(i, 1150, 210, str);
-  sprintf(str, "%d", 2);
-  drawImage(i->m, 1250, 800, g->screen);
-  drawTexte(i, 1350, 210, str);
-  sprintf(str, "%d", 2);
-  drawImage(i->p, 1050, 900, g->screen);
-  drawTexte(i, 1150, 310, str);
-  sprintf(str, "%d", 29);
-  drawImage(i->t, 1250, 900, g->screen);
-  drawTexte(i, 1350, 310, str);
-  sprintf(str, "%d", 2);
-  drawImage(i->n, 1150, 1000, g->screen);
-  drawTexte(i, 1250, 410, str);
+  t_info	*i;
+
+  i = init_info(g);
+  i = resize_info(i, 0.2);
+  if ((i->police = TTF_OpenFont("gfx/font.ttf", 35)) == NULL)
+    printf("NO LOAD\n");
+  str = malloc(sizeof(char) * 255);
+  sprintf(str, "pin %d", id);
+  str = send_and_get_gfx(&client, str);
+  tab = my_str_to_wordtab(str, " \n");
+  printf("INVENTAIRE : %s\n", str);
+  if (strcmp(tab[0], "sbp") != 0)
+    {
+      drawImage(i->l, 1050, 750, g->screen);
+      drawTexte(i, 1100, 750, tab[5]);
+      drawImage(i->d, 1200, 750, g->screen);
+      drawTexte(i, 1250, 750, tab[6]);
+      drawImage(i->s, 1350, 750, g->screen);
+      drawTexte(i, 1400, 750, tab[7]);
+      drawImage(i->m, 1050, 810, g->screen);
+      drawTexte(i, 1100, 810, tab[8]);
+      drawImage(i->p, 1200, 810, g->screen);
+      drawTexte(i, 1250, 810, tab[9]);
+      drawImage(i->t, 1350, 810, g->screen);
+      drawTexte(i, 1400, 810, tab[10]);
+      drawImage(i->n, 1200, 870, g->screen);
+      drawTexte(i, 1250, 870, tab[4]);
+    }
   free(str);
 }
 
@@ -82,7 +87,6 @@ void	drawPlayer(t_info *i, t_graph *g, int id, int lvl)
   texte = TTF_RenderText_Solid(i->police, "Inventaire", i->color);
   drawImage(texte, 1100, 690, g->screen);
   SDL_FreeSurface(texte);
-
 }
 
 void	drawFood(t_info *i, int x, int y, t_client_socket client)
@@ -134,17 +138,39 @@ void	drawCoord(t_info *i, t_graph *g, int x, int y)
   SDL_FreeSurface(texte3);
 }
 
+int	getLvl(t_client_socket client, int id)
+{
+  char	*str;
+  char	**tab;
+  int	lvl;
+
+  str = malloc(sizeof(char) * 255);
+  sprintf(str, "plv %d", id);
+  str = send_and_get_gfx(&client, str);
+  printf("LEVEL GET %s\n", str);
+  tab = my_str_to_wordtab(str, " \n");
+  if (strcmp(tab[0], "sbp") == 0)
+    return (-1);
+  lvl = atoi(tab[2]);
+  free(str);
+  return (lvl);
+}
+
 void	drawInfo(int x, int y, t_graph *g, t_client_socket client)
 {
   SDL_Event event;
   t_info *i;
+  int	id;
+  int	lvl;
 
+  id = 2;
   i = init_info(g);
   i = resize_info(i, 0.5);
   while (SDL_PollEvent(&event))
     {
       if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
+	  lvl = getLvl(client, id);
 	  SDL_GetMouseState(&x, &y);
 	  x = convertX(x, g);
 	  y = convertX(y, g);
@@ -153,8 +179,8 @@ void	drawInfo(int x, int y, t_graph *g, t_client_socket client)
 	      drawCoord(i, g, x, y);
 	      drawFood(i, x, y, client);
 	    }
-	  drawPlayer(i, g, 42, 3);
-	  /*drawInventaire(i, g);*/
+	  drawPlayer(i, g, id, lvl);
+	  drawInventaire(g, id, client);
 	}
       else if (event.type == SDL_QUIT)
 	{

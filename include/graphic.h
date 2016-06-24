@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Fri Jun 24 12:16:05 2016 Aurelie Orset
+** Last update Fri Jun 24 15:48:49 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -110,5 +110,6 @@ float		calcCo(int mapy, int mapx, t_graph *g);
 void		getInput();
 void		loadMap(char *name);
 void		drawCase();
+void		drawPlayers(t_graph *g, t_client_socket client);
 t_graph		*resize(t_graph *g, float co);
 #endif

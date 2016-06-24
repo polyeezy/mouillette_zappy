@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Fri Jun 24 12:08:29 2016 Aurelie Orset
+** Last update Fri Jun 24 15:48:11 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -15,13 +15,26 @@ t_tile	*ressources(t_tile *tile, char *str)
   char **tab;
 
   tab = my_str_to_wordtab(str, " \n");
-  tile->n = atoi(tab[3]);
-  tile->l = atoi(tab[4]);
-  tile->d = atoi(tab[5]);
-  tile->s = atoi(tab[6]);
-  tile->m = atoi(tab[7]);
-  tile->p = atoi(tab[8]);
-  tile->t = atoi(tab[9]);
+  if (strcmp(tab[0], "bct") == 0)
+    {
+      tile->n = atoi(tab[3]);
+      tile->l = atoi(tab[4]);
+      tile->d = atoi(tab[5]);
+      tile->s = atoi(tab[6]);
+      tile->m = atoi(tab[7]);
+      tile->p = atoi(tab[8]);
+      tile->t = atoi(tab[9]);
+    }
+  else
+  {
+    tile->n = 0;
+    tile->l = 0;
+    tile->d = 0;
+    tile->s = 0;
+    tile->m = 0;
+    tile->p = 0;
+    tile->t = 0;
+  }
   return (tile);
 }
 
@@ -112,6 +125,7 @@ void drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client)
 	  str = send_and_get_gfx(&client, str);
 	  tl = ressources(tl, str);
 	  drawStones(g, tl, x, y);
+	  drawPlayers(g, client);
 	  /*REQUETE SERVEUR POUR LES PERSOS ET LES OEUFS*/
 	  x++;
 	}

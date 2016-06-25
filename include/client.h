@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Thu Jun 23 21:15:45 2016 Aurelie Orset
+** Last update Sat Jun 25 10:42:05 2016 Valerian Polizzi
 */
 
 #ifndef CLIENT_H_
@@ -90,6 +90,7 @@ void            ai_fork(t_ai*, char*);
 void            ai_connect_nbr(t_ai*);
 void            ai_dead(t_ai*);
 void		client_get_lvl1(t_ai *cli);
+void		client_get_food(t_ai *cli);
 void		get_rid(t_ai *cli, char **required);
 
 

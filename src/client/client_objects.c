@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Fri Jun 24 16:06:09 2016 Valerian Polizzi
+** Last update Sat Jun 25 11:30:01 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -13,24 +13,6 @@
 #include <stdlib.h>
 #include <args.h>
 #include "xfct.h"
-
-int             object_is_in_cell(char *cell, char *obj)
-{
-  char          **content;
-  int           i;
-
-  content = NULL;
-  i = 0;
-  content = my_str_to_wordtab(cell, " ");
-  while (content[i])
-    {
-
-      if (strncmp(content[i], obj, strlen(obj)) == 0)
-        return (1);
-      i++;
-    }
-  return (-1);
-}
 
 char		*epur_str(char *str)
 {
@@ -55,6 +37,24 @@ char		*epur_str(char *str)
     }
   src[j] = '\0';
   return (src);
+}
+
+int             object_is_in_cell(char *cell, char *obj)
+{
+  char          **content;
+  int           i;
+
+  content = NULL;
+  i = 0;
+  content = my_str_to_wordtab(cell, " ");
+  while (content[i])
+    {
+
+      if (strncmp(epur_str(content[i]), obj, strlen(obj)) == 0)
+        return (1);
+      i++;
+    }
+  return (-1);
 }
 
 void		get_rid(t_ai *cli, char **required)
@@ -93,29 +93,31 @@ int             look_for_object(char **vision, char *to_find)
   while (vision[i])
     {
       res = object_is_in_cell(vision[i], to_find);
-      if (res > 0)
-        return (i);
-      i++;
+      if (res >= 0)
+	{
+	  printf("--%s FOUND %d--\n", to_find, i);
+	  return (i);
+	} 
+     i++;
     }
   return (-1);
 }
 
 t_materials  parse_inventaire(t_ai *cli)
 {
-  char               *msg;
-  char               **parsing;
-  t_materials        inv;
+  //  char               **parsing;
+   t_materials        inv;
 
-  msg = NULL;
-  send_and_get(cli, "inventaire");
-  parsing = my_str_to_wordtab(msg, "{ , }");
-  inv.food = atoi(parsing[get_arg(parsing, "nourriture") + 1]);
-  inv.linemate = atoi(parsing[get_arg(parsing, "linemate") + 1]);
-  inv.deraumere = atoi(parsing[get_arg(parsing, "deraumere") + 1]);
-  inv.sibur = atoi(parsing[get_arg(parsing, "sibur") + 1]);
-  inv.mendiane = atoi(parsing[get_arg(parsing, "mendiane") + 1]);
-  inv.phiras = atoi(parsing[get_arg(parsing, "phiras") + 1]);
-  inv.thystame = atoi(parsing[get_arg(parsing, "thystame") + 1]);
-  debug_material(&inv);
+   inv.food = 10;
+  printf("%s\n", send_and_get(cli, "inventaire"));
+  /* parsing = my_str_to_wordtab(msg, "{ , }"); */
+  /* inv.food = atoi(parsing[get_arg(parsing, "nourriture") + 1]); */
+  /* inv.linemate = atoi(parsing[get_arg(parsing, "linemate") + 1]); */
+  /* inv.deraumere = atoi(parsing[get_arg(parsing, "deraumere") + 1]); */
+  /* inv.sibur = atoi(parsing[get_arg(parsing, "sibur") + 1]); */
+  /* inv.mendiane = atoi(parsing[get_arg(parsing, "mendiane") + 1]); */
+  /* inv.phiras = atoi(parsing[get_arg(parsing, "phiras") + 1]); */
+  /* inv.thystame = atoi(parsing[get_arg(parsing, "thystame") + 1]); */
+  /* debug_material(&inv); */
   return (inv);
 }

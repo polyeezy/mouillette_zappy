@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Fri Jun 17 17:22:38 2016 Alexis Miele
-** Last update Sat Jun 25 15:30:06 2016 Valerian Polizzi
+** Last update Sat Jun 25 18:41:20 2016 Alexis Miele
 */
 
 #include "client.h"
@@ -52,6 +52,6 @@ void	ai_broadcast(t_ai *client, char *arg)
 
 void	ai_incantation(t_ai *client, char *arg)
 {
-  (void)arg;  
+  (void)arg;
   send_and_get(client, "incantation");
 }

@@ -1,11 +1,11 @@
 /*
 ** client_objects.c for  in /home/polizz_v/rendu/cPP/mouillette_zappy/src/client
-** 
+**
 ** Made by Valerian Polizzi
 ** Login   <polizz_v@epitech.net>
-** 
+**
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sat Jun 25 15:34:54 2016 Valerian Polizzi
+** Last update Sat Jun 25 18:58:29 2016 Alexis Miele
 */
 
 #include <client.h>
@@ -61,8 +61,6 @@ void		get_rid(t_ai *cli, char **required)
   char		**content;
   char		*cell;
   char		**floor;
-  
-
   int		i;
   int		j;
 
@@ -74,7 +72,8 @@ void		get_rid(t_ai *cli, char **required)
       j = 0;
       while (required[j])
 	{
-	  if (strcmp(required[j], epur_str(floor[i])) != 0 && strcmp(epur_str(floor[i]), "joueur") != 0)
+	  if (strcmp(required[j], epur_str(floor[i])) != 0 &&
+	      strcmp(epur_str(floor[i]), "joueur") != 0)
 	    ai_prend(cli, floor[i]);
 	  j++;
 	}
@@ -96,7 +95,7 @@ int             look_for_object(char **vision, char *to_find)
 	{
 	  printf("--%s FOUND %d--\n", to_find, i);
 	  return (i);
-	} 
+	}
      i++;
     }
   return (-1);
@@ -110,7 +109,7 @@ int		is_in_inventary(t_ai *cli, char *obj)
   i = 0;
   inv = NULL;
   printf("%s\n", send_and_get(cli, "inventaire"));
-  inv = my_str_to_wordtab(cli->last_response ,"{ , }");
+  inv = my_str_to_wordtab(cli->last_response, "{ , }");
   while (inv[i])
     {
       if (strcmp(obj, inv[i]) == 0)
@@ -121,7 +120,7 @@ int		is_in_inventary(t_ai *cli, char *obj)
 }
 
 void		go_get_object(t_ai *cli, char *obj)
-{ 
+{
   int           cell;
   char          **parsing;
   int           rotations;
@@ -155,6 +154,3 @@ void		go_get_object(t_ai *cli, char *obj)
   ai_prend(cli, obj);
   return;
 }
-
-
-

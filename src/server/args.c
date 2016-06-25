@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 13:28:54 2016 Loïc Weinhard
-** Last update Mon Jun 13 14:40:51 2016 Loïc Weinhard
+** Last update Sat Jun 25 19:23:56 2016 Alexis Miele
 */
 
 #include "args.h"
@@ -63,7 +63,7 @@ t_arg	g_server_args[SERVER_ARGS] =
       1,
       0,
       1,
-      1,
+      0,
       0
     }
 };

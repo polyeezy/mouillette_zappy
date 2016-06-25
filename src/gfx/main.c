@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Sat Jun 25 16:40:18 2016 Aurelie Orset
+** Last update Sat Jun 25 18:10:15 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -25,10 +25,12 @@ int main(int ac, char **av)
   ac = ac;
   if (check_args(av) == -1)
     return (-1);
+  playMusic();
   client = init_client_socket(av);
   printf("%s\n", get_server_response_gfx(&client));
   str = send_and_get_gfx(&client, "GRAPHIC");
   tab = my_str_to_wordtab(str, " ");
+  printf("GOTING %s\n", str);
   mapx = atoi(tab[1]);
   mapy = atoi(tab[2]);
   screen = init("MOUILLETTE ZAPPY", 1500, 1000);

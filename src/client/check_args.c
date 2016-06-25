@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Tue Jun 14 18:47:22 2016 Alexis Miele
-** Last update Wed Jun 15 14:18:35 2016 Alexis Miele
+** Last update Sat Jun 25 18:43:04 2016 Alexis Miele
 */
 
 #include <string.h>
@@ -21,7 +21,8 @@ static int	check_param(char **argv, int i)
   x = 0;
   while (x < CLIENT_ARGS)
     {
-      if (!g_client_args[x].used && strcmp(g_client_args[x].flag, argv[i]) == 0)
+      if (!g_client_args[x].used &&
+	  strcmp(g_client_args[x].flag, argv[i]) == 0)
 	{
 	  y = 0;
 	  g_client_args[x].used = 1;

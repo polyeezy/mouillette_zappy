@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:30:16 2016 Loïc Weinhard
-** Last update Fri Jun 24 14:55:50 2016 Loïc Weinhard
+** Last update Sat Jun 25 19:21:45 2016 Alexis Miele
 */
 
 #include <time.h>
@@ -54,17 +54,21 @@ t_server		init_server(char **argv)
   int			port;
 
   port = atoi(argv[get_arg(argv, "-p") + 1]);
+  server.teams = NULL;
+  if (add_teams(&(server.teams), argv) == -1)
+    exit(dprintf(2,
+		 "Error! The teams should not have the same name or be called \"GRAPHIC\"\n")
+	 * 0 - 1);
   server.fd = xsocket(DOMAIN, TYPE, xgetprotobyname(PROTOCOL));
   server.fd_max = server.fd + 1;
-  server.timeout = atoi(argv[get_arg(argv, "-t") + 1]);
-  server.teams = NULL;
+  server.timeout =
+    (g_server_args[5].used ? atoi(argv[get_arg(argv, "-t") + 1]) : 100);
   server.pile = NULL;
   server.client_addr.sin_family = DOMAIN;
   server.client_addr.sin_port = xhtons(server.fd, port);
   server.map = init_map(argv);
   server.width = atoi(argv[get_arg(argv, "-x") + 1]);
   server.height = atoi(argv[get_arg(argv, "-y") + 1]);
-  add_teams(&(server.teams), argv);
   server.client_addr.sin_addr.s_addr = ADDRESSES;
   server.client_size = sizeof(server.client_addr);
   xbind(server.fd, (const struct sockaddr *)&(server.client_addr),

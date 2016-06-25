@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:23:48 2016 Loïc Weinhard
-** Last update Mon Jun 13 16:46:20 2016 Loïc Weinhard
+** Last update Sat Jun 25 19:23:09 2016 Alexis Miele
 */
 
 #ifndef TEAM_H_
@@ -22,7 +22,7 @@ typedef struct	s_team
   struct s_team	*prev;
 }		t_team;
 
-void	add_teams(t_team **teams, char **argv);
+int	add_teams(t_team **teams, char **argv);
 void	free_teams(t_team *teams);
 
 #endif

@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sat Jun 25 17:15:47 2016 Loïc Weinhard
+## Last update Sat Jun 25 19:41:07 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -82,6 +82,7 @@ GFX_SRC		=	$(GFX_FOLDER)/main.c			\
 			$(GFX_FOLDER)/graphics.c		\
 			$(GFX_FOLDER)/info.c			\
 			$(GFX_FOLDER)/init.c			\
+			$(GFX_FOLDER)/music.c			\
 			$(GFX_FOLDER)/input.c			\
 			$(GFX_FOLDER)/mapi.c			\
 			$(GFX_FOLDER)/calc.c			\
@@ -112,7 +113,7 @@ UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 
 CFLAGS		+=	-Wall -Wextra -Werror -g
 CFLAGS		+=	-Iinclude
-LDFLAGS		=	`sdl-config --libs` -lSDL -lSDL_image -lSDL_gfx -lSDL_ttf
+LDFLAGS		=	`sdl-config --libs` -lSDL -lSDL_image -lSDL_gfx -lSDL_ttf -lSDL_mixer
 
 MR_CLEAN        =       find ./ \( -name "*~" -o -name "\#*\#" \) -delete
 

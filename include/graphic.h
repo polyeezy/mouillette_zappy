@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sat Jun 25 14:16:21 2016 Aurelie Orset
+** Last update Sat Jun 25 18:56:24 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -16,6 +16,7 @@
 # include <sys/select.h>
 # include <sys/time.h>
 # include <sys/types.h>
+# include <SDL/SDL_mixer.h>
 # include <unistd.h>
 # include <netinet/in.h>
 # include <utils.h>
@@ -56,6 +57,10 @@ typedef struct s_graph
   SDL_Surface *sud;
   SDL_Surface *est;
   SDL_Surface *ouest;
+  SDL_Surface *nord2;
+  SDL_Surface *sud2;
+  SDL_Surface *est2;
+  SDL_Surface *ouest2;
   SDL_Surface *egg;
   SDL_Surface *incant;
   int	map_x;
@@ -117,5 +122,6 @@ t_graph		*init_graph(int x, int y, SDL_Surface *screen);
 t_tile		*ressources(t_tile *tile, char *str);
 t_info		*init_and_resize(t_graph *g);
 void		*free_at_exit(t_graph *g, t_info *i);
+void		playMusic();
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:39:57 2016 Loïc Weinhard
-** Last update Tue Jun 14 13:45:02 2016 Loïc Weinhard
+** Last update Sat Jun 25 19:14:12 2016 Alexis Miele
 */
 
 #include "args.h"
@@ -28,8 +28,12 @@ void	free_teams(t_team *teams)
   xfree(teams);
 }
 
-void	add_teams(t_team **teams, char **argv)
+int	add_teams(t_team **teams, char **argv)
 {
+  if (strcmp(argv[get_arg(argv, "-n") + 1], "GRAPHIC") == 0 ||
+      strcmp(argv[get_arg(argv, "-n") + 2], "GRAPHIC") == 0 ||
+      strcmp(argv[get_arg(argv, "-n") + 1], argv[get_arg(argv, "-n") + 2]) == 0)
+     return (-1);
   *teams = xmalloc(sizeof(t_team));
   (*teams)->name = strdup(argv[get_arg(argv, "-n") + 1]);
   (*teams)->max = atoi(argv[get_arg(argv, "-c") + 1]);
@@ -41,4 +45,5 @@ void	add_teams(t_team **teams, char **argv)
   (*teams)->next->members = NULL;
   (*teams)->next->prev = *teams;
   (*teams)->next->next = NULL;
+  return (0);
 }

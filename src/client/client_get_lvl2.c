@@ -1,11 +1,11 @@
 /*
 ** client_get_lvl2.c for  in /home/polizz_v/rendu/cPP/mouillette_zappy/src/client
-** 
+**
 ** Made by Valerian Polizzi
 ** Login   <polizz_v@epitech.net>
-** 
+**
 ** Started on  Sat Jun 25 13:01:52 2016 Valerian Polizzi
-** Last update Sat Jun 25 15:36:38 2016 Valerian Polizzi
+** Last update Sat Jun 25 18:41:45 2016 Alexis Miele
 */
 
 #include <client.h>
@@ -19,7 +19,7 @@ void                    client_get_lvl2(t_ai *cli)
    required = NULL;
   i = 0;
 
-  // parsing = parse_voir(cli); ,,
+  // parsing = parse_voir(cli);
   required = my_str_to_wordtab(" linemate deraumere sibur ", " ");
 
   while (required[i])
@@ -34,4 +34,3 @@ void                    client_get_lvl2(t_ai *cli)
   // parsing = parse_voir(cli);
   ai_incantation(cli, " ");
 }
-

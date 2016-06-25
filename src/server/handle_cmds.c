@@ -5,12 +5,13 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:11:57 2016 Loïc Weinhard
-** Last update Thu Jun 23 17:24:48 2016 Loïc Weinhard
+** Last update Fri Jun 24 15:51:49 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
 #include "cmds.h"
 #include "utils.h"
+#include "pile.h"
 
 void	handle_cmds(t_server *server, t_client *player)
 {
@@ -18,6 +19,7 @@ void	handle_cmds(t_server *server, t_client *player)
   int	ret;
   char	**tab;
   int	i;
+  t_pile	*pile;
 
   i = 0;
   ret = xread(player->fd, buffer, 4096);
@@ -33,8 +35,14 @@ void	handle_cmds(t_server *server, t_client *player)
   while (i < NUMBER_OF_COMMANDS)
     {
       if (strcmp(g_cmds[i].name, tab[0]) == 0)
-	g_cmds[i].ptr_func(server, player, tab);
+	add_pile(server, player, buffer, g_cmds[i]);
       i += 1;
+    }
+  pile = server->pile;
+  while (pile)
+    {
+      printf("%s", pile->cmd);
+      pile = pile->next;
     }
   free_tab(tab);
 }

@@ -5,23 +5,27 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:15:38 2016 Loïc Weinhard
-** Last update Wed Jun 22 17:39:52 2016 Loïc Weinhard
+** Last update Fri Jun 24 15:12:41 2016 Loïc Weinhard
 */
 
 #ifndef CMDS_H_
 # define CMDS_H_
 
+# include <sys/time.h>
 # include "server.h"
 # include "client.h"
 
 # define NUMBER_OF_COMMANDS 9
 
-typedef struct	s_cmd
+typedef struct s_server t_server;
+
+typedef struct		s_cmd
 {
-  char		*name;
-  char		*description;
-  char		(*ptr_func)(t_server *, t_client *, char **);
-}		t_cmd;
+  char			*name;
+  char			*description;
+  int			delay;
+  char			(*ptr_func)(t_server *, t_client *, char **);
+}			t_cmd;
 
 extern t_cmd	g_cmds[NUMBER_OF_COMMANDS];
 

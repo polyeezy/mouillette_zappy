@@ -1,1 +1,1 @@
-./misc/zappy-server-linux -p $1 -x 50 -y 50 -n team1 team2 -c 5 -t 10
+./misc/zappy-server-linux -p $1 -x 20 -y 20 -n team1 team2 -c 5 -t 10

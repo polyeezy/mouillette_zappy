@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Thu Jun 23 18:14:10 2016 Loïc Weinhard
+** Last update Fri Jun 24 16:01:55 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -63,6 +63,8 @@ int			main(int argc, char **argv)
   t_server		server;
   int			ret;
   struct timeval	srandinho;
+  t_client		*player;
+  t_team		*team;
 
   (void)argc;
   gettimeofday(&srandinho, NULL);
@@ -78,6 +80,18 @@ int			main(int argc, char **argv)
       ret = select(server.fd_max, &(server.readfds), NULL, NULL, NULL);
       if (FD_ISSET(server.fd, &(server.readfds)))
 	accept_client(&server);
+      team = server.teams;
+      while (team)
+	{
+	  player = team->members;
+	  while (player)
+	    {
+	      printf("%d\n", player->fd);
+	      player = player->next;
+	    }
+	  printf("-------\n");
+	  team = team->next;
+	}
       fd_isset_clients(&server);
     }
   close_server(server);

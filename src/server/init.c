@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:30:16 2016 Loïc Weinhard
-** Last update Tue Jun 21 17:39:45 2016 Loïc Weinhard
+** Last update Fri Jun 24 14:55:50 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -58,6 +58,7 @@ t_server		init_server(char **argv)
   server.fd_max = server.fd + 1;
   server.timeout = atoi(argv[get_arg(argv, "-t") + 1]);
   server.teams = NULL;
+  server.pile = NULL;
   server.client_addr.sin_family = DOMAIN;
   server.client_addr.sin_port = xhtons(server.fd, port);
   server.map = init_map(argv);

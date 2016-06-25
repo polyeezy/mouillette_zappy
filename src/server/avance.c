@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 11:21:52 2016 Loïc Weinhard
-** Last update Sat Jun 25 14:13:58 2016 Alexis Miele
+** Last update Sat Jun 25 14:35:05 2016 Alexis Miele
 */
 
 #include "utils.h"
@@ -24,16 +24,9 @@ static char	nord(t_server **server, t_client **player)
     tmp->next->prev = tmp->prev;
   if (tmp->prev == NULL && tmp->next == NULL)
     (*server)->map[(*player)->y][(*player)->x].players = NULL;
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
   (*player)->y = mod((*player)->y - 1, (*server)->height);
-  /* tmp = (*server)->map[(*player)->y][(*player)->x].players; */
-  /* while (tmp) */
-  /*   tmp = tmp->next; */
-  /* relink(&tmp, player); */
-  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players), player);
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
+  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players),
+		    player);
   return (0);
 }
 
@@ -49,16 +42,9 @@ static char	est(t_server **server, t_client **player)
     tmp->next->prev = tmp->prev;
   if (tmp->prev == NULL && tmp->next == NULL)
     (*server)->map[(*player)->y][(*player)->x].players = NULL;
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
   (*player)->x = mod((*player)->x + 1, (*server)->height);
-  /* tmp = (*server)->map[(*player)->y][(*player)->x].players; */
-  /* while (tmp) */
-  /*   tmp = tmp->next; */
-  /* relink(&tmp, player); */
-  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players), player);
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
+  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players),
+		    player);
   return (0);
 }
 
@@ -74,16 +60,9 @@ static char	sud(t_server **server, t_client **player)
     tmp->next->prev = tmp->prev;
   if (tmp->prev == NULL && tmp->next == NULL)
     (*server)->map[(*player)->y][(*player)->x].players = NULL;
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
   (*player)->y = mod((*player)->y + 1, (*server)->height);
-  /* tmp = (*server)->map[(*player)->y][(*player)->x].players; */
-  /* while (tmp) */
-  /*   tmp = tmp->next; */
-  /* relink(&tmp, player); */
-  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players), player);
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
+  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players),
+		    player);
   return (0);
 }
 
@@ -99,20 +78,9 @@ static char	ouest(t_server **server, t_client **player)
     tmp->next->prev = tmp->prev;
   if (tmp->prev == NULL && tmp->next == NULL)
     (*server)->map[(*player)->y][(*player)->x].players = NULL;
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
-  printf("PLAYER X : %d\n", (*player)->x);
   (*player)->x = mod((*player)->x - 1, (*server)->height);
-  printf("PLAYER X : %d\n", (*player)->x);
-  /* tmp = (*server)->map[(*player)->y][(*player)->x].players; */
-  /* while (tmp) */
-  /*   tmp = tmp->next; */
-  /* printf("TMP = %p\n", tmp); */
-  /* tmp = relink(tmp, *player); */
-  /* printf("TMP = %p\n", tmp); */
-  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players), player);
-  /* while (tmp->prev && (tmp = tmp->prev)); */
-  /* (*server)->map[(*player)->y][(*player)->x].players = tmp; */
+  add_player_on_map(&((*server)->map[(*player)->y][(*player)->x].players),
+		    player);
   return (0);
 }
 
@@ -125,9 +93,7 @@ char	avance(t_server *server, t_client *player, char **tab)
   ptr_func[EAST] = &est;
   ptr_func[SOUTH] = &sud;
   ptr_func[WEST] = &ouest;
-  printf("[OUT]PLAYER X : %d\n", player->x);
   ptr_func[player->orientation](&server, &player);
-  printf("[OUT]PLAYER X : %d\n", player->x);
   xwrite(player->fd, "ok\n");
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Thu Jun 23 17:21:17 2016 Loïc Weinhard
-** Last update Sat Jun 25 12:00:44 2016 Alexis Miele
+** Last update Sat Jun 25 14:35:41 2016 Alexis Miele
 */
 
 #include "xfct.h"
@@ -48,17 +48,10 @@ static void	remove_from_team(t_team **teams, t_client *player)
 	    tmp->next->prev = tmp->prev;
 	  if (tmp->prev == NULL && tmp->next == NULL)
 	    tmp = NULL;
-	  /* while (tmp && tmp->prev) */
-	  /*   tmp = tmp->prev; */
-	  /* teams->members = tmp; */
-	  /* while (teams->prev) */
-	  /*   teams = teams->prev; */
-	  /* return (teams); */
 	  return ;
 	}
       tmp = tmp->next;
     }
-  /* return (NULL); */
 }
 
 void		remove_client(t_server *server, t_client *player, int ret)
@@ -77,7 +70,6 @@ void		remove_client(t_server *server, t_client *player, int ret)
 	  if (tmp->fd == player->fd)
 	    {
 	      server->map = remove_from_map(server->map, tmp);
-	      /* server->teams = remove_from_team(&(server->teams), tmp); */
 	      remove_from_team(&(server->teams), tmp);
 	      xclose(player->fd);
 	      xfree(player);

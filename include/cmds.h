@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:15:38 2016 Loïc Weinhard
-** Last update Wed Jun 22 17:39:52 2016 Loïc Weinhard
+** Last update Sat Jun 25 14:32:04 2016 Alexis Miele
 */
 
 #ifndef CMDS_H_
@@ -34,6 +34,7 @@ char		inventaire(t_server *server, t_client *player, char **tab);
 
 char		avance(t_server *server, t_client *player, char **tab);
 t_client	*relink(t_client *tmp, t_client *player);
+void		add_player_on_map(t_client **player, t_client **new);
 
 char		prend(t_server *server, t_client *player, char **tab);
 char		pose(t_server *server, t_client *player, char **tab);

@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Mon Jun 13 10:45:33 2016 Loïc Weinhard
-** Last update Sat Jun 25 10:45:46 2016 Valerian Polizzi
+** Last update Sat Jun 25 13:18:15 2016 Valerian Polizzi
 */
 
 #include "args.h"
@@ -15,10 +15,7 @@
 void		game_loop(t_ai *cli)
 {
   client_get_lvl1(cli);
-  while (strcmp(cli->last_response, "mort\n") != 0)
-    {
-      client_get_food(cli);
-    }
+  client_get_lvl2(cli);
 }
 
 void		join_game(t_ai *cli)

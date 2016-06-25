@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Fri Jun 17 17:22:38 2016 Alexis Miele
-** Last update Thu Jun 23 12:36:35 2016 Valerian Polizzi
+** Last update Sat Jun 25 15:30:06 2016 Valerian Polizzi
 */
 
 #include "client.h"
@@ -18,7 +18,7 @@ void	ai_prend(t_ai *client, char *arg)
   msg = xcalloc(6 + strlen(arg) + 1, sizeof(char));
   strcat(msg, "prend ");
   strcat(msg, arg);
-  send_cmd_server(client, msg);
+  send_and_get(client, msg);
   xfree(msg);
 }
 
@@ -52,6 +52,6 @@ void	ai_broadcast(t_ai *client, char *arg)
 
 void	ai_incantation(t_ai *client, char *arg)
 {
-  (void)arg;
-  send_cmd_server(client, "incantation");
+  (void)arg;  
+  send_and_get(client, "incantation");
 }

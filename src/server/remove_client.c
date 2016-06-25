@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Thu Jun 23 17:21:17 2016 Loïc Weinhard
-** Last update Sat Jun 25 14:35:41 2016 Alexis Miele
+** Last update Sat Jun 25 16:30:15 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -47,8 +47,8 @@ static void	remove_from_team(t_team **teams, t_client *player)
 	  if (tmp->next != NULL)
 	    tmp->next->prev = tmp->prev;
 	  if (tmp->prev == NULL && tmp->next == NULL)
-	    tmp = NULL;
-	  return ;
+	    (*teams)->members = NULL;
+	  return;
 	}
       tmp = tmp->next;
     }

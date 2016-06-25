@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 15:42:21 2016 Aurelie Orset
-** Last update Sat Jun 25 13:48:35 2016 Aurelie Orset
+** Last update Sat Jun 25 18:56:43 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -24,6 +24,10 @@ void	free_all(t_graph *g)
   SDL_FreeSurface(g->sud);
   SDL_FreeSurface(g->est);
   SDL_FreeSurface(g->ouest);
+  SDL_FreeSurface(g->nord2);
+  SDL_FreeSurface(g->sud2);
+  SDL_FreeSurface(g->est2);
+  SDL_FreeSurface(g->ouest2);
   SDL_FreeSurface(g->egg);
   SDL_FreeSurface(g->incant);
   xfree(g);

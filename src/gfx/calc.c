@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 24 12:02:13 2016 Aurelie Orset
-** Last update Fri Jun 24 12:05:38 2016 Aurelie Orset
+** Last update Sat Jun 25 19:02:59 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -37,6 +37,10 @@ t_graph *resize(t_graph *g, float co)
   g->sud = rotozoomSurface(g->sud, 0.0, co, 1);
   g->est = rotozoomSurface(g->est, 0.0, co, 1);
   g->ouest = rotozoomSurface(g->ouest, 0.0, co, 1);
+  g->nord2 = rotozoomSurface(g->nord2, 0.0, co, 1);
+  g->sud2 = rotozoomSurface(g->sud2, 0.0, co, 1);
+  g->est2 = rotozoomSurface(g->est2, 0.0, co, 1);
+  g->ouest2 = rotozoomSurface(g->ouest2, 0.0, co, 1);
   g->egg = rotozoomSurface(g->egg, 0.0, co, 1);
   g->incant = rotozoomSurface(g->incant, 0.0, co, 1);
   g->is = g->is * co;

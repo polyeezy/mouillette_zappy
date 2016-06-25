@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Fri Jun 24 11:52:08 2016 Aurelie Orset
+** Last update Sat Jun 25 16:40:18 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -15,6 +15,7 @@ int main(int ac, char **av)
 {
   unsigned int frameLimit = SDL_GetTicks() + 16;
   SDL_Surface *screen;
+  SDL_Surface *load;
   int	mapx;
   int	mapy;
   t_client_socket client;
@@ -31,6 +32,11 @@ int main(int ac, char **av)
   mapx = atoi(tab[1]);
   mapy = atoi(tab[2]);
   screen = init("MOUILLETTE ZAPPY", 1500, 1000);
+  load = loadImage("gfx/load.png");
+  drawImage(load, 0, 0, screen);
+  SDL_Flip(screen);
+  SDL_Delay(1);
+  SDL_FillRect(screen, NULL, 0x000000);
   while (42)
   {
     draw(screen, mapx, mapy, client);

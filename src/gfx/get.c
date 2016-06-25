@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sat Jun 25 13:54:42 2016 Aurelie Orset
-** Last update Sat Jun 25 14:08:45 2016 Aurelie Orset
+** Last update Sat Jun 25 16:39:11 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -30,7 +30,11 @@ int	compareID(int l, int x, int y, char **tab)
   mapx = atoi(tab[l + 2]);
   mapy = atoi(tab[l + 3]);
   if (mapx == x && mapy == y)
-    return (atoi(tab[l]));
+    {
+      /*free_tab(tab);*/
+      return (atoi(tab[l]));
+    }
+  /*  free_tab(tab);*/
   return (-1);
 }
 
@@ -55,10 +59,14 @@ int	getID(t_client_socket client, t_graph *g)
   while (i < players)
     {
       if (compareID(l, x, y, tab) != -1)
-	return (compareID(l, x, y, tab));
+	{
+	  /*	  free_tab(tab);*/
+	  return (compareID(l, x, y, tab));
+	}
       i++;
       l+=5;
     }
+  /*  free_tab(tab);*/
   return (-1);
 }
 
@@ -74,8 +82,13 @@ int	getLvl(t_client_socket client, int id)
   printf("LEVEL GET %s\n", str);
   tab = my_str_to_wordtab(str, " \n");
   if (strcmp(tab[0], "sbp") == 0)
-    return (-1);
+    {
+      xfree(str);
+      free_tab(tab);
+      return (-1);
+    }
   lvl = atoi(tab[2]);
   xfree(str);
+  /*free_tab(tab);*/
   return (lvl);
 }

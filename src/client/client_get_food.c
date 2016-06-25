@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Sat Jun 25 10:41:33 2016 Valerian Polizzi
-** Last update Sat Jun 25 11:22:19 2016 Valerian Polizzi
+** Last update Sat Jun 25 13:13:33 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -36,7 +36,6 @@ void            client_get_food(t_ai *cli)
 	ai_prend(cli, "nourriture");
       else
         {
-	  parse_inventaire(cli);
 	  ai_count_move(cli, cell);
           free_tab(parsing);
           parsing = parse_voir(cli);

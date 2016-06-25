@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sat Jun 25 14:16:45 2016 Aurelie Orset
+## Last update Sat Jun 25 15:41:56 2016 Valerian Polizzi
 ##
 
 SRV_NAME	=	zappy_server
@@ -58,6 +58,7 @@ CLT_SRC		=	$(CLT_FOLDER)/args.c			\
 			$(CLT_FOLDER)/ai_cmd_1.c		\
 			$(CLT_FOLDER)/ai_cmd_2.c		\
 			$(CLT_FOLDER)/client_get_lvl1.c		\
+			$(CLT_FOLDER)/client_get_lvl2.c		\
 			$(CLT_FOLDER)/client_get_food.c		\
 			$(CLT_FOLDER)/main.c			\
 

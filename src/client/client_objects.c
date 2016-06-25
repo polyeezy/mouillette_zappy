@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sat Jun 25 11:30:01 2016 Valerian Polizzi
+** Last update Sat Jun 25 15:34:54 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -49,8 +49,7 @@ int             object_is_in_cell(char *cell, char *obj)
   content = my_str_to_wordtab(cell, " ");
   while (content[i])
     {
-
-      if (strncmp(epur_str(content[i]), obj, strlen(obj)) == 0)
+      if (strcmp(epur_str(content[i]), obj) == 0)
         return (1);
       i++;
     }
@@ -92,7 +91,7 @@ int             look_for_object(char **vision, char *to_find)
   res = 0;
   while (vision[i])
     {
-      res = object_is_in_cell(vision[i], to_find);
+      res = object_is_in_cell(epur_str(vision[i]), epur_str(to_find));
       if (res >= 0)
 	{
 	  printf("--%s FOUND %d--\n", to_find, i);
@@ -103,21 +102,59 @@ int             look_for_object(char **vision, char *to_find)
   return (-1);
 }
 
-t_materials  parse_inventaire(t_ai *cli)
+int		is_in_inventary(t_ai *cli, char *obj)
 {
-  //  char               **parsing;
-   t_materials        inv;
+  char		**inv;
+  int		i;
 
-   inv.food = 10;
+  i = 0;
+  inv = NULL;
   printf("%s\n", send_and_get(cli, "inventaire"));
-  /* parsing = my_str_to_wordtab(msg, "{ , }"); */
-  /* inv.food = atoi(parsing[get_arg(parsing, "nourriture") + 1]); */
-  /* inv.linemate = atoi(parsing[get_arg(parsing, "linemate") + 1]); */
-  /* inv.deraumere = atoi(parsing[get_arg(parsing, "deraumere") + 1]); */
-  /* inv.sibur = atoi(parsing[get_arg(parsing, "sibur") + 1]); */
-  /* inv.mendiane = atoi(parsing[get_arg(parsing, "mendiane") + 1]); */
-  /* inv.phiras = atoi(parsing[get_arg(parsing, "phiras") + 1]); */
-  /* inv.thystame = atoi(parsing[get_arg(parsing, "thystame") + 1]); */
-  /* debug_material(&inv); */
-  return (inv);
+  inv = my_str_to_wordtab(cli->last_response ,"{ , }");
+  while (inv[i])
+    {
+      if (strcmp(obj, inv[i]) == 0)
+	return (1);
+      i++;
+    }
+  return (-1);
 }
+
+void		go_get_object(t_ai *cli, char *obj)
+{ 
+  int           cell;
+  char          **parsing;
+  int           rotations;
+
+  cell = -1;
+  parsing = NULL;
+  parsing = parse_voir(cli);
+
+  while ((cell = look_for_object(parsing, obj)) != 0)
+    {
+      printf("CELL : %d\n", cell);
+      rotations = 0;
+      while (cell == -1 && rotations < 4)
+        {
+          ai_gauche(cli);
+          parsing = parse_voir(cli);
+          cell = look_for_object(parsing, obj);
+	  printf("CELL : %d\n", cell);
+	  rotations += 1;
+        }
+      if (cell == -1)
+        ai_avance(cli);
+      else
+        {
+          ai_count_move(cli, cell);
+          free_tab(parsing);
+          parsing = parse_voir(cli);
+        }
+    }
+  printf("FOUND %s\n", obj);
+  ai_prend(cli, obj);
+  return;
+}
+
+
+

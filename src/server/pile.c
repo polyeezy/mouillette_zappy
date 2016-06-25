@@ -5,16 +5,48 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:57:02 2016 Loïc Weinhard
-** Last update Fri Jun 24 15:55:24 2016 Loïc Weinhard
+** Last update Sat Jun 25 16:12:31 2016 Alexis Miele
 */
 
 #include "pile.h"
 #include "xfct.h"
 
+static void		new_pile(t_pile **pile, t_pile **new)
+{
+  (*new)->next = NULL;
+  (*new)->prev = NULL;
+  *pile = *new;
+}
+
+static void		add_elem_to_pile(t_pile **pile, t_pile **new)
+{
+  t_pile		*tmp;
+
+  tmp = *pile;
+  while (tmp->next && ((*new)->exec_time > tmp->exec_time))
+    tmp = tmp->next;
+  if ((*new)->exec_time < tmp->exec_time)
+    {
+      (*new)->prev = tmp->prev;
+      (*new)->next = tmp;
+      if (tmp->prev != NULL)
+	tmp->prev->next = *new;
+      tmp->prev = *new;
+      *pile = (tmp == *pile ? *new : *pile);
+    }
+  else
+    {
+      (*new)->prev = tmp;
+      (*new)->next = tmp->next;
+      if ((*new)->next != NULL)
+	(*new)->next->prev = *new;
+      tmp->next = *new;
+    }
+}
+
 void			add_pile(t_server *server,
 			 t_client *player, char *buff, t_cmd cmd)
 {
-  t_pile		*tmp;
   t_pile		*elem;
   struct timeval	actual;
 
@@ -23,21 +55,8 @@ void			add_pile(t_server *server,
   elem->cmd = buff;
   elem->player = player;
   elem->exec_time = actual.tv_sec + (cmd.delay * (1 / server->timeout));
-  tmp = server->pile;
-  if (tmp == NULL)
-    {
-      printf("La pile est vide.\n");
-      elem->next = NULL;
-      elem->prev = NULL;
-      server->pile = elem;
-      return;
-    }
-  while (tmp->next && elem->exec_time > tmp->exec_time)
-    tmp = tmp->next;
-  elem->prev = tmp->prev;
-  elem->next = tmp;
-  tmp->prev != NULL ? tmp->prev->next = elem : 0;
-  tmp->prev = elem;
-  while (tmp->prev && (tmp = tmp->prev));
-  server->pile = tmp;
+  if (server->pile == NULL)
+    new_pile(&(server->pile), &elem);
+  else
+    add_elem_to_pile(&(server->pile), &elem);
 }

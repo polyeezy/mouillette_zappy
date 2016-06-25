@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Thu Jun 23 17:21:17 2016 Loïc Weinhard
-** Last update Thu Jun 23 18:13:19 2016 Loïc Weinhard
+** Last update Sat Jun 25 12:00:44 2016 Alexis Miele
 */
 
 #include "xfct.h"
@@ -33,28 +33,32 @@ static t_case	**remove_from_map(t_case **map, t_client *player)
   return (NULL);
 }
 
-static t_team	*remove_from_team(t_team *teams, t_client *player)
+static void	remove_from_team(t_team **teams, t_client *player)
 {
   t_client	*tmp;
 
-  tmp = teams->members;
+  tmp = (*teams)->members;
   while (tmp)
     {
       if (tmp->fd == player->fd)
 	{
-	  tmp->prev != NULL ? tmp->prev->next = tmp->next : 0;
-	  tmp->next != NULL ? tmp->next->prev = tmp->prev : 0;
-	  tmp->prev == NULL && tmp->next == NULL ? tmp = NULL : 0;
-	  while (tmp && tmp->prev)
-	    tmp = tmp->prev;
-	  teams->members = tmp;
-	  while (teams->prev)
-	    teams = teams->prev;
-	  return (teams);
+	  if (tmp->prev != NULL)
+	    tmp->prev->next = tmp->next;
+	  if (tmp->next != NULL)
+	    tmp->next->prev = tmp->prev;
+	  if (tmp->prev == NULL && tmp->next == NULL)
+	    tmp = NULL;
+	  /* while (tmp && tmp->prev) */
+	  /*   tmp = tmp->prev; */
+	  /* teams->members = tmp; */
+	  /* while (teams->prev) */
+	  /*   teams = teams->prev; */
+	  /* return (teams); */
+	  return ;
 	}
       tmp = tmp->next;
     }
-  return (NULL);
+  /* return (NULL); */
 }
 
 void		remove_client(t_server *server, t_client *player, int ret)
@@ -73,7 +77,8 @@ void		remove_client(t_server *server, t_client *player, int ret)
 	  if (tmp->fd == player->fd)
 	    {
 	      server->map = remove_from_map(server->map, tmp);
-	      server->teams = remove_from_team(server->teams, tmp);
+	      /* server->teams = remove_from_team(&(server->teams), tmp); */
+	      remove_from_team(&(server->teams), tmp);
 	      xclose(player->fd);
 	      xfree(player);
 	      return;
@@ -82,4 +87,5 @@ void		remove_client(t_server *server, t_client *player, int ret)
 	}
       teams = teams->next;
     }
+
 }

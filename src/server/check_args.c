@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:32:34 2016 Loïc Weinhard
-** Last update Tue Jun 14 16:41:17 2016 Loïc Weinhard
+** Last update Sat Jun 25 19:01:58 2016 Alexis Miele
 */
 
 #include <string.h>
@@ -50,7 +50,10 @@ static int	print_usage()
   dprintf(2, "Usage : zappy_server ");
   while (i < SERVER_ARGS)
     {
-      dprintf(2, "%s %s ", g_server_args[i].flag, g_server_args[i].description);
+      if (g_server_args[i].mandatory)
+	dprintf(2, "%s %s ", g_server_args[i].flag, g_server_args[i].description);
+      else
+	dprintf(2, "[%s %s] ", g_server_args[i].flag, g_server_args[i].description);
       i += 1;
     }
   dprintf(2, "\n");

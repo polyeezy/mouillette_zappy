@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Sat Jun 25 16:40:18 2016 Aurelie Orset
+** Last update Sat Jun 25 17:18:06 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -18,9 +18,14 @@ int main(int ac, char **av)
   SDL_Surface *load;
   int	mapx;
   int	mapy;
+  Mix_Music *musique; //Création d'un pointeur de type Mix_Music
   t_client_socket client;
   char	**tab;
   char *str;
+
+  Mix_VolumeMusic(MIX_MAX_VOLUME / 2); //Mettre le volume à la moitié
+  musique = Mix_LoadMUS("gfx/musique.mp3"); //Chargement de la musique
+  Mix_PlayMusic(musique, -1);
 
   ac = ac;
   if (check_args(av) == -1)

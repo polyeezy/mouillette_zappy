@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sat Jun 25 14:16:21 2016 Aurelie Orset
+** Last update Sat Jun 25 17:15:42 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -16,6 +16,7 @@
 # include <sys/select.h>
 # include <sys/time.h>
 # include <sys/types.h>
+# include <SDL/SDL_mixer.h>
 # include <unistd.h>
 # include <netinet/in.h>
 # include <utils.h>

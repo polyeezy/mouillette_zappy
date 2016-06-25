@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 ** 
 ** Started on  Wed Jun 22 15:54:18 2016 Valerian Polizzi
-** Last update Thu Jun 23 18:49:17 2016 Aurelie Orset
+** Last update Sat Jun 25 13:47:33 2016 Aurelie Orset
 */
 
 #include <client.h>
@@ -24,7 +24,7 @@ char            *get_server_response_gfx(t_client_socket *cli)
   char          *buff;
   ssize_t       len;
 
-  buff = malloc(sizeof(char) * 256);
+  buff = xmalloc(sizeof(char) * 256);
   len = xread(cli->fd, buff, 255);
   if (len > 0)
     buff[len] = 0;

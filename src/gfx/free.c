@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 15:42:21 2016 Aurelie Orset
-** Last update Fri Jun 24 12:11:31 2016 Aurelie Orset
+** Last update Sat Jun 25 13:48:35 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -26,7 +26,7 @@ void	free_all(t_graph *g)
   SDL_FreeSurface(g->ouest);
   SDL_FreeSurface(g->egg);
   SDL_FreeSurface(g->incant);
-  free(g);
+  xfree(g);
 }
 
 void	free_all_info(t_info *g)
@@ -40,5 +40,5 @@ void	free_all_info(t_info *g)
   SDL_FreeSurface(g->p);
   SDL_FreeSurface(g->t);
   SDL_FreeSurface(g->info);
-  free(g);
+  xfree(g);
 }

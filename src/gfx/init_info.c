@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Thu Jun 23 13:16:06 2016 Aurelie Orset
-** Last update Fri Jun 24 12:15:17 2016 Aurelie Orset
+** Last update Sat Jun 25 14:11:44 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -14,7 +14,7 @@ t_info	*init_info(t_graph *g)
 {
   t_info *i;
 
-  i = malloc(sizeof(t_info));
+  i = xmalloc(sizeof(t_info));
   i->n = loadImage("gfx/cake_big.png");
   i->l = loadImage("gfx/linemate_large.png");
   i->d = loadImage("gfx/deraumire_large.png");
@@ -42,4 +42,59 @@ t_info *resize_info(t_info *i, float co)
   i->p = rotozoomSurface(i->p, 0.0, co, 1);
   i->t = rotozoomSurface(i->t, 0.0, co, 1);
   return (i);
+}
+
+t_graph	*init_graph(int x, int y, SDL_Surface *screen)
+{
+  t_graph *g;
+
+  g = xmalloc(sizeof(t_graph));
+  g->map_x = x;
+  g->map_y = y;
+  g->ground = loadImage("gfx/grass.jpg");
+  g->n = loadImage("gfx/cake.png");
+  g->l = loadImage("gfx/linemate_small.png");
+  g->d = loadImage("gfx/deraumire_small.png");
+  g->s = loadImage("gfx/sibur_small.png");
+  g->m = loadImage("gfx/mendiane_small.png");
+  g->p = loadImage("gfx/phiras_small.png");
+  g->t = loadImage("gfx/thystame_small.png");
+  g->nord = loadImage("gfx/nord.png");
+  g->sud = loadImage("gfx/sud.png");
+  g->est = loadImage("gfx/est.png");
+  g->ouest = loadImage("gfx/ouest.png");
+  g->egg = loadImage("gfx/egg.png");
+  g->incant = loadImage("gfx/incant.png");
+  g->screen = screen;
+  g->is = 32;
+  g->ts = 96;
+  return (g);
+}
+
+t_tile	*ressources(t_tile *tile, char *str)
+{
+  char **tab;
+
+  tab = my_str_to_wordtab(str, " \n");
+  if (strcmp(tab[0], "bct") == 0)
+    {
+      tile->n = atoi(tab[3]);
+      tile->l = atoi(tab[4]);
+      tile->d = atoi(tab[5]);
+      tile->s = atoi(tab[6]);
+      tile->m = atoi(tab[7]);
+      tile->p = atoi(tab[8]);
+      tile->t = atoi(tab[9]);
+    }
+  else
+  {
+    tile->n = 0;
+    tile->l = 0;
+    tile->d = 0;
+    tile->s = 0;
+    tile->m = 0;
+    tile->p = 0;
+    tile->t = 0;
+  }
+  return (tile);
 }

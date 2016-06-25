@@ -1,4 +1,3 @@
-
 /*
 ** players.c for zappy in /home/orset_a/tek2/zappy/mouillette_zappy/src/gfx
 ** 
@@ -6,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 24 16:00:41 2016 Aurelie Orset
-** Last update Fri Jun 24 18:36:21 2016 Aurelie Orset
+** Last update Sat Jun 25 13:51:30 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -16,7 +15,7 @@ char	**getToParse(t_client_socket client)
   char **tab;
   char *str;
 
-  str = malloc(sizeof(char) * 255);
+  str = xmalloc(sizeof(char) * 255);
   str = send_and_get_gfx(&client, "lpy");
   str = "lpy 4\n4 1 6 6 0\n3 2 7 7 0\n32 3 5 5 0\n56 4 4 4 1\n";
   tab = my_str_to_wordtab(str, " \n");

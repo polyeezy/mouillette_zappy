@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Fri Jun 24 19:04:51 2016 Aurelie Orset
+** Last update Sat Jun 25 14:16:21 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -28,9 +28,7 @@
 # include <SDL/SDL_ttf.h>
 # include <stdio.h>
 # include "client.h"
-
-#define TILE_SIZE 48
-#define STONE_SIZE 32
+# include "xfct.h"
 
 typedef struct	s_tile
 {
@@ -113,4 +111,11 @@ void		drawCase();
 int		getLvl(t_client_socket client, int id);
 void		drawPlayers(t_graph *g, t_client_socket client);
 t_graph		*resize(t_graph *g, float co);
+int		getID(t_client_socket client, t_graph *g);
+int		convertX(int x, t_graph *g);
+t_graph		*init_graph(int x, int y, SDL_Surface *screen);
+t_tile		*ressources(t_tile *tile, char *str);
+t_info		*init_and_resize(t_graph *g);
+void		*free_at_exit(t_graph *g, t_info *i);
+
 #endif

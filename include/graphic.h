@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sat Jun 25 17:15:42 2016 Aurelie Orset
+** Last update Sat Jun 25 17:49:46 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -118,5 +118,6 @@ t_graph		*init_graph(int x, int y, SDL_Surface *screen);
 t_tile		*ressources(t_tile *tile, char *str);
 t_info		*init_and_resize(t_graph *g);
 void		*free_at_exit(t_graph *g, t_info *i);
+void		playMusic();
 
 #endif

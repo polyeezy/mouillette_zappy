@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:09:23 2016 Loïc Weinhard
-** Last update Fri Jun 24 15:42:40 2016 Loïc Weinhard
+** Last update Sat Jun 25 17:32:54 2016 Loïc Weinhard
 */
 
 #ifndef SERVER_H_
@@ -44,5 +44,6 @@ t_server	init_server(char **argv);
 void		accept_client(t_server *server);
 void		remove_client(t_server *server, t_client *player, int ret);
 void		close_server(t_server server);
+void		calc_delay(t_pile *pile, struct timeval *delay);
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Fri Jun 24 16:01:55 2016 Loïc Weinhard
+** Last update Sat Jun 25 19:37:18 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -62,13 +62,13 @@ int			main(int argc, char **argv)
 {
   t_server		server;
   int			ret;
-  struct timeval	srandinho;
+  struct timeval	timinho;
   t_client		*player;
   t_team		*team;
 
   (void)argc;
-  gettimeofday(&srandinho, NULL);
-  srand(srandinho.tv_usec);
+  gettimeofday(&timinho, NULL);
+  srand(timinho.tv_usec);
   if (check_args(argv) == -1)
     return (-1);
   server = init_server(argv);
@@ -77,7 +77,10 @@ int			main(int argc, char **argv)
   while (ret != -1 && g_exit != 1)
     {
       fd_zero_set_all(&server);
-      ret = select(server.fd_max, &(server.readfds), NULL, NULL, NULL);
+      calc_delay(server.pile, &timinho);
+      ret = select(server.fd_max, &(server.readfds), NULL, NULL,
+		   (timinho.tv_sec >= 0 ? &timinho : NULL));
+      exec_pile(&server, &(server.pile));
       if (FD_ISSET(server.fd, &(server.readfds)))
 	accept_client(&server);
       team = server.teams;

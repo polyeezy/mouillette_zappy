@@ -5,11 +5,39 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:57:02 2016 Loïc Weinhard
-** Last update Sat Jun 25 16:12:31 2016 Alexis Miele
+** Last update Sat Jun 25 19:36:40 2016 Loïc Weinhard
 */
 
 #include "pile.h"
 #include "xfct.h"
+#include "utils.h"
+
+void			exec_pile(t_server *server, t_pile **pile)
+{
+  char			**tab;
+  struct timeval	timinho;
+
+  gettimeofday(&timinho, NULL);
+  while (*pile && timinho.tv_sec >= (*pile)->exec_time)
+    {
+      tab = my_str_to_wordtab((*pile)->cmd, " \n");
+      (*pile)->func->ptr_func(server, (*pile)->player, tab);
+      free_tab(tab);
+      if ((*pile)->next == NULL)
+	{
+	  xfree((*pile)->cmd);
+	  xfree(*pile);
+	  *pile = NULL;
+	}
+      else
+	{
+	  *pile = (*pile)->next;
+	  xfree((*pile)->prev->cmd);
+	  xfree((*pile)->prev);
+	  (*pile)->prev = NULL;
+	}
+    }
+}
 
 static void		new_pile(t_pile **pile, t_pile **new)
 {
@@ -45,7 +73,7 @@ static void		add_elem_to_pile(t_pile **pile, t_pile **new)
 }
 
 void			add_pile(t_server *server,
-			 t_client *player, char *buff, t_cmd cmd)
+			 t_client *player, char *buff, t_cmd *cmd)
 {
   t_pile		*elem;
   struct timeval	actual;
@@ -54,7 +82,9 @@ void			add_pile(t_server *server,
   elem = xmalloc(sizeof(t_pile));
   elem->cmd = buff;
   elem->player = player;
-  elem->exec_time = actual.tv_sec + (cmd.delay * (1 / server->timeout));
+  elem->func = cmd;
+  elem->exec_time = actual.tv_sec +
+      (long long int)(cmd->delay * (1 / (float)server->timeout));
   if (server->pile == NULL)
     new_pile(&(server->pile), &elem);
   else

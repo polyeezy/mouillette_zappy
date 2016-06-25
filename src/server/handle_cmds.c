@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:11:57 2016 Loïc Weinhard
-** Last update Sat Jun 25 15:40:00 2016 Alexis Miele
+** Last update Sat Jun 25 19:33:47 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -35,7 +35,7 @@ void	handle_cmds(t_server *server, t_client *player)
   while (i < NUMBER_OF_COMMANDS)
     {
       if (strcmp(g_cmds[i].name, tab[0]) == 0)
-	add_pile(server, player, strdup(buffer), g_cmds[i]);
+	add_pile(server, player, strdup(buffer), &g_cmds[i]);
       i += 1;
     }
   pile = server->pile;

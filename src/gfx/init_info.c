@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Thu Jun 23 13:16:06 2016 Aurelie Orset
-** Last update Sat Jun 25 14:11:44 2016 Aurelie Orset
+** Last update Sat Jun 25 18:56:03 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -44,6 +44,15 @@ t_info *resize_info(t_info *i, float co)
   return (i);
 }
 
+t_graph *init_nemesis(t_graph *g)
+{
+  g->nord2 = loadImage("gfx/nord3.png");
+  g->sud2 = loadImage("gfx/sud3.png");
+  g->est2 = loadImage("gfx/est3.png");
+  g->ouest2 = loadImage("gfx/ouest3.png");
+  return (g);
+}
+
 t_graph	*init_graph(int x, int y, SDL_Surface *screen)
 {
   t_graph *g;
@@ -68,6 +77,7 @@ t_graph	*init_graph(int x, int y, SDL_Surface *screen)
   g->screen = screen;
   g->is = 32;
   g->ts = 96;
+  g = init_nemesis(g);
   return (g);
 }
 

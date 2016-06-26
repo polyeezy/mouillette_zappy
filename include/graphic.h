@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sun Jun 26 19:06:09 2016 Aurelie Orset
+** Last update Sun Jun 26 21:25:32 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -97,7 +97,8 @@ int		convertX(int x, t_graph *g);
 int		compareID(int l, int x, int y, char **tab);
 
 void		delay(unsigned int frameLimit);
-void		draw(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
+void		draw(SDL_Surface *screen, int mapx, int mapy,
+		     t_client_socket client);
 void		drawAll(int x, int y, t_client_socket client, t_graph *g);
 void		drawCase();
 void		drawCoord(t_info *i, t_graph *g, int x, int y);
@@ -107,7 +108,8 @@ void		drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
 void		drawInfo(int x, int y, t_graph *g, t_client_socket client);
 void		drawInventaire(t_graph *g, t_client_socket client);
 void		drawInventPlayer(t_info *i, t_graph *g, char **tab);
-void		drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
+void		drawMap(SDL_Surface *screen, int mapx, int mapy,
+			t_client_socket client);
 void		drawOrient(t_graph *g, int x, char **tab);
 void		drawOrient2(t_graph *g, int x, char **tab);
 void		drawPlayer(t_info *i, t_graph *g, t_client_socket client);
@@ -125,7 +127,6 @@ int		getLvl(t_client_socket client, int id);
 char            *get_server_response_gfx(t_client_socket *cli);
 char		**getToParse(t_client_socket client);
 
-
 SDL_Surface	*init(char *title, int x, int y);
 t_info		*init_and_resize(t_graph *g);
 t_client_socket	 init_client_socket(char **argv);
@@ -137,7 +138,8 @@ SDL_Surface 	*init_screen();
 
 SDL_Surface	*loadImage(char *name);
 
-void		mainLoop(SDL_Surface *screen, int x, int y, t_client_socket client);
+void		mainLoop(SDL_Surface *screen, int x, int y,
+			 t_client_socket client);
 
 void		playMusic(char *str, int loops, int div);
 

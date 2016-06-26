@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.net>
 **
 ** Started on  Mon May  2 17:09:26 2016 Loïc Weinhard
-** Last update Fri Jun 17 11:54:54 2016 Alexis Miele
+** Last update Sun Jun 26 21:23:31 2016 Aurelie Orset
 */
 
 #ifndef NETWORK_H_
@@ -15,7 +15,6 @@
 # include <sys/socket.h>
 # include <netinet/in.h>
 # include <arpa/inet.h>
-
 
 # define DOMAIN		AF_INET
 # define TYPE		SOCK_STREAM

@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.net>
 **
 ** Started on  Mon May  2 16:32:32 2016 Loïc Weinhard
-** Last update Sun Jun 26 16:34:59 2016 Loïc Weinhard
+** Last update Sun Jun 26 21:24:11 2016 Aurelie Orset
 */
 
 #ifndef XFCT_H_
@@ -36,7 +36,8 @@ int		xhtons(int sockfd, int port);
 ssize_t		xread(int fd, void *buf, size_t count);
 int		xselect(int nfds, fd_set *read, fd_set *write,
 			  fd_set *except, struct timeval *time);
-int		xconnect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+int		xconnect(int sockfd, const struct sockaddr *addr,
+			 socklen_t addrlen);
 void		*xcalloc(size_t nmemb, size_t size);
 ssize_t		xwrite(int fd, const void *buf);
 char		*xstrdup(const char *s);

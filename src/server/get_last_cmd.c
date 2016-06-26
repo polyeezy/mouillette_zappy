@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sun Jun 26 19:08:50 2016 Loïc Weinhard
-** Last update Sun Jun 26 19:18:12 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:57:16 2016 Loïc Weinhard
 */
 
 #include "server.h"
@@ -24,7 +24,8 @@ time_t			get_last_command(t_server *server, t_client *player)
   pile = server->pile;
   while (pile)
     {
-      if (pile->player->fd == player->fd && strcmp(pile->cmd, "mange") != 0)
+      if (pile->player && pile->player->fd == player->fd &&
+	  strcmp(pile->cmd, "mange") != 0)
 	last = pile->exec_time;
       pile = pile->next;
     }

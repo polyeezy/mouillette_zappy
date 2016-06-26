@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sat Jun 25 14:13:05 2016 Aurelie Orset
-** Last update Sat Jun 25 14:16:22 2016 Aurelie Orset
+** Last update Sun Jun 26 10:32:04 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -24,5 +24,6 @@ void *free_at_exit(t_graph *g, t_info *i)
   SDL_FreeSurface(g->screen);
   free_all_info(i);
   free_all(g);
+  SDL_Quit();
   exit(0);
 }

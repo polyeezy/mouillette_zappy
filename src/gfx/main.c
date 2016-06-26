@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Sat Jun 25 19:24:23 2016 Aurelie Orset
+** Last update Sun Jun 26 11:56:40 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -22,6 +22,7 @@ SDL_Surface 	*init_screen()
   SDL_Flip(screen);
   SDL_Delay(1);
   SDL_FillRect(screen, NULL, 0x000000);
+  SDL_FreeSurface(load);
   return (screen);
 }
 
@@ -48,13 +49,19 @@ int main(int ac, char **av)
     return (-1);
   playMusic();
   client = init_client_socket(av);
-  printf("%s\n", get_server_response_gfx(&client));
+  str = get_server_response_gfx(&client);
+  printf("%s\n", str);
+  xfree(str);
   str = send_and_get_gfx(&client, "GRAPHIC");
-  tab = my_str_to_wordtab(str, " ");
+  tab = my_str_to_wordtab(str, " \n");
+  printf("MSZ ? %s\n", str);
   mapx = atoi(tab[1]);
   mapy = atoi(tab[2]);
   screen = init_screen();
+  printf("x %d y %d\n", mapx, mapy);
   while (42)
     mainLoop(screen, mapx, mapy, client);
+  xfree(str);
+  free_tab(tab);
   return (0);
 }

@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sun Jun 26 13:13:18 2016 Loïc Weinhard
+## Last update Sun Jun 26 13:22:55 2016 Aurelie Orset
 ##
 
 SRV_NAME	=	zappy_server
@@ -92,7 +92,8 @@ GFX_SRC		=	$(GFX_FOLDER)/main.c			\
 			$(GFX_FOLDER)/mapi.c			\
 			$(GFX_FOLDER)/calc.c			\
 			$(GFX_FOLDER)/get.c			\
-			$(GFX_FOLDER)/init_and_free.c			\
+			$(GFX_FOLDER)/init_and_free.c		\
+			$(GFX_FOLDER)/inventaire.c		\
 
 
 GFX_OBJ		=	$(GFX_SRC:.c=.o)

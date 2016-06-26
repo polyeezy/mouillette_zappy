@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sat Jun 25 13:54:42 2016 Aurelie Orset
-** Last update Sat Jun 25 16:39:11 2016 Aurelie Orset
+** Last update Sun Jun 26 11:30:08 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -17,7 +17,7 @@ char	**init_id_tab(t_client_socket client)
 
   str = xmalloc(sizeof(char) * 4096);
   str = send_and_get_gfx(&client, "lpy");
-  str = "lpy 4\n4 1 6 6 0\n3 2 7 7 0\n32 3 5 5 0\n56 4 4 4 1\n";
+  str = "lpy 4\n4 1 0 0 0 1\n3 2 0 1 0 0\n32 3 0 2 0 1\n56 4 0 3 1 0\n";
   tab = my_str_to_wordtab(str, " \n");
   return (tab);
 }
@@ -30,11 +30,7 @@ int	compareID(int l, int x, int y, char **tab)
   mapx = atoi(tab[l + 2]);
   mapy = atoi(tab[l + 3]);
   if (mapx == x && mapy == y)
-    {
-      /*free_tab(tab);*/
-      return (atoi(tab[l]));
-    }
-  /*  free_tab(tab);*/
+    return (atoi(tab[l]));
   return (-1);
 }
 
@@ -59,14 +55,10 @@ int	getID(t_client_socket client, t_graph *g)
   while (i < players)
     {
       if (compareID(l, x, y, tab) != -1)
-	{
-	  /*	  free_tab(tab);*/
-	  return (compareID(l, x, y, tab));
-	}
+	return (compareID(l, x, y, tab));
       i++;
-      l+=5;
+      l+=6;
     }
-  /*  free_tab(tab);*/
   return (-1);
 }
 
@@ -89,6 +81,5 @@ int	getLvl(t_client_socket client, int id)
     }
   lvl = atoi(tab[2]);
   xfree(str);
-  /*free_tab(tab);*/
   return (lvl);
 }

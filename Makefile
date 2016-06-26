@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sun Jun 26 13:31:37 2016 Loïc Weinhard
+## Last update Sun Jun 26 14:00:13 2016 Valerian Polizzi
 ##
 
 SRV_NAME	=	zappy_server

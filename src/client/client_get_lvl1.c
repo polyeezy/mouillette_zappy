@@ -5,19 +5,20 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Thu Jun 23 12:15:49 2016 Valerian Polizzi
-** Last update Sun Jun 26 13:27:07 2016 Valerian Polizzi
+** Last update Sun Jun 26 17:23:10 2016 Loïc Weinhard
 */
 
 #include <client.h>
 
-static void		client_get_lvl1_ext(t_ai **cli, char ***parsing, int *cell)
+static void		client_get_lvl1_ext(t_ai **cli, char ***parsing,
+					    int *cell)
 {
   ai_gauche(*cli);
   *parsing = parse_voir(*cli);
   *cell = look_for_object(*parsing, "linemate");
 }
 
-void			client_get_lvl1(t_ai *cli)
+void		client_get_lvl1(t_ai *cli)
 {
   int           cell;
   char          **parsing;

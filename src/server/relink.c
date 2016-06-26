@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 13:58:37 2016 Loïc Weinhard
-** Last update Sat Jun 25 14:31:41 2016 Alexis Miele
+** Last update Sun Jun 26 17:20:42 2016 Loïc Weinhard
 */
 
 #include "client.h"
@@ -27,7 +27,7 @@ t_client	*relink(t_client *tmp, t_client *player)
   return (tmp);
 }
 
-void     add_player_on_map(t_client **player, t_client **new)
+void     	add_player_on_map(t_client **player, t_client **new)
 {
   t_client      *tmp;
 

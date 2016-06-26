@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Sat Jun 25 11:44:13 2016 Alexis Miele
+** Last update Sun Jun 26 10:50:28 2016 Loïc Weinhard
 */
 
 #include <time.h>
@@ -74,11 +74,13 @@ static int	compare_teams(t_server server, char *team)
   t_team	*teams;
   t_client	*members;
 
+  if (strncmp(team, "GRAPHIC", my_strlen("GRAPHIC")) == 0)
+    return (-1);
   players = 0;
   teams = server.teams;
   while (teams)
     {
-      if (strncmp(teams->name, team, strlen(teams->name)) == 0)
+      if (strncmp(teams->name, team, my_strlen(teams->name)) == 0)
 	{
 	  members = teams->members;
 	  while (members)
@@ -98,6 +100,7 @@ void		accept_client(t_server *server)
   int		new_fd;
   int		ret;
   char		buffer[4097];
+  int		slots;
 
   new_fd = xaccept(server->fd,
                            (struct sockaddr *)&(server->client_addr),
@@ -105,11 +108,17 @@ void		accept_client(t_server *server)
   dprintf(new_fd, "BIENVENUE\n");
   ret = xread(new_fd, buffer, 4096);
   buffer[ret] = 0;
-  dprintf(new_fd, "%d\n", compare_teams(*server, buffer));
-  if (compare_teams(*server, buffer) != 0)
+  slots = compare_teams(*server, buffer);
+  slots >= 0 ? dprintf(new_fd, "%d\n", slots) :
+      add_graphic(server, &(server)->graphic, new_fd);
+  if (slots > 0)
     {
       add_client(*server, &(server->teams), buffer, new_fd);
       new_fd >= server->fd_max ? server->fd_max = new_fd + 1 : 0;
       dprintf(new_fd, "%d %d\n", server->width, server->height);
     }
+  else if (slots == 0)
+    xclose(new_fd);
+  else
+    new_fd >= server->fd_max ? server->fd_max = new_fd + 1 : 0;
 }

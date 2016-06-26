@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:09:23 2016 Loïc Weinhard
-** Last update Sat Jun 25 17:32:54 2016 Loïc Weinhard
+** Last update Sun Jun 26 10:27:52 2016 Loïc Weinhard
 */
 
 #ifndef SERVER_H_
@@ -22,6 +22,7 @@
 # include "team.h"
 # include "map.h"
 # include "pile.h"
+# include "graphic_client.h"
 
 typedef struct s_pile t_pile;
 
@@ -35,6 +36,7 @@ typedef struct 		s_server
   int			height;
   t_team		*teams;
   t_pile		*pile;
+  t_graphic		*graphic;
   struct sockaddr_in	client_addr;
   socklen_t		client_size;
   fd_set		readfds;

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sun Jun 26 10:08:15 2016 Aurelie Orset
-** Last update Sun Jun 26 15:07:12 2016 Aurelie Orset
+** Last update Sun Jun 26 16:06:47 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -31,6 +31,7 @@ void	drawInventPlayer(t_info *i, t_graph *g, char **tab)
 void	drawInventaire(t_graph *g, t_client_socket client)
 {
   char *str;
+  char tmp[15];
   char	**tab;
   int	id;
   t_info	*i;
@@ -40,13 +41,13 @@ void	drawInventaire(t_graph *g, t_client_socket client)
   i = resize_info(i, 0.2);
   if ((i->police = TTF_OpenFont("gfx/font.ttf", 35)) == NULL)
     printf("NO LOAD\n");
-  str = xmalloc(sizeof(char) * 255);
-  sprintf(str, "pin %d", id);
-  str = send_and_get_gfx(&client, str);
+  sprintf(tmp, "pin %d", id);
+  str = send_and_get_gfx(&client, tmp);
   tab = my_str_to_wordtab(str, " \n");
   printf("INVENTAIRE : %s\n", str);
   if (strcmp(tab[0], "sbp") != 0 && id != -1)
-    {
-      drawInventPlayer(i, g, tab);
-    }
+    drawInventPlayer(i, g, tab);
+  xfree(str);
+  free_tab(tab);
+  free_all_info(i);
 }

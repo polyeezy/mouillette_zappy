@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:57:02 2016 Loïc Weinhard
-** Last update Sun Jun 26 11:13:53 2016 Alexis Miele
+** Last update Sun Jun 26 16:30:12 2016 Alexis Miele
 */
 
 #include "pile.h"
@@ -22,7 +22,7 @@ void			exec_pile(t_server *server, t_pile **pile)
     {
       tab = my_str_to_wordtab((*pile)->cmd, " \n");
       (*pile)->player != NULL ?
-	(*pile)->func->ptr_func(server, (*pile)->player, tab) : 0;
+	(*pile)->func->post_func(server, (*pile)->player, tab) : 0;
       free_tab(tab);
       if ((*pile)->next == NULL)
 	{

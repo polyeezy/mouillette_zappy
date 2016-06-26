@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Sun Jun 26 10:50:28 2016 Loïc Weinhard
+** Last update Sun Jun 26 16:24:16 2016 Alexis Miele
 */
 
 #include <time.h>
@@ -63,8 +63,7 @@ static void	add_client(t_server server, t_team **teams, char *team, int fd)
       clients->next = create_client(&server, fd);
       clients->next->prev = clients;
     }
-  while (clients->prev)
-    clients = clients->prev;
+  while (clients->prev && (clients = clients->prev));
   tmp_teams->members = clients;
 }
 
@@ -95,6 +94,20 @@ static int	compare_teams(t_server server, char *team)
   return (0);
 }
 
+static void	add_mange(t_server **server, t_team **teams, char *team, int fd)
+{
+  t_client	*clients;
+  t_team	*tmp_teams;
+
+  tmp_teams = *teams;
+  while (strncmp(tmp_teams->name, team, strlen(tmp_teams->name)) != 0)
+    tmp_teams = tmp_teams->next;
+  clients = tmp_teams->members;
+  while (clients && clients->next && clients->fd != fd)
+    clients = clients->next;
+  pre_mange(*server, clients, "mange", &(g_cmds[NUMBER_OF_COMMANDS - 1]));
+}
+
 void		accept_client(t_server *server)
 {
   int		new_fd;
@@ -116,6 +129,7 @@ void		accept_client(t_server *server)
       add_client(*server, &(server->teams), buffer, new_fd);
       new_fd >= server->fd_max ? server->fd_max = new_fd + 1 : 0;
       dprintf(new_fd, "%d %d\n", server->width, server->height);
+      add_mange(&server, &(server->teams), buffer, new_fd);
     }
   else if (slots == 0)
     xclose(new_fd);

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Sun Jun 26 11:13:50 2016 Aurelie Orset
+** Last update Sun Jun 26 16:23:05 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -34,11 +34,11 @@ void	drawPlayer(t_info *i, t_graph *g, t_client_socket client)
 void	drawFood(t_info *i, int x, int y, t_client_socket client)
 {
   char *str;
+  char tmp[18];
   char	**tab;
 
-  str = xmalloc(sizeof(char) * 255);
-  sprintf(str, "bct %d %d", x, y);
-  str = send_and_get_gfx(&client, str);
+  sprintf(tmp, "bct %d %d", x, y);
+  str = send_and_get_gfx(&client, tmp);
   tab = my_str_to_wordtab(str, " \n");
   printf("FOOD REQUEST %s\n", str);
   drawImage(i->l, 1050, 100, i->screen);
@@ -56,6 +56,7 @@ void	drawFood(t_info *i, int x, int y, t_client_socket client)
   drawImage(i->n, 1150, 400, i->screen);
   drawTexte(i, 1250, 410, tab[3]);
   xfree(str);
+  free_tab(tab);
 }
 
 void	drawCoord(t_info *i, t_graph *g, int x, int y)

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Sun Jun 26 15:07:44 2016 Aurelie Orset
+** Last update Sun Jun 26 16:02:46 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -50,16 +50,16 @@ void	drawStones(t_graph *g, t_tile *tl, int x, int y)
 void	drawAll(int x, int y, t_client_socket client, t_graph *g)
 {
   t_tile	*tl;
-  char *str;
+  char str[15];
+  char *str1;
 
   tl = xmalloc(sizeof(t_tile));
-  str = xmalloc(sizeof(char) * 255);
   sprintf(str, "bct %d %d", x, y);
-  str = send_and_get_gfx(&client, str);
+  str1 = send_and_get_gfx(&client, str);
   usleep(10);
-  tl = ressources(tl, str);
+  tl = ressources(tl, str1);
   drawStones(g, tl, x, y);
-  xfree(str);
+  xfree(str1);
   xfree(tl);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 24 16:00:41 2016 Aurelie Orset
-** Last update Sun Jun 26 15:07:58 2016 Aurelie Orset
+** Last update Sun Jun 26 16:17:32 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -15,10 +15,10 @@ char	**getToParse(t_client_socket client)
   char **tab;
   char *str;
 
-  str = xmalloc(sizeof(char) * 255);
   str = send_and_get_gfx(&client, "lpy");
   printf("PLAYERS %s\n", str);
   tab = my_str_to_wordtab(str, " \n");
+  xfree(str);
   return (tab);
 }
 
@@ -84,4 +84,5 @@ void	drawPlayers(t_graph *g, t_client_socket client)
       x+= 6;
       i++;
     }
+  free_tab(tab);
 }

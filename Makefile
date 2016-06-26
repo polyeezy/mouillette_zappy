@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sun Jun 26 16:32:56 2016 Loïc Weinhard
+## Last update Sun Jun 26 16:39:30 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -43,6 +43,11 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/graphic.c		\
 			$(SRV_FOLDER)/graph_cmds.c	\
 			$(SRV_FOLDER)/bct.c		\
+			$(SRV_FOLDER)/pre_cmds_1.c	\
+			$(SRV_FOLDER)/pre_cmds_2.c	\
+			$(SRV_FOLDER)/pre_cmds_3.c	\
+			$(SRV_FOLDER)/connect_nbr.c	\
+			$(SRV_FOLDER)/mange.c		\
 			$(SRV_FOLDER)/lpy.c		\
 			$(SRV_FOLDER)/plv.c		\
 			$(SRV_FOLDER)/pin.c		\

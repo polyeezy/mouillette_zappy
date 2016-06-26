@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sun Jun 26 19:41:39 2016 Valerian Polizzi
+** Last update Sun Jun 26 21:20:12 2016 Aurelie Orset
 */
 
 #include <client.h>
@@ -36,32 +36,6 @@ void     deblaye(t_ai *cli)
   free_tab(floor);
 }
 
-
-/* char		*epur_str(char *str) */
-/* { */
-/*   char *src; */
-/*   int i; */
-/*   int j; */
-/*   i = 0; */
-/*   j = 0; */
-/*   src = xmalloc(sizeof(char *) * strlen(str)); */
-/*   while (str[i] != '\0') */
-/*     { */
-/*       if (str[i] == ' ' || str[i] == '\t') */
-/* 	{ */
-/* 	  while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0') */
-/* 	    i = i + 1; */
-/* 	  if (j > 0 && str[i] != '\0') */
-/* 	    src[j++] = ' '; */
-/* 	} */
-/*       src[j] = str[i]; */
-/*       j = j + 1; */
-/*       i = i + 1; */
-/*     } */
-/*   src[j] = '\0'; */
-/*   return (src); */
-/* } */
-
 int             object_is_in_cell(char *cell, char *obj)
 {
   char          **content;
@@ -76,7 +50,7 @@ int             object_is_in_cell(char *cell, char *obj)
 	{
 	  free_tab(content);
 	  return (1);
-	}      
+	}
       i++;
     }
   free_tab(content);
@@ -92,7 +66,7 @@ int             look_for_object(char **vision, char *to_find)
   res = 0;
   while (vision[i])
     {
-      if (!to_find || !vision[i] || strlen(vision[i]) == 0 
+      if (!to_find || !vision[i] || strlen(vision[i]) == 0
 	  || strlen(to_find) == 0)
 	return (-1);
       res = object_is_in_cell(vision[i], to_find);
@@ -108,7 +82,7 @@ void		go_get_object(t_ai *cli, char *obj)
   int           cell;
   char          **parsing;
   int           rotations;
- 
+
   cell = -1;
   parsing = NULL;
   parsing = parse_voir(cli);

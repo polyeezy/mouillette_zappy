@@ -5,7 +5,7 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Tue Jun 14 18:47:22 2016 Alexis Miele
-** Last update Sat Jun 25 18:43:04 2016 Alexis Miele
+** Last update Sun Jun 26 21:18:57 2016 Aurelie Orset
 */
 
 #include <string.h>
@@ -52,7 +52,8 @@ static int	print_usage()
       if (g_client_args[i].mandatory)
 	dprintf(2, "%s %s ", g_client_args[i].flag, g_client_args[i].description);
       else
-	dprintf(2, "[%s %s] ", g_client_args[i].flag, g_client_args[i].description);
+	dprintf(2, "[%s %s] ", g_client_args[i].flag,
+		g_client_args[i].description);
       i += 1;
     }
   dprintf(2, "\n");

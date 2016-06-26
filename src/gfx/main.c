@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Sun Jun 26 19:06:45 2016 Aurelie Orset
+** Last update Sun Jun 26 20:47:54 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -20,7 +20,7 @@ SDL_Surface 	*init_screen()
   load = loadImage("gfx/load.png");
   drawImage(load, 0, 0, screen);
   SDL_Flip(screen);
-  playMusic("gfx/18.wav", 1, 1);
+  playMusic("gfx/PEGI_18.wav", 1, 1);
   SDL_Delay(3000);
   SDL_FillRect(screen, NULL, 0x000000);
   SDL_FreeSurface(load);

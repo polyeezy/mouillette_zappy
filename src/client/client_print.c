@@ -5,10 +5,23 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:17:06 2016 Valerian Polizzi
-** Last update Sat Jun 25 18:40:20 2016 Alexis Miele
+** Last update Sun Jun 26 11:23:42 2016 Valerian Polizzi
 */
 
 #include <client.h>
+
+void            debug_vision(char **vision)
+{
+  int           i;
+
+  i = 0;
+  while (vision[i])
+    {
+      printf("VISION\n%s - %d\n", vision[i], i);
+      i++;
+    }
+  printf("endvision\n");
+}
 
 void            debug_material(t_materials *inv)
 {

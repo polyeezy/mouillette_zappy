@@ -5,12 +5,33 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sun Jun 26 13:22:42 2016 Loïc Weinhard
-** Last update Sun Jun 26 13:29:31 2016 Loïc Weinhard
+** Last update Sun Jun 26 13:48:22 2016 Loïc Weinhard
 */
 
 #include "graphic_client.h"
 #include "utils.h"
 #include "xfct.h"
+
+static char	*concat_primary_infos(t_client *player)
+{
+  int		*primary;
+  char		*str;
+  char		*tmp;
+  int		i;
+
+  i = 0;
+  str = strdup("pin ");
+  primary = &(player->fd);
+  while (i < 3)
+    {
+      str = my_strcat(str, (tmp = itoa(*primary)));
+      primary++;
+      i += 1;
+      i < 3 ? str = my_strcat(str, " ") : 0;
+      xfree(tmp);
+    }
+  return (str);
+}
 
 static char	send_inventaire(t_client *player, t_graphic *graphic)
 {
@@ -19,11 +40,9 @@ static char	send_inventaire(t_client *player, t_graphic *graphic)
   int		i;
   int		*material;
 
-  str = strdup("pin ");
-  str = my_strcat(str, (tmp = itoa(player->fd)));
-  xfree(tmp);
   i = 0;
   material = &(player->materials.food);
+  str = concat_primary_infos(player);
   while (i < 7)
     {
       str = my_strcat(str, " ");

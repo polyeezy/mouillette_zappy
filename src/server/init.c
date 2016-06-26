@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:30:16 2016 Loïc Weinhard
-** Last update Sun Jun 26 10:27:26 2016 Loïc Weinhard
+** Last update Sun Jun 26 11:24:13 2016 Alexis Miele
 */
 
 #include <time.h>
@@ -48,20 +48,25 @@ static t_case		**init_map(char **argv)
   return (map);
 }
 
+static int		check_timeout(char **argv)
+{
+  return (g_server_args[5].used ? atoi(argv[get_arg(argv, "-t") + 1]) : 100);
+}
+
 t_server		init_server(char **argv)
 {
   t_server		server;
   int			port;
 
   port = atoi(argv[get_arg(argv, "-p") + 1]);
+  if ((server.timeout = check_timeout(argv)) <= 0)
+    exit(dprintf(2, "Error! Time must be greater than 0.\n") * 0 - 1);
   server.teams = NULL;
   if (add_teams(&(server.teams), argv) == -1)
     exit(dprintf(2, "Error! The teams should not have the "
-		 "same name or be called \"GRAPHIC\"\n") * 0 - 1);
+		 "same name or be called \"GRAPHIC\".\n") * 0 - 1);
   server.fd = xsocket(DOMAIN, TYPE, xgetprotobyname(PROTOCOL));
   server.fd_max = server.fd + 1;
-  server.timeout =
-    (g_server_args[5].used ? atoi(argv[get_arg(argv, "-t") + 1]) : 100);
   server.pile = NULL;
   server.graphic = NULL;
   server.client_addr.sin_family = DOMAIN;

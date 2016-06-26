@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Sun Jun 26 13:41:00 2016 Loïc Weinhard
+** Last update Sun Jun 26 14:00:27 2016 Valerian Polizzi
 */
 
 #ifndef CLIENT_H_
@@ -95,5 +95,7 @@ void		client_get_food(t_ai *cli);
 void		get_rid(t_ai *cli, char **required);
 int             is_in_inventary(t_ai *cli, char *obj);
 void            go_get_object(t_ai*, char *obj);
+void		debug_vision(char**);
+char            *epur_str(char *str);
 
 #endif

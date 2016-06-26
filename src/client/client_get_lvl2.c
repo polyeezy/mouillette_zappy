@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Sat Jun 25 13:01:52 2016 Valerian Polizzi
-** Last update Sat Jun 25 18:41:45 2016 Alexis Miele
+** Last update Sun Jun 26 13:56:12 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -14,23 +14,22 @@
 void                    client_get_lvl2(t_ai *cli)
 {
   char		**required;
-   int		i;
+  int		i;
 
-   required = NULL;
-  i = 0;
-
-  // parsing = parse_voir(cli);
-  required = my_str_to_wordtab(" linemate deraumere sibur ", " ");
-
-  while (required[i])
-    {
-      printf("GETTING -%s-\n", required[i]);
-      go_get_object(cli, required[i++]);
-    }
-  i = 0;
-  while (required[i])
-    ai_pose(cli, required[i++]);
-  get_rid(cli, required);
-  // parsing = parse_voir(cli);
-  ai_incantation(cli, " ");
+    required = NULL;
+   i = 0;
+   required = my_str_to_wordtab("linemate deraumere sibur", " ");
+   while (required[i])
+     {
+       printf("LOOKIN LOOKIN %s\n", required[i]);
+       go_get_object(cli, required[i++]);
+     }
+   i = 0;
+   while (required[i])
+     {
+       ai_pose(cli, required[i++]);
+     }
+   get_rid(cli, required);
+   // parsing = parse_voir(cli);
+   ai_incantation(cli, " ");
 }

@@ -5,35 +5,16 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Sat Jun 25 14:18:50 2016 Aurelie Orset
+** Last update Sat Jun 25 19:28:47 2016 Aurelie Orset
 */
 
 #include "graphic.h"
-
-int	convertX(int x, t_graph *g)
-{
-  double calc;
-
-  calc = (x / g->ts);
-  x = calc;
-  return (x);
-}
-
-void	drawTexte(t_info *i, int x, int y, char *str)
-{
-  SDL_Surface *texte;
-
-  texte = TTF_RenderText_Solid(i->police, str, i->color);
-  drawImage(texte, x, y, i->screen);
-  SDL_FreeSurface(texte);
-}
 
 void	drawInventaire(t_graph *g, t_client_socket client)
 {
   char *str;
   char	**tab;
   int	id;
-
   t_info	*i;
 
   id = getID(client, g);

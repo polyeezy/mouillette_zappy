@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 24 12:02:13 2016 Aurelie Orset
-** Last update Sat Jun 25 19:02:59 2016 Aurelie Orset
+** Last update Sat Jun 25 19:08:46 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -21,6 +21,24 @@ float	calcCo(int mapx, int mapy, t_graph *g)
  co = 1000 / calc;
  co /= g->ts;
  return (co);
+}
+
+void	drawTexte(t_info *i, int x, int y, char *str)
+{
+  SDL_Surface *texte;
+
+  texte = TTF_RenderText_Solid(i->police, str, i->color);
+  drawImage(texte, x, y, i->screen);
+  SDL_FreeSurface(texte);
+}
+
+int	convertX(int x, t_graph *g)
+{
+  double calc;
+
+  calc = (x / g->ts);
+  x = calc;
+  return (x);
 }
 
 t_graph *resize(t_graph *g, float co)

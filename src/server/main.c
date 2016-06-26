@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Sun Jun 26 15:45:53 2016 Loïc Weinhard
+** Last update Sun Jun 26 18:49:48 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -82,6 +82,28 @@ void		fd_isset_clients(t_server *server)
   fd_isset_graphics(server);
 }
 
+static int	check_gameover(t_server server, char *msg, int end)
+{
+  t_team	*teams;
+  t_client	*clients;
+
+  teams = server.teams;
+  while (teams)
+    {
+      clients = teams->members;
+      while (clients)
+	{
+	  if (clients->level == 8 && msg == NULL && (end = 1))
+	    check_gameover(server, "GAME OVER\n", 1);
+	  else if (msg != NULL)
+	    xwrite(clients->fd, msg);
+	  clients = clients->next;
+	}
+      teams = teams->next;
+    }
+  return (end);
+}
+
 int			main(int argc, char **argv)
 {
   t_server		server;
@@ -98,7 +120,7 @@ int			main(int argc, char **argv)
   server = init_server(argv);
   ret = 0;
   g_exit = 0;
-  while (ret != -1 && g_exit != 1)
+  while (ret != -1 && g_exit != 1 && check_gameover(server, NULL, 0) != 1)
     {
       fd_zero_set_all(&server);
       calc_delay(server.pile, &timinho);

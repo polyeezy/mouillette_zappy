@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sat Jun 25 13:54:42 2016 Aurelie Orset
-** Last update Sun Jun 26 16:26:32 2016 Aurelie Orset
+** Last update Sun Jun 26 17:03:51 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -35,33 +35,35 @@ int	compareID(int l, int x, int y, char **tab)
 
 int	getID(t_client_socket client, t_graph *g)
 {
-  int	x;
-  int	y;
+  t_coord c;
   int	players;
   char	**tab;
   int	i;
   int	l;
-  int	lvl;
 
   l = 2;
   i = 0;
   players = 0;
-  lvl = -1;
+  c.lvl = -1;
+  c.id = -1;
   tab = init_id_tab(client);
   if (strcmp(tab[0], "lpy") == 0)
     players = atoi(tab[1]);
-  SDL_GetMouseState(&x, &y);
-  x = convertX(x, g);
-  y = convertX(y, g);
+  SDL_GetMouseState(&c.x, &c.y);
+  c.x = convertX(c.x, g);
+  c.y = convertX(c.y, g);
   while (i++ < players)
     {
       printf("%d\n", i);
-      if (compareID(l, x, y, tab) != -1 && (compareID(l, x, y, tab) > lvl))
-	lvl = compareID(l, x, y, tab);
+      if (compareID(l, c.x, c.y, tab) != -1 && getLvl(client, (compareID(l, c.x, c.y, tab)) > c.lvl))
+	{
+	  c.lvl = getLvl(client, compareID(l, c.x, c.y, tab));
+	  c.id = compareID(l, c.x, c.y, tab);
+	}
       l+=6;
     }
   free_tab(tab);
-  return (lvl);
+  return (c.id);
 }
 
 int	getLvl(t_client_socket client, int id)

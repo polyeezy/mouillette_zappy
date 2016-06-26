@@ -6,7 +6,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sat Jun 18 16:15:38 2016 Loïc Weinhard
-** Last update Sun Jun 26 14:52:39 2016 Alexis Miele
+** Last update Sun Jun 26 17:55:56 2016 Alexis Miele
 */
 
 #ifndef CMDS_H_

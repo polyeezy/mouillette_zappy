@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Thu Jun 23 17:21:17 2016 Loïc Weinhard
-** Last update Sun Jun 26 19:58:44 2016 Loïc Weinhard
+** Last update Sun Jun 26 20:00:04 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -33,9 +33,9 @@ static void	remove_from_map(t_client **client, t_client *player)
     {
       if (tmp->fd == player->fd)
 	{
-	  tmp->prev != NULL ? tmp->prev->next = tmp->next : 0;
-	  tmp->next != NULL ? tmp->next->prev = tmp->prev : 0;
-          if (tmp->prev == NULL && tmp->next == NULL)
+	  tmp->prev_map != NULL ? tmp->prev_map->next_map = tmp->next_map : 0;
+	  tmp->next_map != NULL ? tmp->next_map->prev_map = tmp->prev_map : 0;
+          if (tmp->prev_map == NULL && tmp->next_map == NULL)
 	    *client = NULL;
 	  return;
 	}

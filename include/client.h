@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Sun Jun 26 19:08:17 2016 Aurelie Orset
+** Last update Sun Jun 26 19:26:45 2016 Alexis Miele
 */
 
 #ifndef CLIENT_H_
@@ -36,6 +36,8 @@ typedef struct		s_client
   struct sockaddr_in	server_addr;
   struct s_client	*next;
   struct s_client	*prev;
+  struct s_client	*next_map;
+  struct s_client	*prev_map;
 }			t_client;
 
 typedef struct		s_client_socket

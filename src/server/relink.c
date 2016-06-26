@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 13:58:37 2016 Loïc Weinhard
-** Last update Sun Jun 26 17:20:42 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:14:46 2016 Alexis Miele
 */
 
 #include "client.h"
@@ -34,16 +34,16 @@ void     	add_player_on_map(t_client **player, t_client **new)
   if (*player == NULL)
     {
       *player = *new;
-      (*player)->next = NULL;
-      (*player)->prev = NULL;
+      (*player)->next_map = NULL;
+      (*player)->prev_map = NULL;
     }
   else
     {
       tmp = *player;
-      while (tmp && tmp->next)
-        tmp = tmp->next;
-      tmp->next = *new;
-      (*new)->prev = tmp;
-      (*new)->next = NULL;
+      while (tmp && tmp->next_map)
+        tmp = tmp->next_map;
+      tmp->next_map = *new;
+      (*new)->prev_map = tmp;
+      (*new)->next_map = NULL;
     }
 }

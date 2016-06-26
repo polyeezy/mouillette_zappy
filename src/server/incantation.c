@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 15:30:55 2016 Loïc Weinhard
-** Last update Thu Jun 23 14:33:40 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:50:26 2016 Alexis Miele
 */
 
 #include "xfct.h"
@@ -23,15 +23,33 @@ static int	check_players(t_case pos, int level, int players, int fd)
     {
       if (tmp->level == level)
 	i += 1;
-      tmp = tmp->next;
+      else
+	{
+	  xwrite(fd, "ko\n");
+	  return (-1);
+	}
+      tmp = tmp->next_map;
     }
-  if (i < players)
+  if (i != players)
     {
       xwrite(fd, "ko\n");
       return (-1);
     }
   else
     return (0);
+}
+
+static void	level_up(t_client **players)
+{
+  t_client	*tmp;
+
+  tmp = *players;
+  while (tmp)
+    {
+      tmp->level += 1;
+      dprintf(tmp->fd, "niveau actuel : %d\n", tmp->level);
+      tmp = tmp->next_map;
+    }
 }
 
 char		incantation(t_server *server, t_client *player, char **tab)
@@ -49,7 +67,7 @@ char		incantation(t_server *server, t_client *player, char **tab)
   i = -1;
   while (++i < 6)
     {
-      if (*case_material < *required_material)
+      if (*case_material != *required_material)
 	{
 	  xwrite(player->fd, "ko\n");
 	  return (0);
@@ -57,7 +75,6 @@ char		incantation(t_server *server, t_client *player, char **tab)
       case_material++;
       required_material++;
     }
-  player->level += 1;
-  xwrite(player->fd, "ok\n");
+  level_up(&player);
   return (0);
 }

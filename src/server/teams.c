@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:39:57 2016 Loïc Weinhard
-** Last update Sun Jun 26 15:49:40 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:37:29 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -34,7 +34,8 @@ int	add_teams(t_team **teams, char **argv)
 {
   if (strcmp(argv[get_arg(argv, "-n") + 1], "GRAPHIC") == 0 ||
       strcmp(argv[get_arg(argv, "-n") + 2], "GRAPHIC") == 0 ||
-      strcmp(argv[get_arg(argv, "-n") + 1], argv[get_arg(argv, "-n") + 2]) == 0)
+      strcmp(argv[get_arg(argv, "-n") + 1], 
+	     argv[get_arg(argv, "-n") + 2]) == 0)
      return (-1);
   *teams = xmalloc(sizeof(t_team));
   (*teams)->name = xstrdup(argv[get_arg(argv, "-n") + 1]);

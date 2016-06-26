@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Thu Jun 23 17:21:17 2016 Loïc Weinhard
-** Last update Sun Jun 26 19:25:37 2016 Alexis Miele
+** Last update Sun Jun 26 20:00:04 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -18,7 +18,7 @@ static void	remove_from_pile(t_pile **pile, t_client *player)
   tmp = *pile;
   while (tmp)
     {
-      if (tmp->player->fd == player->fd)
+      if (tmp->player && tmp->player->fd == player->fd)
 	tmp->player = NULL;
       tmp = tmp->next;
     }

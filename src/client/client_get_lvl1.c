@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Thu Jun 23 12:15:49 2016 Valerian Polizzi
-** Last update Sun Jun 26 19:17:40 2016 Valerian Polizzi
+** Last update Sun Jun 26 20:19:33 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -48,4 +48,6 @@ void		client_get_lvl1(t_ai *cli)
   send_and_get(cli, "pose linemate");
   free_tab(parsing);
   ai_incantation(cli);
+  if (strcmp(cli->last_response, "ko\n") == 0)
+    client_get_lvl1(cli);
 }

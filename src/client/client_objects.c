@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sun Jun 26 19:19:05 2016 Valerian Polizzi
+** Last update Sun Jun 26 19:41:39 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -16,15 +16,15 @@
 
 void     deblaye(t_ai *cli)
 {
-  char**content;
-  char         **floor;
+  char		**content;
+  char		**floor;
   int           i;
 
   i = 0;
   content = NULL;
   floor = NULL;
   content = parse_voir(cli);
-  floor = my_str_to_wordtab(epur_str(content[0]), " ");
+  floor = my_str_to_wordtab(content[0], " ");
   while (floor[i])
     {
       if (strcmp(floor[i], "joueur") != 0
@@ -32,33 +32,35 @@ void     deblaye(t_ai *cli)
         ai_prend(cli, floor[i]);
       i++;
     }
+  free_tab(content);
+  free_tab(floor);
 }
 
 
-char		*epur_str(char *str)
-{
-  char *src;
-  int i;
-  int j;
-  i = 0;
-  j = 0;
-  src = xmalloc(sizeof(char *) * strlen(str));
-  while (str[i] != '\0')
-    {
-      if (str[i] == ' ' || str[i] == '\t')
-	{
-	  while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0')
-	    i = i + 1;
-	  if (j > 0 && str[i] != '\0')
-	    src[j++] = ' ';
-	}
-      src[j] = str[i];
-      j = j + 1;
-      i = i + 1;
-    }
-  src[j] = '\0';
-  return (src);
-}
+/* char		*epur_str(char *str) */
+/* { */
+/*   char *src; */
+/*   int i; */
+/*   int j; */
+/*   i = 0; */
+/*   j = 0; */
+/*   src = xmalloc(sizeof(char *) * strlen(str)); */
+/*   while (str[i] != '\0') */
+/*     { */
+/*       if (str[i] == ' ' || str[i] == '\t') */
+/* 	{ */
+/* 	  while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0') */
+/* 	    i = i + 1; */
+/* 	  if (j > 0 && str[i] != '\0') */
+/* 	    src[j++] = ' '; */
+/* 	} */
+/*       src[j] = str[i]; */
+/*       j = j + 1; */
+/*       i = i + 1; */
+/*     } */
+/*   src[j] = '\0'; */
+/*   return (src); */
+/* } */
 
 int             object_is_in_cell(char *cell, char *obj)
 {
@@ -70,10 +72,14 @@ int             object_is_in_cell(char *cell, char *obj)
   content = my_str_to_wordtab(cell, " ");
   while (content[i])
     {
-      if (strcmp(epur_str(content[i]), obj) == 0)
-        return (1);
+      if (strcmp(content[i], obj) == 0)
+	{
+	  free_tab(content);
+	  return (1);
+	}      
       i++;
     }
+  free_tab(content);
   return (-1);
 }
 
@@ -86,7 +92,10 @@ int             look_for_object(char **vision, char *to_find)
   res = 0;
   while (vision[i])
     {
-      res = object_is_in_cell(epur_str(vision[i]), epur_str(to_find));
+      if (!to_find || !vision[i] || strlen(vision[i]) == 0 
+	  || strlen(to_find) == 0)
+	return (-1);
+      res = object_is_in_cell(vision[i], to_find);
       if (res >= 0)
 	return (i);
       i++;
@@ -99,7 +108,7 @@ void		go_get_object(t_ai *cli, char *obj)
   int           cell;
   char          **parsing;
   int           rotations;
-
+ 
   cell = -1;
   parsing = NULL;
   parsing = parse_voir(cli);
@@ -118,5 +127,6 @@ void		go_get_object(t_ai *cli, char *obj)
       free_tab(parsing);
       parsing = parse_voir(cli);
     }
+  free_tab(parsing);
   ai_prend(cli, obj);
 }

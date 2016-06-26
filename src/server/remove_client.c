@@ -5,11 +5,24 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Thu Jun 23 17:21:17 2016 Loïc Weinhard
-** Last update Sat Jun 25 17:53:32 2016 Alexis Miele
+** Last update Sun Jun 26 10:06:25 2016 Alexis Miele
 */
 
 #include "xfct.h"
 #include "server.h"
+
+static void	remove_from_pile(t_pile **pile, t_client *player)
+{
+  t_pile	*tmp;
+
+  tmp = *pile;
+  while (tmp)
+    {
+      if (tmp->player->fd == player->fd)
+	tmp->player = NULL;
+      tmp = tmp->next;
+    }
+}
 
 static void	remove_from_map(t_client **client, t_client *player)
 {
@@ -69,6 +82,7 @@ void		remove_client(t_server *server, t_client *player, int ret)
 	    {
 	      remove_from_map(&(server->map[tmp->y][tmp->x].players), tmp);
 	      remove_from_team(&(server->teams), tmp);
+	      remove_from_pile(&(server->pile), tmp);
 	      xclose(player->fd);
 	      xfree(player);
 	      return;
@@ -77,5 +91,4 @@ void		remove_client(t_server *server, t_client *player, int ret)
 	}
       teams = teams->next;
     }
-
 }

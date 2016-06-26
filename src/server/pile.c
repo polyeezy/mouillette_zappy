@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:57:02 2016 Loïc Weinhard
-** Last update Sat Jun 25 19:36:40 2016 Loïc Weinhard
+** Last update Sun Jun 26 10:08:52 2016 Alexis Miele
 */
 
 #include "pile.h"
@@ -21,7 +21,8 @@ void			exec_pile(t_server *server, t_pile **pile)
   while (*pile && timinho.tv_sec >= (*pile)->exec_time)
     {
       tab = my_str_to_wordtab((*pile)->cmd, " \n");
-      (*pile)->func->ptr_func(server, (*pile)->player, tab);
+      (*pile)->player != NULL ?
+	(*pile)->func->ptr_func(server, (*pile)->player, tab) : 0;
       free_tab(tab);
       if ((*pile)->next == NULL)
 	{

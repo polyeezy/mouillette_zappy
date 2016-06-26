@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sun Jun 26 10:42:01 2016 Loïc Weinhard
-** Last update Sun Jun 26 14:37:51 2016 Loïc Weinhard
+** Last update Sun Jun 26 15:06:01 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -39,31 +39,33 @@ void		remove_graphic(t_graphic **graphic, int ret, t_server **server)
     }
 }
 
-void		handle_graphics(t_server *server, t_graphic *graphic)
+void	handle_graphics(t_server *server, t_graphic *graphic)
 {
-  char	buffer[4097];
+  char	buff[4097];
   int	ret;
   char	**tab;
   int	i;
+  int	done;
 
   i = 0;
-  ret = xread(graphic->fd, buffer, 4096);
+  done = 0;
+  ret = xread(graphic->fd, buff, 4096);
   if (ret == 0 || ret == 1)
     {
       remove_graphic(&graphic, ret, &server);
       return;
     }
-  buffer[ret] = 0;
-  printf("Graphic %d sent : [%.*s]\n", graphic->fd,
-	 my_strlen(buffer) - 1, buffer);
-  tab = my_str_to_wordtab(buffer, " \t\r\n");
+  buff[ret] = 0;
+  printf("Graphic %d sent : [%.*s]\n", graphic->fd, my_strlen(buff) - 1, buff);
+  tab = my_str_to_wordtab(buff, " \t\r\n");
   while (i < NUMBER_OF_GRAPH_COMMANDS)
     {
-      if (strcmp(g_graph_cmds[i].name, tab[0]) == 0)
+      if (strcmp(g_graph_cmds[i].name, tab[0]) == 0 && (done = 1))
 	g_graph_cmds[i].ptr_func(server, graphic, tab);
       i += 1;
     }
   free_tab(tab);
+  done != 1 ? xwrite(graphic->fd, "suc\n") : 0;
 }
 
 void		add_graphic(t_server *server, t_graphic **graphic, int new_fd)

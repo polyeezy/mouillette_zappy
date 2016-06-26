@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sat Jun 25 13:54:42 2016 Aurelie Orset
-** Last update Sun Jun 26 11:30:08 2016 Aurelie Orset
+** Last update Sun Jun 26 13:26:57 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -17,7 +17,7 @@ char	**init_id_tab(t_client_socket client)
 
   str = xmalloc(sizeof(char) * 4096);
   str = send_and_get_gfx(&client, "lpy");
-  str = "lpy 4\n4 1 0 0 0 1\n3 2 0 1 0 0\n32 3 0 2 0 1\n56 4 0 3 1 0\n";
+  /*  str = "lpy 4\n4 1 0 0 0 1\n3 2 0 1 0 0\n32 3 0 2 0 1\n56 4 0 3 1 0\n";*/
   tab = my_str_to_wordtab(str, " \n");
   return (tab);
 }

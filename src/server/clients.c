@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:44:01 2016 Loïc Weinhard
-** Last update Mon Jun 13 16:47:55 2016 Loïc Weinhard
+** Last update Sun Jun 26 15:41:47 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -20,8 +20,12 @@ void	free_clients(t_client *clients)
 	{
 	  clients = clients->next;
 	  xfree(clients->prev);
+	  clients->prev = NULL;
 	}
       else
-	xfree(clients);
+	{
+	  xfree(clients);
+	  clients = NULL;
+	}
     }
 }

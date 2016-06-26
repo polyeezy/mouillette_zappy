@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sat Jun 25 19:09:43 2016 Aurelie Orset
+** Last update Sun Jun 26 11:22:05 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -93,36 +93,61 @@ typedef struct	s_player
   struct s_payer	*next;
 }			t_player;
 
-int             send_cmd_server_gfx(t_client_socket *cli, char *msg);
-char            *get_server_response_gfx(t_client_socket *cli);
-char    *send_and_get_gfx(t_client_socket *cli, char *cmd);
-t_client_socket		init_client_socket(char **argv);
-void		draw();
-t_info		*init_info(t_graph *g);
-t_info		*resize_info(t_info *i, float co);
+
+float		calcCo(int mapy, int mapx, t_graph *g);
+int		convertX(int x, t_graph *g);
+int		compareID(int l, int x, int y, char **tab);
+
 void		delay(unsigned int frameLimit);
-SDL_Surface	*loadImage(char *name);
+void		draw(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
+void		drawAll(int x, int y, t_client_socket client, t_graph *g);
+void		drawCase();
+void		drawCoord(t_info *i, t_graph *g, int x, int y);
+void		drawFood(t_info *i, int x, int y, t_client_socket client);
+void		drawGround(t_graph *g);
+void		drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
+void		drawInfo(int x, int y, t_graph *g, t_client_socket client);
+void		drawInventaire(t_graph *g, t_client_socket client);
+void		drawInventPlayer(t_info *i, t_graph *g, char **tab);
+void		drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
+void		drawOrient(t_graph *g, int x, char **tab);
+void		drawOrient2(t_graph *g, int x, char **tab);
+void		drawPlayer(t_info *i, t_graph *g, t_client_socket client);
+void		drawPlayers(t_graph *g, t_client_socket client);
+void		drawStones(t_graph *g, t_tile *tl, int x, int y);
+void		drawTexte(t_info *i, int x, int y, char *str);
+
 void		free_all(t_graph *g);
 void		free_all_info(t_info *g);
-void		drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
-void		draw(SDL_Surface *screen, int mapx, int mapy, t_client_socket client);
-void		drawInfo(int x, int y, t_graph *g, t_client_socket client);
-void		drawImage(SDL_Surface *image, int x, int y, SDL_Surface *screen);
-SDL_Surface	*init(char *title, int x, int y);
-float		calcCo(int mapy, int mapx, t_graph *g);
-void		getInput();
-void		loadMap(char *name);
-void		drawCase();
-int		getLvl(t_client_socket client, int id);
-void		drawPlayers(t_graph *g, t_client_socket client);
-t_graph		*resize(t_graph *g, float co);
-int		getID(t_client_socket client, t_graph *g);
-int		convertX(int x, t_graph *g);
-t_graph		*init_graph(int x, int y, SDL_Surface *screen);
-t_tile		*ressources(t_tile *tile, char *str);
-t_info		*init_and_resize(t_graph *g);
 void		*free_at_exit(t_graph *g, t_info *i);
+
+int		getID(t_client_socket client, t_graph *g);
+void		getInput();
+int		getLvl(t_client_socket client, int id);
+char            *get_server_response_gfx(t_client_socket *cli);
+char		**getToParse(t_client_socket client);
+
+
+SDL_Surface	*init(char *title, int x, int y);
+t_info		*init_and_resize(t_graph *g);
+t_client_socket	 init_client_socket(char **argv);
+t_graph		*init_graph(int x, int y, SDL_Surface *screen);
+char		**init_id_tab(t_client_socket client);
+t_info		*init_info(t_graph *g);
+t_graph		*init_nemesis(t_graph *g);
+SDL_Surface 	*init_screen();
+
+SDL_Surface	*loadImage(char *name);
+
+void		mainLoop(SDL_Surface *screen, int x, int y, t_client_socket client);
+
 void		playMusic();
-void		drawTexte(t_info *i, int x, int y, char *str);
+
+t_graph		*resize(t_graph *g, float co);
+t_info		*resize_info(t_info *i, float co);
+t_tile		*ressources(t_tile *tile, char *str);
+
+char		*send_and_get_gfx(t_client_socket *cli, char *cmd);
+int             send_cmd_server_gfx(t_client_socket *cli, char *msg);
 
 #endif

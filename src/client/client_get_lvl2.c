@@ -5,11 +5,10 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Sat Jun 25 13:01:52 2016 Valerian Polizzi
-** Last update Sun Jun 26 17:23:31 2016 Loïc Weinhard
+** Last update Sun Jun 26 18:58:36 2016 Valerian Polizzi
 */
 
 #include <client.h>
-// required : linemate 1 - deraumere 1 - sibur 1
 
 void		client_get_lvl2(t_ai *cli)
 {
@@ -20,15 +19,11 @@ void		client_get_lvl2(t_ai *cli)
   i = 0;
   required = my_str_to_wordtab("linemate deraumere sibur", " ");
   while (required[i])
-    {
-      printf("LOOKIN LOOKIN %s\n", required[i]);
-      go_get_object(cli, required[i++]);
-    }
+    go_get_object(cli, required[i++]);
   i = 0;
-   while (required[i])
-    {
-      ai_pose(cli, required[i++]);
-     }
-  get_rid(cli, required);
-  ai_incantation(cli, " ");
+  deblaye(cli);
+  while (required[i])
+    ai_pose(cli, required[i++]);
+  ai_broadcast(cli, "INCANTATION 2-3");
+  ai_incantation(cli);
 }

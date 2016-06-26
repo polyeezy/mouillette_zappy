@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:08:45 2016 Loïc Weinhard
-** Last update Sat Jun 25 19:34:08 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:13:37 2016 Loïc Weinhard
 */
 
 #ifndef PILE_H_
@@ -30,5 +30,6 @@ typedef struct		s_pile
 
 void	add_pile(t_server *server, t_client *player, char *buff, t_cmd *cmd);
 void	exec_pile(t_server *server, t_pile **pile);
+time_t	get_last_command(t_server *server, t_client *player);
 
 #endif

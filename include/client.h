@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Sun Jun 26 18:57:11 2016 Valerian Polizzi
+** Last update Sun Jun 26 19:08:17 2016 Aurelie Orset
 */
 
 #ifndef CLIENT_H_
@@ -24,7 +24,6 @@
 # include <ai_cmd.h>
 # include "orientation.h"
 # include "materials.h"
-
 
 typedef struct		s_client
 {

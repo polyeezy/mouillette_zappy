@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:57:02 2016 Loïc Weinhard
-** Last update Sun Jun 26 16:30:12 2016 Alexis Miele
+** Last update Sun Jun 26 19:15:33 2016 Loïc Weinhard
 */
 
 #include "pile.h"
@@ -98,7 +98,7 @@ void			add_pile(t_server *server,
   elem->cmd = buff;
   elem->player = player;
   elem->func = cmd;
-  elem->exec_time = actual.tv_sec +
+  elem->exec_time = get_last_command(server, player) +
       (long long int)(cmd->delay * (1 / (float)server->timeout));
   if (server->pile == NULL)
     new_pile(&(server->pile), &elem);

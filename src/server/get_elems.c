@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 20 17:47:29 2016 Loïc Weinhard
-** Last update Sun Jun 26 16:04:41 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:15:43 2016 Alexis Miele
 */
 
 #include "utils.h"
@@ -22,7 +22,7 @@ static char	*get_players(t_client *players)
   while (tmp)
     {
       str = my_strcat(str, " joueur");
-      tmp = tmp->next;
+      tmp = tmp->next_map;
     }
   return (str);
 }

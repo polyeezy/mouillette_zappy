@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Sun Jun 26 16:24:16 2016 Alexis Miele
+** Last update Sun Jun 26 19:19:42 2016 Alexis Miele
 */
 
 #include <time.h>
@@ -16,7 +16,6 @@
 static t_client	*create_client(t_server *server, int fd)
 {
   t_client	*elem;
-  t_client	*tmp;
 
   elem = xmalloc(sizeof(t_client));
   elem->fd = fd;
@@ -32,39 +31,53 @@ static t_client	*create_client(t_server *server, int fd)
   elem->materials.phiras = 0;
   elem->materials.thystame = 0;
   elem->next = NULL;
-  tmp = server->map[elem->y][elem->x].players;
-  while (tmp && tmp->next && (tmp = tmp->next));
-  elem->prev = (tmp != NULL ? tmp : NULL);
-  tmp = (tmp != NULL ? tmp : elem);
-  tmp->next = (tmp != elem ? elem : NULL);
-  while (tmp->prev && (tmp = tmp->prev));
-  server->map[elem->y][elem->x].players = tmp;
   return (elem);
 }
 
-static void	add_client(t_server server, t_team **teams, char *team, int fd)
+static void	update_map(t_client **clients, t_client **new)
 {
-  t_client	*clients;
+  t_client	*tmp;
+
+  tmp = *clients;
+  while (tmp && tmp->next_map && (tmp = tmp->next_map));
+  (*new)->prev_map = (tmp != NULL ? tmp : NULL);
+  (*new)->next_map = NULL;
+  if (tmp == NULL)
+    *clients = *new;
+  else
+    tmp->next_map = *new;
+}
+
+static void	add_client_ext(t_server **server, t_client **clients, int fd)
+{
+  t_client	*tmp;
+  t_client	*new;
+
+  tmp = *clients;
+  while (tmp && tmp->next)
+    tmp = tmp->next;
+  new = create_client(*server, fd);
+  if (*clients == NULL)
+    {
+      *clients = new;
+      (*clients)->prev = NULL;
+    }
+  else
+    {
+      tmp->next = new;
+      new->prev = tmp;
+    }
+  update_map(&((*server)->map[new->y][new->x].players), &new);
+}
+
+static void	add_client(t_server *server, t_team **teams, char *team, int fd)
+{
   t_team	*tmp_teams;
 
   tmp_teams = *teams;
   while (strncmp(tmp_teams->name, team, strlen(tmp_teams->name)) != 0)
     tmp_teams = tmp_teams->next;
-  clients = tmp_teams->members;
-  while (clients && clients->next)
-    clients = clients->next;
-  if (clients == NULL)
-    {
-      clients = create_client(&server, fd);
-      clients->prev = NULL;
-    }
-  else
-    {
-      clients->next = create_client(&server, fd);
-      clients->next->prev = clients;
-    }
-  while (clients->prev && (clients = clients->prev));
-  tmp_teams->members = clients;
+  add_client_ext(&server, &(tmp_teams->members), fd);
 }
 
 static int	compare_teams(t_server server, char *team)
@@ -126,7 +139,7 @@ void		accept_client(t_server *server)
       add_graphic(server, &(server)->graphic, new_fd);
   if (slots > 0)
     {
-      add_client(*server, &(server->teams), buffer, new_fd);
+      add_client(server, &(server->teams), buffer, new_fd);
       new_fd >= server->fd_max ? server->fd_max = new_fd + 1 : 0;
       dprintf(new_fd, "%d %d\n", server->width, server->height);
       add_mange(&server, &(server->teams), buffer, new_fd);

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:48:10 2016 Aurelie Orset
-** Last update Sat Jun 25 19:24:23 2016 Aurelie Orset
+** Last update Sun Jun 26 15:26:56 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -20,8 +20,10 @@ SDL_Surface 	*init_screen()
   load = loadImage("gfx/load.png");
   drawImage(load, 0, 0, screen);
   SDL_Flip(screen);
-  SDL_Delay(1);
+  playMusic("gfx/18.wav", 1);
+  SDL_Delay(3000);
   SDL_FillRect(screen, NULL, 0x000000);
+  SDL_FreeSurface(load);
   return (screen);
 }
 
@@ -46,15 +48,19 @@ int main(int ac, char **av)
   ac = ac;
   if (check_args(av) == -1)
     return (-1);
-  playMusic();
   client = init_client_socket(av);
-  printf("%s\n", get_server_response_gfx(&client));
+  str = get_server_response_gfx(&client);
+  printf("%s\n", str);
+  xfree(str);
   str = send_and_get_gfx(&client, "GRAPHIC");
-  tab = my_str_to_wordtab(str, " ");
+  tab = my_str_to_wordtab(str, " \n");
   mapx = atoi(tab[1]);
   mapy = atoi(tab[2]);
   screen = init_screen();
+  playMusic("gfx/poney.wav", -1);
   while (42)
     mainLoop(screen, mapx, mapy, client);
+  xfree(str);
+  free_tab(tab);
   return (0);
 }

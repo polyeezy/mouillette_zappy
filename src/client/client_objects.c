@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sat Jun 25 18:58:29 2016 Alexis Miele
+** Last update Sun Jun 26 14:47:36 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -59,21 +59,23 @@ int             object_is_in_cell(char *cell, char *obj)
 void		get_rid(t_ai *cli, char **required)
 {
   char		**content;
-  char		*cell;
-  char		**floor;
+   char		**floor;
   int		i;
   int		j;
 
+  i = 0;
+  content = NULL;
+  floor = NULL;
   content = parse_voir(cli);
-  cell = content[0];
-  floor = my_str_to_wordtab(cell, " ");
+  floor = my_str_to_wordtab(epur_str(content[0]), " ");
+  debug_vision(floor);
   while (floor[i])
     {
       j = 0;
       while (required[j])
 	{
-	  if (strcmp(required[j], epur_str(floor[i])) != 0 &&
-	      strcmp(epur_str(floor[i]), "joueur") != 0)
+	  if (strcmp(required[j], floor[i]) != 0 &&
+	      strcmp(floor[i], "joueur") != 0)
 	    ai_prend(cli, floor[i]);
 	  j++;
 	}
@@ -92,11 +94,8 @@ int             look_for_object(char **vision, char *to_find)
     {
       res = object_is_in_cell(epur_str(vision[i]), epur_str(to_find));
       if (res >= 0)
-	{
-	  printf("--%s FOUND %d--\n", to_find, i);
-	  return (i);
-	}
-     i++;
+	return (i);
+      i++;
     }
   return (-1);
 }
@@ -128,29 +127,31 @@ void		go_get_object(t_ai *cli, char *obj)
   cell = -1;
   parsing = NULL;
   parsing = parse_voir(cli);
-
+  printf("LOOKING FOR %s\n", obj);
   while ((cell = look_for_object(parsing, obj)) != 0)
     {
-      printf("CELL : %d\n", cell);
+      printf("cell : %d\n", cell);
       rotations = 0;
-      while (cell == -1 && rotations < 4)
+      while (cell == -1)
         {
-          ai_gauche(cli);
-          parsing = parse_voir(cli);
-          cell = look_for_object(parsing, obj);
-	  printf("CELL : %d\n", cell);
-	  rotations += 1;
-        }
-      if (cell == -1)
-        ai_avance(cli);
-      else
-        {
-          ai_count_move(cli, cell);
-          free_tab(parsing);
-          parsing = parse_voir(cli);
-        }
+	  if (rotations < 4)
+	    {
+	      ai_avance(cli);
+	      rotations = 0;
+	    }
+	  else
+	    rotations += 1;
+	  free_tab(parsing);
+	  parsing = parse_voir(cli);
+	  cell = look_for_object(parsing, obj);
+	  printf("cell : %d\n", cell);
+	}
+      printf("MOVING FOR %s\n", obj); 
+      ai_count_move(cli, cell);
+      free_tab(parsing);
+      parsing = parse_voir(cli);
     }
-  printf("FOUND %s\n", obj);
+  printf("TAKING %s\n", obj);
   ai_prend(cli, obj);
   return;
 }

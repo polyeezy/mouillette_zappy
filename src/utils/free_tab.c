@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.net>
 **
 ** Started on  Mon May 23 19:00:23 2016 Loïc Weinhard
-** Last update Sat Jun 18 16:36:19 2016 Loïc Weinhard
+** Last update Sun Jun 26 10:57:17 2016 Aurelie Orset
 */
 
 #include "utils.h"

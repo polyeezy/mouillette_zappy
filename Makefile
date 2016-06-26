@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sun Jun 26 15:03:57 2016 Alexis Miele
+## Last update Sun Jun 26 16:32:28 2016 Alexis Miele
 ##
 
 SRV_NAME	=	zappy_server
@@ -48,6 +48,9 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/pre_cmds_3.c	\
 			$(SRV_FOLDER)/connect_nbr.c	\
 			$(SRV_FOLDER)/mange.c		\
+			$(SRV_FOLDER)/lpy.c		\
+			$(SRV_FOLDER)/plv.c		\
+			$(SRV_FOLDER)/pin.c		\
 
 SRV_OBJ		=	$(SRV_SRC:.c=.o)
 
@@ -95,7 +98,8 @@ GFX_SRC		=	$(GFX_FOLDER)/main.c			\
 			$(GFX_FOLDER)/mapi.c			\
 			$(GFX_FOLDER)/calc.c			\
 			$(GFX_FOLDER)/get.c			\
-			$(GFX_FOLDER)/init_and_free.c			\
+			$(GFX_FOLDER)/init_and_free.c		\
+			$(GFX_FOLDER)/inventaire.c		\
 
 
 GFX_OBJ		=	$(GFX_SRC:.c=.o)

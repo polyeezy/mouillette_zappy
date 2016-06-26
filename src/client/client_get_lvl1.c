@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Thu Jun 23 12:15:49 2016 Valerian Polizzi
-** Last update Sat Jun 25 18:57:09 2016 Alexis Miele
+** Last update Sun Jun 26 13:27:07 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -22,6 +22,7 @@ void			client_get_lvl1(t_ai *cli)
   int           cell;
   char          **parsing;
   int		rotations;
+  char		**required;
 
   cell = -1;
   parsing = parse_voir(cli);
@@ -32,13 +33,16 @@ void			client_get_lvl1(t_ai *cli)
 	client_get_lvl1_ext(&cli, &parsing, &cell);
       if (cell == -1)
 	ai_avance(cli);
-      else
+      else if (cell != 0)
 	{
 	  ai_count_move(cli, cell);
 	  free_tab(parsing);
 	  parsing = parse_voir(cli);
 	}
     }
-  get_rid(cli, my_str_to_wordtab("linemate", ""));
+  required = my_str_to_wordtab("linemate", "");
+  get_rid(cli, required);
+  free_tab(parsing);
+  free_tab(required);
   ai_incantation(cli, " ");
 }

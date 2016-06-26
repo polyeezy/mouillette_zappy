@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:39:57 2016 Loïc Weinhard
-** Last update Sat Jun 25 19:14:12 2016 Alexis Miele
+** Last update Sun Jun 26 15:49:40 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -22,10 +22,12 @@ void	free_teams(t_team *teams)
       free_clients(teams->members);
       teams = teams->next;
       xfree(teams->prev);
+      teams->prev = NULL;
     }
   xfree(teams->name);
   free_clients(teams->members);
   xfree(teams);
+  teams = NULL;
 }
 
 int	add_teams(t_team **teams, char **argv)

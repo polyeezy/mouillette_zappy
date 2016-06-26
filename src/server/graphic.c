@@ -5,37 +5,67 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sun Jun 26 10:42:01 2016 Loïc Weinhard
-** Last update Sun Jun 26 11:26:29 2016 Loïc Weinhard
+** Last update Sun Jun 26 15:06:01 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
+#include "utils.h"
 #include "graphic_client.h"
 
-void		handle_graphics(t_server *server, t_graphic *graphic)
+void		remove_graphic(t_graphic **graphic, int ret, t_server **server)
 {
-  char	buffer[4097];
+  if (ret != 0)
+    return;
+  xclose((*graphic)->fd);
+  if ((*graphic)->prev == NULL && (*graphic)->next == NULL)
+    {
+      xfree(*graphic);
+      *graphic = NULL;
+      (*server)->graphic = NULL;
+    }
+  else if ((*graphic)->prev == NULL && (*graphic)->next != NULL)
+    {
+      (*graphic)->next->prev = NULL;
+      (*server)->graphic = (*graphic)->next;
+      xfree(*graphic);
+      *graphic = NULL;
+    }
+  else
+    {
+      (*graphic)->prev->next = (*graphic)->next;
+      (*graphic)->next != NULL ? (*graphic)->next->prev = (*graphic)->prev : 0;
+      xfree(*graphic);
+      *graphic = NULL;
+    }
+}
+
+void	handle_graphics(t_server *server, t_graphic *graphic)
+{
+  char	buff[4097];
   int	ret;
   char	**tab;
   int	i;
+  int	done;
 
   i = 0;
-  ret = xread(graphic->fd, buffer, 4096);
+  done = 0;
+  ret = xread(graphic->fd, buff, 4096);
   if (ret == 0 || ret == 1)
     {
-      //remove_graphic(server, graphic, ret);
+      remove_graphic(&graphic, ret, &server);
       return;
     }
-  buffer[ret] = 0;
-  printf("Graphic %d sent : [%.*s]\n", graphic->fd,
-	 my_strlen(buffer) - 1, buffer);
-  tab = my_str_to_wordtab(buffer, " \t\r\n");
+  buff[ret] = 0;
+  printf("Graphic %d sent : [%.*s]\n", graphic->fd, my_strlen(buff) - 1, buff);
+  tab = my_str_to_wordtab(buff, " \t\r\n");
   while (i < NUMBER_OF_GRAPH_COMMANDS)
     {
-      if (strcmp(g_graph_cmds[i].name, tab[0]) == 0)
+      if (strcmp(g_graph_cmds[i].name, tab[0]) == 0 && (done = 1))
 	g_graph_cmds[i].ptr_func(server, graphic, tab);
       i += 1;
     }
   free_tab(tab);
+  done != 1 ? xwrite(graphic->fd, "suc\n") : 0;
 }
 
 void		add_graphic(t_server *server, t_graphic **graphic, int new_fd)
@@ -49,11 +79,13 @@ void		add_graphic(t_server *server, t_graphic **graphic, int new_fd)
   elem->next = NULL;
   if (*graphic == NULL)
     {
+      elem->prev = NULL;
       *graphic = elem;
       return;
     }
   tmp = *graphic;
   while (tmp->next)
     tmp = tmp->next;
+  elem->prev = tmp;
   tmp->next = elem;
 }

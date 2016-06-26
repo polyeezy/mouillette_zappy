@@ -5,53 +5,13 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Wed Jun 22 14:18:08 2016 Aurelie Orset
-** Last update Sat Jun 25 19:28:47 2016 Aurelie Orset
+** Last update Sun Jun 26 16:23:05 2016 Aurelie Orset
 */
 
 #include "graphic.h"
 
-void	drawInventaire(t_graph *g, t_client_socket client)
-{
-  char *str;
-  char	**tab;
-  int	id;
-  t_info	*i;
-
-  id = getID(client, g);
-  i = init_info(g);
-  i = resize_info(i, 0.2);
-  if ((i->police = TTF_OpenFont("gfx/font.ttf", 35)) == NULL)
-    printf("NO LOAD\n");
-  str = xmalloc(sizeof(char) * 255);
-  sprintf(str, "pin %d", id);
-  str = send_and_get_gfx(&client, str);
-  str = "pin 36 56 56 0 1 2 3 4 5 6\n";
-  tab = my_str_to_wordtab(str, " \n");
-  printf("INVENTAIRE : %s\n", str);
-  if (strcmp(tab[0], "sbp") != 0 && id != -1)
-    {
-      drawImage(i->l, 1050, 750, g->screen);
-      drawTexte(i, 1100, 750, tab[5]);
-      drawImage(i->d, 1200, 750, g->screen);
-      drawTexte(i, 1250, 750, tab[6]);
-      drawImage(i->s, 1350, 750, g->screen);
-      drawTexte(i, 1400, 750, tab[7]);
-      drawImage(i->m, 1050, 810, g->screen);
-      drawTexte(i, 1100, 810, tab[8]);
-      drawImage(i->p, 1200, 810, g->screen);
-      drawTexte(i, 1250, 810, tab[9]);
-      drawImage(i->t, 1350, 810, g->screen);
-      drawTexte(i, 1400, 810, tab[10]);
-      drawImage(i->n, 1200, 870, g->screen);
-      drawTexte(i, 1250, 870, tab[4]);
-    }
-  /*  xfree(str);*/
-}
-
 void	drawPlayer(t_info *i, t_graph *g, t_client_socket client)
 {
-  SDL_Surface *texte;
-  SDL_Surface *texte2;
   char str[18];
   int	id;
   int lvl;
@@ -62,33 +22,23 @@ void	drawPlayer(t_info *i, t_graph *g, t_client_socket client)
   if (id != -1)
     {
       sprintf(str, " %d", id);
-      texte = TTF_RenderText_Solid(i->police, "PLAYER", i->color);
-      texte2 = TTF_RenderText_Solid(i->police, str, i->color);
-      drawImage(texte, 1015, 550, g->screen);
-      drawImage(texte2, 1200, 550, g->screen);
-      SDL_FreeSurface(texte);
-      SDL_FreeSurface(texte2);
+      drawTexte(i, 1015, 550, "PLAYER");
+      drawTexte(i, 1200, 550, str);
       sprintf(str, " %d", lvl);
-      texte = TTF_RenderText_Solid(i->police, "LEVEL", i->color);
-      texte2 = TTF_RenderText_Solid(i->police, str, i->color);
-      drawImage(texte, 1015, 620, g->screen);
-      drawImage(texte2, 1200, 620, g->screen);
-      SDL_FreeSurface(texte);
-      SDL_FreeSurface(texte2);
-      texte = TTF_RenderText_Solid(i->police, "Inventaire", i->color);
-      drawImage(texte, 1100, 690, g->screen);
-      SDL_FreeSurface(texte);
+      drawTexte(i, 1015, 620, "LEVEL");
+      drawTexte(i, 1200, 620, str);
+      drawTexte(i, 1100, 690, "Inventaire");
     }
 }
 
 void	drawFood(t_info *i, int x, int y, t_client_socket client)
 {
   char *str;
+  char tmp[18];
   char	**tab;
 
-  str = xmalloc(sizeof(char) * 255);
-  sprintf(str, "bct %d %d", x, y);
-  str = send_and_get_gfx(&client, str);
+  sprintf(tmp, "bct %d %d", x, y);
+  str = send_and_get_gfx(&client, tmp);
   tab = my_str_to_wordtab(str, " \n");
   printf("FOOD REQUEST %s\n", str);
   drawImage(i->l, 1050, 100, i->screen);
@@ -106,6 +56,7 @@ void	drawFood(t_info *i, int x, int y, t_client_socket client)
   drawImage(i->n, 1150, 400, i->screen);
   drawTexte(i, 1250, 410, tab[3]);
   xfree(str);
+  free_tab(tab);
 }
 
 void	drawCoord(t_info *i, t_graph *g, int x, int y)

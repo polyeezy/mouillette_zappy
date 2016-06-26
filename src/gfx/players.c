@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 24 16:00:41 2016 Aurelie Orset
-** Last update Sat Jun 25 19:00:21 2016 Aurelie Orset
+** Last update Sun Jun 26 16:17:32 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -15,10 +15,10 @@ char	**getToParse(t_client_socket client)
   char **tab;
   char *str;
 
-  str = xmalloc(sizeof(char) * 255);
   str = send_and_get_gfx(&client, "lpy");
-  str = "lpy 4\n4 1 6 6 0 1\n3 2 7 7 0 0\n32 3 5 5 0 1\n56 4 4 4 1 0\n";
+  printf("PLAYERS %s\n", str);
   tab = my_str_to_wordtab(str, " \n");
+  xfree(str);
   return (tab);
 }
 
@@ -31,7 +31,7 @@ void	drawOrient2(t_graph *g, int x, char **tab)
   mapy = atoi(tab[x + 3]);
   if (atoi(tab[x + 4]) == 1)
     drawImage(g->incant, mapx * g->ts, mapy * g->ts, g->screen);
-  if (atoi(tab[x + 1]) == 2)
+  if (atoi(tab[x + 1]) == 1)
     drawImage(g->nord2, mapx * g->ts, mapy * g->ts, g->screen);
   else if (atoi(tab[x + 1]) == 2)
     drawImage(g->est2, mapx * g->ts, mapy * g->ts, g->screen);
@@ -52,7 +52,7 @@ void	drawOrient(t_graph *g, int x, char **tab)
     {
       if (atoi(tab[x + 4]) == 1)
 	drawImage(g->incant, mapx * g->ts, mapy * g->ts, g->screen);
-      if (atoi(tab[x + 1]) == 2)
+      if (atoi(tab[x + 1]) == 1)
 	drawImage(g->nord, mapx * g->ts, mapy * g->ts, g->screen);
       else if (atoi(tab[x + 1]) == 2)
 	drawImage(g->est, mapx * g->ts, mapy * g->ts, g->screen);
@@ -84,4 +84,5 @@ void	drawPlayers(t_graph *g, t_client_socket client)
       x+= 6;
       i++;
     }
+  free_tab(tab);
 }

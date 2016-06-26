@@ -5,11 +5,10 @@
 ** Login   <miele_a@epitech.net>
 **
 ** Started on  Fri Jun 17 17:13:49 2016 Alexis Miele
-** Last update Wed Jun 22 16:36:57 2016 Valerian Polizzi
+** Last update Sun Jun 26 18:13:26 2016 Aurelie Orset
 */
 
 #ifndef		AI_CMD_H_
 # define	AI_CMD_H_
-
 
 #endif

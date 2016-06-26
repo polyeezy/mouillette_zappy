@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:16 2016 Aurelie Orset
-** Last update Sun Jun 26 13:57:36 2016 Aurelie Orset
+** Last update Sun Jun 26 15:08:14 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -14,7 +14,7 @@ void draw(SDL_Surface *screen, int mapx, int mapy, t_client_socket client)
 {
   drawMap(screen, mapx, mapy, client);
   SDL_Flip(screen);
-  /*  SDL_Delay(1);*/
+  SDL_Delay(1);
 }
 
 void delay(unsigned int frameLimit)

@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sun Jun 26 10:08:15 2016 Aurelie Orset
-** Last update Sun Jun 26 13:27:27 2016 Aurelie Orset
+** Last update Sun Jun 26 15:07:12 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -43,7 +43,6 @@ void	drawInventaire(t_graph *g, t_client_socket client)
   str = xmalloc(sizeof(char) * 255);
   sprintf(str, "pin %d", id);
   str = send_and_get_gfx(&client, str);
-  /*  str = "pin 36 56 56 0 1 2 3 4 5 6\n";*/
   tab = my_str_to_wordtab(str, " \n");
   printf("INVENTAIRE : %s\n", str);
   if (strcmp(tab[0], "sbp") != 0 && id != -1)

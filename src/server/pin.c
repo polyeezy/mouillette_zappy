@@ -20,7 +20,7 @@ static char	*concat_primary_infos(t_client *player)
   int		i;
 
   i = 0;
-  str = strdup("pin ");
+  str = xstrdup("pin ");
   primary = &(player->fd);
   while (i < 3)
     {

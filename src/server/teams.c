@@ -37,12 +37,12 @@ int	add_teams(t_team **teams, char **argv)
       strcmp(argv[get_arg(argv, "-n") + 1], argv[get_arg(argv, "-n") + 2]) == 0)
      return (-1);
   *teams = xmalloc(sizeof(t_team));
-  (*teams)->name = strdup(argv[get_arg(argv, "-n") + 1]);
+  (*teams)->name = xstrdup(argv[get_arg(argv, "-n") + 1]);
   (*teams)->max = atoi(argv[get_arg(argv, "-c") + 1]);
   (*teams)->members = NULL;
   (*teams)->prev = NULL;
   (*teams)->next = xmalloc(sizeof(t_team));
-  (*teams)->next->name = strdup(argv[get_arg(argv, "-n") + 2]);
+  (*teams)->next->name = xstrdup(argv[get_arg(argv, "-n") + 2]);
   (*teams)->next->max = atoi(argv[get_arg(argv, "-c") + 1]);
   (*teams)->next->members = NULL;
   (*teams)->next->prev = *teams;

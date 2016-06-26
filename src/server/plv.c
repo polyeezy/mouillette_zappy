@@ -17,7 +17,7 @@ static char	send_level(t_client *player, t_graphic *graphic)
   char		*str;
   char		*tmp;
 
-  str = strdup("plv ");
+  str = xstrdup("plv ");
   str = my_strcat(str, (tmp = itoa(player->fd)));
   str = my_strcat(str, " ");
   xfree(tmp);

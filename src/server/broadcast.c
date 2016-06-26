@@ -86,7 +86,7 @@ static char	send_message(t_server *server,
     orientation = get_dir(dest, check_horizontal(server->width, player, dest));
   else
     orientation = get_dir(dest, check_vertical(server->height, player, dest));
-  msg = strdup("message ");
+  msg = xstrdup("message ");
   msg = my_strcat(msg, orientation);
   msg = my_strcat(msg, ",");
   while (tab[i])

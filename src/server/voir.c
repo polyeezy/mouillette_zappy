@@ -22,7 +22,7 @@ static char	*nord(t_server server, t_client player)
   char		*str;
 
   i = 0;
-  str = strdup("{");
+  str = xstrdup("{");
   while (i <= player.level)
     {
       y = mod(player.y - i, server.height);
@@ -51,7 +51,7 @@ static char	*est(t_server server, t_client player)
   char		*str;
 
   i = 0;
-  str = strdup("{");
+  str = xstrdup("{");
   while (i <= player.level)
     {
       x = mod(player.x + i, server.width);
@@ -80,7 +80,7 @@ static char	*sud(t_server server, t_client player)
   char		*str;
 
   i = 0;
-  str = strdup("{");
+  str = xstrdup("{");
   while (i <= player.level)
     {
       y = mod(player.y + i, server.height);
@@ -109,7 +109,7 @@ static char	*ouest(t_server server, t_client player)
   char		*str;
 
   i = 0;
-  str = strdup("{");
+  str = xstrdup("{");
   while (i <= player.level)
     {
       x = mod(player.x - i, server.width);

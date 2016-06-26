@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sun Jun 26 14:00:13 2016 Valerian Polizzi
+## Last update Sun Jun 26 16:32:56 2016 Loïc Weinhard
 ##
 
 SRV_NAME	=	zappy_server
@@ -107,6 +107,7 @@ UTILS_SRC	=	$(UTILS_FOLDER)/isitnum.c		\
 			$(UTILS_FOLDER)/xfct_1.c		\
 			$(UTILS_FOLDER)/xfct_2.c		\
 			$(UTILS_FOLDER)/xfct_3.c		\
+			$(UTILS_FOLDER)/xfct_4.c		\
 			$(UTILS_FOLDER)/my_str_to_wordtab.c	\
 			$(UTILS_FOLDER)/free_tab.c		\
 			$(UTILS_FOLDER)/my_strcat.c		\

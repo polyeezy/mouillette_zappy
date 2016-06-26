@@ -91,7 +91,7 @@ char	lpy(t_server *server, t_graphic *graphic, char **tab)
       xwrite(graphic->fd, "sbp\n");
       return (0);
     }
-  str = strdup("lpy ");
+  str = xstrdup("lpy ");
   str = my_strcat(str, (count = itoa(count_players(server))));
   str = my_strcat(str, "\n");
   str = get_each_player(server, str);

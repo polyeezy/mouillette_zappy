@@ -27,7 +27,7 @@ char            *get_server_response(t_ai *cli)
   len = xread(cli->socket.fd, &buff, 255);
   buff[len] = 0;
   xfree(cli->last_response);
-  cli->last_response = strdup(buff);
+  cli->last_response = xstrdup(buff);
   return (cli->last_response);
 }
 

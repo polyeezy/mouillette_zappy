@@ -18,7 +18,7 @@ char	*my_strcat(char *src, char *tocat)
   int	i;
   int	x;
 
-  tmp = (src != NULL ? strdup(src) : NULL);
+  tmp = (src != NULL ? xstrdup(src) : NULL);
   length = my_strlen(src) + my_strlen(tocat) + 1;
   xfree(src);
   src = xmalloc(length);

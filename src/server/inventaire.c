@@ -37,7 +37,7 @@ char	inventaire(t_server *server, t_client *player, char **tab)
   materials = my_str_to_wordtab("food linemate deraumere sibur mendiane "
 				"phiras thystame", " ");
   i = 0;
-  str = strdup("{");
+  str = xstrdup("{");
   while (i < 7)
     {
       if (*material > 0)

@@ -35,7 +35,7 @@ void	handle_cmds(t_server *server, t_client *player)
   while (i < NUMBER_OF_COMMANDS)
     {
       if (strcmp(g_cmds[i].name, tab[0]) == 0)
-	add_pile(server, player, strdup(buffer), &g_cmds[i]);
+	add_pile(server, player, xstrdup(buffer), &g_cmds[i]);
       i += 1;
     }
   pile = server->pile;

@@ -16,7 +16,7 @@ static char	*create_str(char **tab)
 {
   char		*str;
 
-  str = strdup("bct ");
+  str = xstrdup("bct ");
   str = my_strcat(str, tab[1]);
   str = my_strcat(str, " ");
   str = my_strcat(str, tab[2]);

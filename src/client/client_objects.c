@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sun Jun 26 19:03:46 2016 Valerian Polizzi
+** Last update Sun Jun 26 19:19:05 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -89,24 +89,6 @@ int             look_for_object(char **vision, char *to_find)
       res = object_is_in_cell(epur_str(vision[i]), epur_str(to_find));
       if (res >= 0)
 	return (i);
-      i++;
-    }
-  return (-1);
-}
-
-int		is_in_inventary(t_ai *cli, char *obj)
-{
-  char		**inv;
-  int		i;
-
-  i = 0;
-  inv = NULL;
-  printf("%s\n", send_and_get(cli, "inventaire"));
-  inv = my_str_to_wordtab(cli->last_response, "{ , }");
-  while (inv[i])
-    {
-      if (strcmp(obj, inv[i]) == 0)
-	return (1);
       i++;
     }
   return (-1);

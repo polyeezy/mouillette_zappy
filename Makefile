@@ -5,7 +5,7 @@
 ## Login   <weinha_l@epitech.net>
 ##
 ## Started on  Mon Jun 13 10:16:15 2016 Loïc Weinhard
-## Last update Sun Jun 26 20:17:40 2016 Valerian Polizzi
+## Last update Sun Jun 26 21:38:59 2016 Aurelie Orset
 ##
 
 SRV_NAME	=	zappy_server
@@ -21,6 +21,7 @@ SRV_SRC		=	$(SRV_FOLDER)/main.c		\
 			$(SRV_FOLDER)/clients.c		\
 			$(SRV_FOLDER)/signal.c		\
 			$(SRV_FOLDER)/accept_client.c	\
+			$(SRV_FOLDER)/accept_client2.c	\
 			$(SRV_FOLDER)/handle_cmds.c	\
 			$(SRV_FOLDER)/droite.c		\
 			$(SRV_FOLDER)/cmds.c		\
@@ -124,7 +125,7 @@ UTILS_OBJ	=	$(UTILS_SRC:.c=.o)
 
 
 
-CFLAGS		+=	-Wall -Wextra -Werror -g
+CFLAGS		+=	-Wall -Wextra -Werror
 CFLAGS		+=	-Iinclude
 LDFLAGS		=	`sdl-config --libs` -lSDL -lSDL_image -lSDL_gfx -lSDL_ttf -lSDL_mixer
 
@@ -136,7 +137,7 @@ $(SRV_NAME)	:	$(SRV_OBJ) $(UTILS_OBJ)
 			gcc $(SRV_OBJ) $(UTILS_OBJ) -o $(SRV_NAME)
 
 $(CLT_NAME)	:	$(CLT_OBJ) $(UTILS_OBJ)
-			gcc $(CLT_OBJ) $(UTILS_OBJ) -o $(CLT_NAME) -g3
+			gcc $(CLT_OBJ) $(UTILS_OBJ) -o $(CLT_NAME)
 
 $(GFX_NAME)	:	$(GFX_OBJ) $(UTILS_OBJ) 
 			gcc $(GFX_OBJ) $(UTILS_OBJ) -o $(GFX_NAME) $(LDFLAGS)

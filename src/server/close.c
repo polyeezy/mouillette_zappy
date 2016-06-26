@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:11:05 2016 Loïc Weinhard
-** Last update Sun Jun 26 15:50:46 2016 Loïc Weinhard
+** Last update Sun Jun 26 21:29:08 2016 Aurelie Orset
 */
 
 #include "xfct.h"
@@ -40,10 +40,11 @@ static void	free_graphics(t_graphic *graphics)
     }
 }
 
-void	close_server(t_server server)
+int	close_server(t_server server)
 {
   xclose(server.fd);
   free_teams(server.teams);
   free_map(server.map);
   free_graphics(server.graphic);
+  return (0);
 }

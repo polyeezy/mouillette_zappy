@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Sun Jun 26 18:49:48 2016 Loïc Weinhard
+** Last update Sun Jun 26 21:29:33 2016 Aurelie Orset
 */
 
 #include "args.h"
@@ -15,8 +15,6 @@
 #include "xfct.h"
 #include "cmds.h"
 #include "graphic_client.h"
-
-extern char g_exit;
 
 void		fd_zero_set_all(t_server *server)
 {
@@ -109,8 +107,6 @@ int			main(int argc, char **argv)
   t_server		server;
   int			ret;
   struct timeval	timinho;
-  t_client		*player;
-  t_team		*team;
 
   (void)argc;
   gettimeofday(&timinho, NULL);
@@ -119,8 +115,7 @@ int			main(int argc, char **argv)
     return (-1);
   server = init_server(argv);
   ret = 0;
-  g_exit = 0;
-  while (ret != -1 && g_exit != 1 && check_gameover(server, NULL, 0) != 1)
+  while (ret != -1 && check_gameover(server, NULL, 0) != 1)
     {
       fd_zero_set_all(&server);
       calc_delay(server.pile, &timinho);
@@ -129,18 +124,6 @@ int			main(int argc, char **argv)
       exec_pile(&server, &(server.pile));
       if (FD_ISSET(server.fd, &(server.readfds)))
 	accept_client(&server);
-      team = server.teams;
-      while (team)
-	{
-	  player = team->members;
-	  while (player)
-	    {
-	      printf("%d\n", player->fd);
-	      player = player->next;
-	    }
-	  printf("-------\n");
-	  team = team->next;
-	}
       fd_isset_clients(&server);
     }
   close_server(server);

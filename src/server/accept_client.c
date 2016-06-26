@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 17 14:04:48 2016 Loïc Weinhard
-** Last update Sun Jun 26 19:19:42 2016 Alexis Miele
+** Last update Sun Jun 26 21:36:51 2016 Aurelie Orset
 */
 
 #include <time.h>
@@ -13,7 +13,7 @@
 #include "server.h"
 #include "xfct.h"
 
-static t_client	*create_client(t_server *server, int fd)
+t_client	*create_client(t_server *server, int fd)
 {
   t_client	*elem;
 
@@ -32,42 +32,6 @@ static t_client	*create_client(t_server *server, int fd)
   elem->materials.thystame = 0;
   elem->next = NULL;
   return (elem);
-}
-
-static void	update_map(t_client **clients, t_client **new)
-{
-  t_client	*tmp;
-
-  tmp = *clients;
-  while (tmp && tmp->next_map && (tmp = tmp->next_map));
-  (*new)->prev_map = (tmp != NULL ? tmp : NULL);
-  (*new)->next_map = NULL;
-  if (tmp == NULL)
-    *clients = *new;
-  else
-    tmp->next_map = *new;
-}
-
-static void	add_client_ext(t_server **server, t_client **clients, int fd)
-{
-  t_client	*tmp;
-  t_client	*new;
-
-  tmp = *clients;
-  while (tmp && tmp->next)
-    tmp = tmp->next;
-  new = create_client(*server, fd);
-  if (*clients == NULL)
-    {
-      *clients = new;
-      (*clients)->prev = NULL;
-    }
-  else
-    {
-      tmp->next = new;
-      new->prev = tmp;
-    }
-  update_map(&((*server)->map[new->y][new->x].players), &new);
 }
 
 static void	add_client(t_server *server, t_team **teams, char *team, int fd)

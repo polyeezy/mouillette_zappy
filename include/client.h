@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 11:11:15 2016 Loïc Weinhard
-** Last update Sun Jun 26 19:04:40 2016 Alexis Miele
+** Last update Sun Jun 26 19:26:45 2016 Alexis Miele
 */
 
 #ifndef CLIENT_H_
@@ -24,7 +24,6 @@
 # include <ai_cmd.h>
 # include "orientation.h"
 # include "materials.h"
-
 
 typedef struct		s_client
 {
@@ -87,7 +86,7 @@ void            ai_prend(t_ai*, char*);
 void            ai_pose(t_ai*, char*);
 void            ai_expulse(t_ai*, char*);
 void            ai_broadcast(t_ai*, char*);
-void            ai_incantation(t_ai*, char*);
+void            ai_incantation(t_ai*);
 void            ai_fork(t_ai*, char*);
 void            ai_connect_nbr(t_ai*);
 void            ai_dead(t_ai*);
@@ -99,5 +98,6 @@ int             is_in_inventary(t_ai *cli, char *obj);
 void            go_get_object(t_ai*, char *obj);
 void		debug_vision(char**);
 char            *epur_str(char *str);
+void		deblaye(t_ai *);
 
 #endif

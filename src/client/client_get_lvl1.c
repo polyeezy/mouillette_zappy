@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Thu Jun 23 12:15:49 2016 Valerian Polizzi
-** Last update Sun Jun 26 17:23:10 2016 Loïc Weinhard
+** Last update Sun Jun 26 19:17:40 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -13,9 +13,13 @@
 static void		client_get_lvl1_ext(t_ai **cli, char ***parsing,
 					    int *cell)
 {
+  if (look_for_object(*parsing, "nourriture") == 0)
+    ai_prend(*cli, "nourriture");
   ai_gauche(*cli);
   *parsing = parse_voir(*cli);
   *cell = look_for_object(*parsing, "linemate");
+  if (look_for_object(*parsing, "nourriture") == 0)
+    ai_prend(*cli, "nourriture");
 }
 
 void		client_get_lvl1(t_ai *cli)
@@ -23,7 +27,6 @@ void		client_get_lvl1(t_ai *cli)
   int           cell;
   char          **parsing;
   int		rotations;
-  char		**required;
 
   cell = -1;
   parsing = parse_voir(cli);
@@ -38,12 +41,11 @@ void		client_get_lvl1(t_ai *cli)
 	{
 	  ai_count_move(cli, cell);
 	  free_tab(parsing);
-	  parsing = parse_voir(cli);
+ 	  parsing = parse_voir(cli);
 	}
     }
-  required = my_str_to_wordtab("linemate", "");
-  get_rid(cli, required);
+  deblaye(cli);
+  send_and_get(cli, "pose linemate");
   free_tab(parsing);
-  free_tab(required);
-  ai_incantation(cli, " ");
+  ai_incantation(cli);
 }

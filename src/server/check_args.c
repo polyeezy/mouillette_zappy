@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:32:34 2016 Loïc Weinhard
-** Last update Sun Jun 26 17:25:53 2016 Loïc Weinhard
+** Last update Sun Jun 26 18:01:50 2016 Aurelie Orset
 */
 
 #include <string.h>
@@ -22,7 +22,8 @@ static int	check_param(char **argv, int i)
   x = 0;
   while (x < SERVER_ARGS)
     {
-      if (!g_server_args[x].used && strcmp(g_server_args[x].flag, argv[i]) == 0)
+      if (!g_server_args[x].used &&
+	  strcmp(g_server_args[x].flag, argv[i]) == 0)
 	{
 	  y = 0;
 	  g_server_args[x].used = 1;

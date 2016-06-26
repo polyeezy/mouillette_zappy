@@ -5,16 +5,17 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Fri Jun 17 14:46:25 2016 Aurelie Orset
-** Last update Wed Jun 22 16:15:16 2016 Aurelie Orset
+** Last update Sun Jun 26 17:53:44 2016 Aurelie Orset
 */
 
 #include "graphic.h"
 
 SDL_Surface *loadImage(char *name)
 {
-  SDL_Surface *temp = IMG_Load(name);
+  SDL_Surface *temp;
   SDL_Surface *image;
 
+  temp = IMG_Load(name);
   if (temp == NULL)
     {
       printf("Failed to load image %s\n", name);

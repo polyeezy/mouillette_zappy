@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 16:11:05 2016 Loïc Weinhard
-** Last update Tue Jun 14 16:50:48 2016 Loïc Weinhard
+** Last update Sun Jun 26 15:50:46 2016 Loïc Weinhard
 */
 
 #include "xfct.h"
@@ -21,9 +21,29 @@ void	free_map(t_case **map)
   xfree(map);
 }
 
+static void	free_graphics(t_graphic *graphics)
+{
+  while (graphics != NULL)
+    {
+      xclose(graphics->fd);
+      if (graphics->next != NULL)
+	{
+	  graphics = graphics->next;
+	  xfree(graphics->prev);
+	  graphics->prev = NULL;
+	}
+      else
+	{
+	  xfree(graphics);
+	  graphics = NULL;
+	}
+    }
+}
+
 void	close_server(t_server server)
 {
   xclose(server.fd);
   free_teams(server.teams);
   free_map(server.map);
+  free_graphics(server.graphic);
 }

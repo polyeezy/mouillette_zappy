@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Fri Jun 24 14:57:02 2016 Loïc Weinhard
-** Last update Sun Jun 26 10:08:52 2016 Alexis Miele
+** Last update Sun Jun 26 11:13:53 2016 Alexis Miele
 */
 
 #include "pile.h"
@@ -73,6 +73,20 @@ static void		add_elem_to_pile(t_pile **pile, t_pile **new)
     }
 }
 
+static int		check_size_pile(t_pile *pile, t_client *player)
+{
+  int			i;
+
+  i = 0;
+  while (pile)
+    {
+      if (pile->player && pile->player->fd == player->fd)
+	i++;
+      pile = pile->next;
+    }
+  return (i);
+}
+
 void			add_pile(t_server *server,
 			 t_client *player, char *buff, t_cmd *cmd)
 {
@@ -88,6 +102,11 @@ void			add_pile(t_server *server,
       (long long int)(cmd->delay * (1 / (float)server->timeout));
   if (server->pile == NULL)
     new_pile(&(server->pile), &elem);
-  else
+  else if (check_size_pile(server->pile, player) <= 11)
     add_elem_to_pile(&(server->pile), &elem);
+  else
+    {
+      xfree(elem->cmd);
+      xfree(elem);
+    }
 }

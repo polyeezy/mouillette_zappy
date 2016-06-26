@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sun Jun 26 13:41:40 2016 Valerian Polizzi
+** Last update Sun Jun 26 14:47:36 2016 Valerian Polizzi
 */
 
 #include <client.h>
@@ -127,22 +127,29 @@ void		go_get_object(t_ai *cli, char *obj)
   cell = -1;
   parsing = NULL;
   parsing = parse_voir(cli);
+  printf("LOOKING FOR %s\n", obj);
   while ((cell = look_for_object(parsing, obj)) != 0)
     {
+      printf("cell : %d\n", cell);
       rotations = 0;
       while (cell == -1)
         {
-          ai_gauche(cli);
-          parsing = parse_voir(cli);
-	  cell = look_for_object(parsing, obj);
-	  if (rotations + 1 > 3)
+	  if (rotations < 4)
 	    {
 	      ai_avance(cli);
 	      rotations = 0;
 	    }
 	  else
 	    rotations += 1;
+	  free_tab(parsing);
+	  parsing = parse_voir(cli);
+	  cell = look_for_object(parsing, obj);
+	  printf("cell : %d\n", cell);
 	}
+      printf("MOVING FOR %s\n", obj); 
+      ai_count_move(cli, cell);
+      free_tab(parsing);
+      parsing = parse_voir(cli);
     }
   printf("TAKING %s\n", obj);
   ai_prend(cli, obj);

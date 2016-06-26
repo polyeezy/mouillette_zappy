@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Sun Jun 26 11:20:42 2016 Loïc Weinhard
-** Last update Sun Jun 26 13:12:07 2016 Loïc Weinhard
+** Last update Sun Jun 26 13:22:10 2016 Loïc Weinhard
 */
 
 #include "graphic_client.h"
@@ -25,5 +25,10 @@ t_graph_cmd	g_graph_cmds[NUMBER_OF_GRAPH_COMMANDS] = {
       "plv",
       "plv : donne le niveau du joueur",
       &plv
+    },
+    {
+      "pin",
+      "pin : donne l'inventaire du joueur",
+      &pin
     }
 };

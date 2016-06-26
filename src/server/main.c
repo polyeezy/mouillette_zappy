@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 10:45:12 2016 Loïc Weinhard
-** Last update Sat Jun 25 19:37:18 2016 Loïc Weinhard
+** Last update Sun Jun 26 11:45:01 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -14,6 +14,7 @@
 #include "sig.h"
 #include "xfct.h"
 #include "cmds.h"
+#include "graphic_client.h"
 
 extern char g_exit;
 
@@ -21,6 +22,7 @@ void		fd_zero_set_all(t_server *server)
 {
   t_team	*team;
   t_client	*member;
+  t_graphic	*graphics;
 
   FD_ZERO(&(server->readfds));
   FD_SET(server->fd, &(server->readfds));
@@ -34,6 +36,27 @@ void		fd_zero_set_all(t_server *server)
 	  member = member->next;
 	}
       team = team->next;
+    }
+  graphics = server->graphic;
+  while (graphics)
+    {
+      FD_SET(graphics->fd, &(server->readfds));
+      graphics = graphics->next;
+    }
+}
+
+void		fd_isset_graphics(t_server *server)
+{
+  t_graphic	*graphics;
+  t_graphic	*next;
+
+  graphics = server->graphic;
+  while (graphics)
+    {
+      next = graphics->next;
+      if (FD_ISSET(graphics->fd, &(server->readfds)))
+	handle_graphics(server, graphics);
+      graphics = next;
     }
 }
 
@@ -56,6 +79,7 @@ void		fd_isset_clients(t_server *server)
 	}
       team = team->next;
     }
+  fd_isset_graphics(server);
 }
 
 int			main(int argc, char **argv)

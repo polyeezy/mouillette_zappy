@@ -5,7 +5,7 @@
 ** Login   <polizz_v@epitech.net>
 **
 ** Started on  Wed Jun 22 16:00:20 2016 Valerian Polizzi
-** Last update Sun Jun 26 14:47:36 2016 Valerian Polizzi
+** Last update Sun Jun 26 17:24:19 2016 Loïc Weinhard
 */
 
 #include <client.h>
@@ -86,7 +86,7 @@ void		get_rid(t_ai *cli, char **required)
 int             look_for_object(char **vision, char *to_find)
 {
   int           i;
-  int                  res;
+  int		res;
 
   i = 0;
   res = 0;
@@ -146,7 +146,7 @@ void		go_get_object(t_ai *cli, char *obj)
 	  cell = look_for_object(parsing, obj);
 	  printf("cell : %d\n", cell);
 	}
-      printf("MOVING FOR %s\n", obj); 
+      printf("MOVING FOR %s\n", obj);
       ai_count_move(cli, cell);
       free_tab(parsing);
       parsing = parse_voir(cli);

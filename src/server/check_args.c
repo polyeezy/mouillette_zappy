@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Mon Jun 13 15:32:34 2016 Loïc Weinhard
-** Last update Sat Jun 25 19:01:58 2016 Alexis Miele
+** Last update Sun Jun 26 17:25:53 2016 Loïc Weinhard
 */
 
 #include <string.h>
@@ -51,9 +51,11 @@ static int	print_usage()
   while (i < SERVER_ARGS)
     {
       if (g_server_args[i].mandatory)
-	dprintf(2, "%s %s ", g_server_args[i].flag, g_server_args[i].description);
+	dprintf(2, "%s %s ", g_server_args[i].flag,
+		g_server_args[i].description);
       else
-	dprintf(2, "[%s %s] ", g_server_args[i].flag, g_server_args[i].description);
+	dprintf(2, "[%s %s] ", g_server_args[i].flag,
+		g_server_args[i].description);
       i += 1;
     }
   dprintf(2, "\n");

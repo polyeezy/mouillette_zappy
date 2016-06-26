@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sun Jun 26 15:10:36 2016 Aurelie Orset
+** Last update Sun Jun 26 17:01:11 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -84,15 +84,13 @@ typedef struct	s_info
   SDL_Color	color;
 }		t_info;
 
-typedef struct	s_player
+typedef struct s_coord
 {
-  int			id;
-  int			level;
-  int			x;
-  int			y;
-  struct s_payer	*next;
-}			t_player;
-
+  int x;
+  int y;
+  int lvl;
+  int id;
+}		t_coord;
 
 float		calcCo(int mapy, int mapx, t_graph *g);
 int		convertX(int x, t_graph *g);

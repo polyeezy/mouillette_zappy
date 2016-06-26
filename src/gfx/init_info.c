@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Thu Jun 23 13:16:06 2016 Aurelie Orset
-** Last update Sun Jun 26 11:14:54 2016 Aurelie Orset
+** Last update Sun Jun 26 16:15:10 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -106,5 +106,6 @@ t_tile	*ressources(t_tile *tile, char *str)
     tile->p = 0;
     tile->t = 0;
   }
+  free_tab(tab);
   return (tile);
 }

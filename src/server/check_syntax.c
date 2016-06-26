@@ -5,7 +5,7 @@
 ** Login   <weinha_l@epitech.eu>
 **
 ** Started on  Wed Jun 22 14:27:10 2016 Loïc Weinhard
-** Last update Wed Jun 22 14:35:42 2016 Loïc Weinhard
+** Last update Sun Jun 26 16:08:09 2016 Loïc Weinhard
 */
 
 #include "args.h"
@@ -22,7 +22,7 @@ int	check_syntax(t_client *player, char **tab)
       dprintf(player->fd, "ko\n");
       return (-1);
     }
-  materials = my_str_to_wordtab("food linemate deraumere sibur mendiane "
+  materials = my_str_to_wordtab("nourriture linemate deraumere sibur mendiane "
 				      "phiras thystame", " \n");
   if ((i = get_arg(materials, tab[1])) == -1)
     {

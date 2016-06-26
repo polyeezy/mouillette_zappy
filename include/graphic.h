@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 16:34:09 2016 Aurelie Orset
-** Last update Sun Jun 26 11:22:05 2016 Aurelie Orset
+** Last update Sun Jun 26 15:10:36 2016 Aurelie Orset
 */
 
 #ifndef		GRAPHIC_H_
@@ -141,7 +141,7 @@ SDL_Surface	*loadImage(char *name);
 
 void		mainLoop(SDL_Surface *screen, int x, int y, t_client_socket client);
 
-void		playMusic();
+void		playMusic(char *str, int loops);
 
 t_graph		*resize(t_graph *g, float co);
 t_info		*resize_info(t_info *i, float co);

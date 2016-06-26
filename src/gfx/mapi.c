@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Sun Jun 26 13:31:52 2016 Aurelie Orset
+** Last update Sun Jun 26 15:07:44 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -59,7 +59,6 @@ void	drawAll(int x, int y, t_client_socket client, t_graph *g)
   usleep(10);
   tl = ressources(tl, str);
   drawStones(g, tl, x, y);
-  /*  drawPlayers(g, client);*/
   xfree(str);
   xfree(tl);
 }

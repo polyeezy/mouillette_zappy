@@ -5,12 +5,12 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Sat Jun 25 17:47:29 2016 Aurelie Orset
-** Last update Sat Jun 25 18:09:24 2016 Aurelie Orset
+** Last update Sun Jun 26 15:26:05 2016 Aurelie Orset
 */
 
 #include "graphic.h"
 
-void	playMusic()
+void	playMusic(char *str, int loops)
 {
   Mix_Music *musique;
 
@@ -18,10 +18,8 @@ void	playMusic()
 		    MIX_DEFAULT_CHANNELS, 1024) == -1)
     printf("%s", Mix_GetError());
   Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
-  musique = Mix_LoadMUS("gfx/waka.wav");
+  musique = Mix_LoadMUS(str);
   if (!musique)
-    {
-      printf("Mix_LoadMUS(\"music.mp3\"): %s\n", Mix_GetError());
-    }
-  Mix_PlayMusic(musique, -1);
+    printf("Mix_LoadMUS(%s): %s\n", str, Mix_GetError());
+  Mix_PlayMusic(musique, loops);
 }

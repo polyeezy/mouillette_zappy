@@ -5,7 +5,7 @@
 ** Login   <orset_a@epitech.net>
 ** 
 ** Started on  Mon Jun 20 17:07:22 2016 Aurelie Orset
-** Last update Sun Jun 26 12:42:05 2016 Aurelie Orset
+** Last update Sun Jun 26 13:31:52 2016 Aurelie Orset
 */
 
 #include "graphic.h"
@@ -56,7 +56,6 @@ void	drawAll(int x, int y, t_client_socket client, t_graph *g)
   str = xmalloc(sizeof(char) * 255);
   sprintf(str, "bct %d %d", x, y);
   str = send_and_get_gfx(&client, str);
-  printf("got %s\n", str);
   usleep(10);
   tl = ressources(tl, str);
   drawStones(g, tl, x, y);
@@ -85,8 +84,6 @@ void drawMap(SDL_Surface *screen, int mapx, int mapy, t_client_socket client)
 	}
       y++;
     }
-  SDL_Flip(screen);
-  SDL_Delay(1);
   usleep(100);
   drawPlayers(g, client);
   usleep(100);
